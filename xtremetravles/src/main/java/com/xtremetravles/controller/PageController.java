@@ -12,7 +12,44 @@ public class PageController {
 	public ModelAndView index() {		
 		ModelAndView mv = new ModelAndView("index");		
 			
-		mv.addObject("greeting","Welcome to Xtreme Travels");
+		mv.addObject("clickedFlight", true);
+
+		return mv;				
+}
+
+	@RequestMapping(value ="/bus")
+	public ModelAndView bus() {		
+		ModelAndView mv = new ModelAndView("index");		
+			
+		mv.addObject("clickedBus", true);
+
+		return mv;				
+}
+	
+	@RequestMapping(value ="/cab")
+	public ModelAndView cabs() {		
+		ModelAndView mv = new ModelAndView("index");		
+			
+		mv.addObject("clickedCab", true);
+
+		return mv;				
+}
+	
+	@RequestMapping(value ="/deals")
+	public ModelAndView deals() {		
+		ModelAndView mv = new ModelAndView("index");		
+			
+		mv.addObject("clickedDeals", true);
+
+		return mv;				
+}
+	
+	@RequestMapping(value ="/hotels")
+	public ModelAndView hotels() {		
+		ModelAndView mv = new ModelAndView("index");		
+			
+		mv.addObject("clickedHotels", true);
+
 		return mv;				
 }
 }
