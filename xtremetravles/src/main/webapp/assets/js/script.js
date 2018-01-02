@@ -18,4 +18,72 @@ $(document).ready(function(){
 		e.preventDefault();
 	})
 	
+	
+		var $table =$('#productListTable');
+	
+	if($table.length){
+				
+		var jsonUrl = '';
+		if (window.boardPoint == ''&& window.dropPoint == '' ) {
+			jsonUrl = window.contextRoot + '/json/data/all/bus';
+		} else {
+			jsonUrl = window.contextRoot + '/json/data/'+ window.boardPoint +'/'
+					+ window.dropPoint + '/bus';
+}
+		console.log(jsonUrl);
+		$table.DataTable({
+
+			lengthMenu:[[3,5,10],['3 Records','5 Records','10 Records']],
+			pageLength:5,
+			ajax:{
+				
+				url:jsonUrl,
+				dataSrc:''
+			},
+			
+			columns:[
+				
+				{
+					data:'boardTime'
+				},
+				{
+					data:'busName'
+				},
+				{
+					data:'dropTime'
+				},
+				{
+					data:'busName'
+				},
+				{
+					data:'seatsAvailable'
+				},
+				{
+					data:'price',
+					mRender:function(data,type,row){
+						
+						return '&#8377 '+data
+					}
+				},
+				
+				{
+					data : 'id',
+					bSortable : false,
+					mRender : function(data, type, row) {
+
+						var str = '';
+						str += '<a href="'
+								+ window.contextRoot
+								+ '/bus/'
+								+ data
+								+ '/busReview" class="btn btn-primary">Select Bus</a> &#160;';
+
+
+						return str;
+				}
+				}
+				]
+		});
+	}	
 });
+

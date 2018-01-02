@@ -14,53 +14,59 @@
 		<spring.security.version>4.2.2.RELEASE</spring.security.version>
 		
 </properties>
-
-
   <dependencies>
-  
-  <!-- Link backend project -->
+    <!-- Link backend project -->
 		<dependency>
 			<groupId>com</groupId>
   <artifactId>xtremetravlesbackend</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 </dependency>
-
-  <!-- JavaEE Api  -->
-  <dependency>
-    <groupId>javax</groupId>
-    <artifactId>javaee-api</artifactId>
-    <version>${javaee.version}</version>
-    <scope>provided</scope>
-</dependency>
   
-    <!-- Spring  -->
-  
-  <dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
-</dependency>
+  <!-- JAVA EE -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>${javaee.version}</version>
+			<scope>provided</scope>
+		</dependency>
+  <!-- JUNIT -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
 
-<dependency>
+		<!-- SPRING -->
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
-</dependency>
+			
+		</dependency>
 
-<!-- Spring Webflow -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<!-- JSTL -->
+
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		
+			<!-- Spring Webflow -->
 	    <dependency>
 	        <groupId>org.springframework.webflow</groupId>
 	        <artifactId>spring-webflow</artifactId>
 	        <version>2.4.4.RELEASE</version>
 	    </dependency>
-	    
-	    <!-- Spring Security -->
+	  
+	  <!-- Spring Security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
@@ -77,23 +83,8 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>${spring.security.version}</version>
-</dependency>
-
-<!-- jstl lib -->
-<dependency>
-    <groupId>jstl</groupId>
-    <artifactId>jstl</artifactId>
-    <version>1.2</version>
-</dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    
-    
+		</dependency>
+	    
   </dependencies>
   <build>
   

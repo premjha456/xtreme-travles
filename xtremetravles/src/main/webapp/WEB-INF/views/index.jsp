@@ -20,25 +20,36 @@
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //Custom Theme files -->
 <link href="${css}/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="${css}/dataTables.bootstrap.css" type="text/css" rel="stylesheet" media="all">
+
 <link href="${css}/style.css" type="text/css" rel="stylesheet" media="all">
 <link rel="stylesheet" href="${css}/flexslider.css" type="text/css" media="screen" />
 <link type="text/css" rel="stylesheet" href="${css}/JFFormStyle-1.css" />
 <!-- js -->
 <script src="${js}/jquery.min.js"></script>
 <script src="${js}/modernizr.custom.js"></script>
+<script src="${js}/jquery.dataTables.js"></script>
+<script src="${js}/dataTables.bootstrap.js"></script>
+
+	<script type="text/javascript" src="${js}/script.js"></script>
+
 <!-- //js -->
 <!-- fonts -->
 <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,700,500italic,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <!-- //fonts -->	
 <script type="text/javascript">
+
+window.contextRoot='${contextRoot}'
 		$(document).ready(function () {
 			$('#horizontalTab').easyResponsiveTabs({
 				type: 'default', //Types: default, vertical, accordion           
 				width: 'auto', //auto or any width like 600px
 				fit: true   // 100% fit in a container
+				
 			});
 		});
+		
 	</script>
 <!--pop-up-->
 <script src="${js}/menu_jquery.js"></script>
@@ -141,8 +152,31 @@
 				<%@include file="bus.jsp"%>
 </c:if>
 	
+		<c:if test="${clickedListBus == true }">
+				<%@include file="busResult.jsp"%>
+</c:if>
+	
+	<c:if test="${clickedReviewBus == true }">
+				<%@include file="busReview.jsp"%>
+</c:if>
+
+<c:if test="${clickedPaymentSuccess == true }">
+				<%@include file="paymentSuccess.jsp"%>
+</c:if>
+<c:if test="${clickedPaymentFail == true }">
+				<%@include file="paymentFail.jsp"%>
+</c:if>
+<c:if test="${clickedPaymentCancel == true }">
+				<%@include file="paymentCancel.jsp"%>
+</c:if>
+
 	<c:if test="${clickedCab == true }">
 				<%@include file="cabs.jsp"%>
+</c:if>
+
+
+<c:if test="${clickedConfirmBooking == true }">
+				<%@include file="confirmBooking.jsp"%>
 </c:if>
 
 <c:if test="${clickedDeals == true }">
@@ -153,76 +187,12 @@
 				<%@include file="hotels.jsp"%>
 </c:if>
 	
-	<!-- popular-grids -->
-	<div class="popular-grids">
-		<!-- container -->
-		<div class="container">
-			<div class="popular-info">
-				<h3>Popular Places</h3>
-			</div>
-			<!-- slider -->
-			<div class="slider">
-				<div class="arrival-grids">			 
-					 <ul id="flexiselDemo1">
-						 <li>
-							 <a href="products.html"><img src="${images}/a3.jpg" alt=""/>
-							 </a>
-						 </li>
-						 <li>
-							 <a href="products.html"><img src="${images}/a2.jpg" alt=""/>
-							 </a>
-						 </li>
-						 <li>
-							 <a href="products.html"><img src="${images}/a4.jpg" alt=""/>
-							 </a>
-						 </li>
-						 <li>
-							 <a href="products.html"><img src="${images}/a1.jpg" alt=""/>
-							 </a>
-						 </li>
-						</ul>
-						<script type="text/javascript">
-						 $(window).load(function() {			
-						  $("#flexiselDemo1").flexisel({
-							visibleItems: 4,
-							animationSpeed: 1000,
-							autoPlay: true,
-							autoPlaySpeed: 3000,    		
-							pauseOnHover:true,
-							enableResponsiveBreakpoints: true,
-							responsiveBreakpoints: { 
-								portrait: { 
-									changePoint:480,
-									visibleItems: 1
-								}, 
-								landscape: { 
-									changePoint:640,
-									visibleItems: 2
-								},
-								tablet: { 
-									changePoint:768,
-									visibleItems: 3
-								}
-							}
-						});
-						});
-						</script>
-						<script type="text/javascript" src="${js}/jquery.flexisel.js"></script>			 
-				</div>
-			</div>
-			<!-- //slider -->
-		</div>
-		<!-- //container -->
-	</div>
-	<!-- popular-grids -->
-	
 	<%@include file="footer.jsp"%>
 	<%@include file="footer-bottom.jsp"%>
 	
 	<script defer src="${js}/jquery.flexslider.js"></script>
 	<script src="${js}/easyResponsiveTabs.js" type="text/javascript"></script>
 	<script src="${js}/jquery-ui.js"></script>
-	<script type="text/javascript" src="${js}/script.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			SyntaxHighlighter.all();
