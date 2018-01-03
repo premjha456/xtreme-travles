@@ -25,6 +25,19 @@ public class PageController {
 		return mv;				
 }
 
+	
+	@RequestMapping(value ="/flight/listFlight")
+	public ModelAndView viewFlight(@RequestParam("boardPoint") String boardPoint,@RequestParam("dropPoint") String dropPoint) {		
+		ModelAndView mv = new ModelAndView("index");		
+		
+		mv.addObject("boardPoint", boardPoint);
+		mv.addObject("dropPoint", dropPoint);
+		mv.addObject("clickedViewFlight", true);
+
+		return mv;				
+}
+
+	
 	@RequestMapping(value ="/bus")
 	public ModelAndView bus() {		
 		ModelAndView mv = new ModelAndView("index");		

@@ -20,7 +20,7 @@
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //Custom Theme files -->
 <link href="${css}/bootstrap.css" type="text/css" rel="stylesheet" media="all">
-<link href="${css}/dataTables.bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="${css}/dataTables.bootstrap4.css" type="text/css" rel="stylesheet" media="all">
 
 <link href="${css}/style.css" type="text/css" rel="stylesheet" media="all">
 <link rel="stylesheet" href="${css}/flexslider.css" type="text/css" media="screen" />
@@ -29,7 +29,7 @@
 <script src="${js}/jquery.min.js"></script>
 <script src="${js}/modernizr.custom.js"></script>
 <script src="${js}/jquery.dataTables.js"></script>
-<script src="${js}/dataTables.bootstrap.js"></script>
+<script src="${js}/dataTables.bootstrap4.js"></script>
 
 	<script type="text/javascript" src="${js}/script.js"></script>
 
@@ -148,6 +148,10 @@ window.contextRoot='${contextRoot}'
 				<%@include file="flight.jsp"%>
 </c:if>
 	
+	<c:if test="${clickedViewFlight == true }">
+				<%@include file="listFlight.jsp"%>
+</c:if>
+
 	<c:if test="${clickedBus == true }">
 				<%@include file="bus.jsp"%>
 </c:if>

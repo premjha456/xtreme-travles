@@ -6,16 +6,16 @@
 			
 				
 					
-					<table id="listbus" class="table table-striped table-borderd">
+					<table id="listflight" class="table table-striped table-borderd">
 					
 					
 						<thead>
 						
 							<tr>
+								<th></th>
 								<th>Depature</th>
-								<th>Duration</th>
 							    <th>Arrival</th>
-								<th>Travles</th>
+								<th>Duration</th>
 							    <th>Seats</th>
 								<th>Price</th>	
 								<th></th>	
@@ -27,14 +27,14 @@
 
 						<tfoot>
 						
-							    <th>Depature</th>
-								<th>Duration</th>
+							    <th></th>
+								<th>Depature</th>
 							    <th>Arrival</th>
-								<th>Travles</th>
+								<th>Duration</th>
 							    <th>Seats</th>
-								<th>Price</th>
+								<th>Price</th>	
 								<th></th>	
-
+							
 							</tr>
 						</tfoot>
 					</table>

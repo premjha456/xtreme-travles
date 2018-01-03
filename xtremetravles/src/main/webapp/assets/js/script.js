@@ -19,7 +19,7 @@ $(document).ready(function(){
 	})
 	
 	
-		var $table =$('#productListTable');
+		var $table =$('#listbus');
 	
 	if($table.length){
 				
@@ -85,5 +85,82 @@ $(document).ready(function(){
 				]
 		});
 	}	
-});
+	
 
+
+	var $table =$('#listflight');
+
+	if($table.length){
+				
+		var jsonUrl = '';
+		if (window.boardPoint == ''&& window.dropPoint == '' ) {
+			jsonUrl = window.contextRoot + '/json/data/all/flight';
+		} else {
+			jsonUrl = window.contextRoot + '/json/data/'+ window.boardPoint +'/'
+					+ window.dropPoint + '/flight';
+	}
+		console.log(jsonUrl);
+		$table.DataTable({
+
+			lengthMenu:[[3,5,10],['3 Records','5 Records','10 Records']],
+			pageLength:5,
+			ajax:{
+				
+				url:jsonUrl,
+				dataSrc:''
+			},
+			
+			columns:[
+				
+				{
+					data:'flightName',
+					bSortable : false,
+					mRender : function(data, type, row) {
+
+						return '<img src="' + window.contextRoot
+								+ '/resources/images/' + data
+								+ '.jpg" class="dataTableImg"/>';
+					}
+			
+				},
+				{data:'boardTime'
+				},
+				{
+					data:'dropTime'
+				},
+				{
+					data:'flightName'
+				},
+				{
+					data:'seatsAvailable'
+				},
+				{
+					data:'fare',
+					mRender:function(data,type,row){
+						
+						return '&#8377 '+data
+					}
+				},
+				
+				{
+					data : 'id',
+					bSortable : false,
+					mRender : function(data, type, row) {
+
+						var str = '';
+						str += '<a href="'
+								+ window.contextRoot
+								+ '/flight/'
+								+ data
+								+ '/flightReview" class="btn btn-primary">&nbsp;&nbsp;&nbsp;Book&nbsp;&nbsp;&nbsp;</a> &#160;';
+
+
+						return str;
+				}
+				}
+				]
+		});
+	}	
+
+
+});
