@@ -8,13 +8,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.xtremetravlesbackend.dao.BusDao;
+import com.xtremetravlesbackend.dao.FlightDao;
 import com.xtremetravlesbackend.dto.Bus;
+import com.xtremetravlesbackend.dto.Flight;
 
 @Controller
 public class PageController {
 
 	@Autowired
 	private BusDao busDao;
+	
+	@Autowired
+	private FlightDao flightDao;
 		
 	@RequestMapping(value = {"/", "/home", "/index"})
 	public ModelAndView index() {		
@@ -36,6 +41,42 @@ public class PageController {
 
 		return mv;				
 }
+
+	
+	@RequestMapping("/flight/{id}/flightReview")
+	public ModelAndView reviewFlight(@PathVariable int id){
+		ModelAndView mv = new ModelAndView("index");
+		
+		Flight flight= flightDao.get(id);
+		mv.addObject("flight", flight);
+		mv.addObject("clickedReviewFlight", true);
+
+		return mv;
+		
+	}
+	
+	@RequestMapping("/flight/confirmBooking")
+	public ModelAndView confirmFlightBook(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("age") int age,@RequestParam("gender") String gender,@RequestParam("email") String email,@RequestParam("phone") String phone){
+		ModelAndView mv = new ModelAndView("index");
+		Flight flight =flightDao.get(id);
+		String product =flight.getFlightName()+"("+flight.getFlightType()+")"+"----"+flight.getBoardPoint()+"("+flight.getBoardTime()+")"+" TO "+flight.getDropPoint()+"("+flight.getDropTime()+")";
+		System.out.println(email);
+		mv.addObject("flight", flight);
+		mv.addObject("name", name);
+		mv.addObject("age", age);
+		mv.addObject("gender", gender);
+		mv.addObject("email", email);
+		mv.addObject("phone", phone);
+		mv.addObject("productInfo", product);
+		mv.addObject("surl", "http://localhost:8080/xtremetravles/bus/booking/payment/success");
+		mv.addObject("furl", "http://localhost:8080/xtremetravles/bus/booking/payment/fail");
+		mv.addObject("curl", "http://localhost:8080/xtremetravles/bus/booking/payment/cancel");
+        
+		mv.addObject("clickedConfirmBooking", true);
+
+		return mv;
+		
+	}
 
 	
 	@RequestMapping(value ="/bus")
@@ -96,7 +137,7 @@ public class PageController {
 		
 	}
 
-	@RequestMapping(value ="/cab")
+	@RequestMapping(value ="/cabs")
 	public ModelAndView cabs() {		
 		ModelAndView mv = new ModelAndView("index");		
 			

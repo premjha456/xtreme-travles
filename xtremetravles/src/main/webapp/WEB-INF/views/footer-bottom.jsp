@@ -37,7 +37,7 @@
 					</div>
 					<div class="clearfix"> </div>
 					<div class="copyright">
-						<p>Copyrights © 2015 Govihar . Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+						<p>Copyrights © 2015 Govihar . Design by Prem Jha</p>
 					</div>
 				</div>
 		</div>

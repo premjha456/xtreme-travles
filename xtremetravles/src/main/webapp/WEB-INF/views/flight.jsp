@@ -1,176 +1,150 @@
+<div class="container">
+		<div class="col-sm-10">
 
-	<!-- banner -->
-	<div class="banner">
-		<!-- container -->
-		<div class="container">
-			<div class="col-md-4 banner-left">
-				<section class="slider2">
-					<div class="flexslider">
-						<ul class="slides">
-							<li>
-								<div class="slider-info">
-									<img src="images/1.jpg" alt="">
-								</div>
-							</li>
-							<li>
-								<div class="slider-info">
-									<img src="images/2.jpg" alt="">
-								</div>
-							</li>
-							<li>	
-								<div class="slider-info">
-									<img src="images/3.jpg" alt="">
-								</div>
-							</li>
-							<li>	
-								<div class="slider-info">
-									<img src="images/4.jpg" alt="">
-								</div>
-							</li>
-							<li>	
-								<div class="slider-info">
-									<img src="images/2.jpg" alt="">
-								</div>
-							</li>
-						</ul>
-					</div>
-				</section>
-				<!--FlexSlider-->
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h4>Book Domestic Flights Tickets</h4>
+				</div>
+				<div class="panel-body">
+
+
+					<form class="form-inline" action="${contextRoot}/flight/listFlight">
+
+						<div class="form-group">
+							<label class="control-label">Flying From :</label>
+							<div class="input-group">
+								<span class="input-group-addon">
+								<i class="glyphicon glyphicon-map-marker"></i></span> 
+									<input class="form-control" type="text" name="boardPoint"/>
+							</div>
+						</div>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<div class="form-group">
+							<label class="control-label">Flying To :</label>
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-map-marker"></i></span> <input
+									class="form-control" type="text" name="dropPoint">
+							</div>
+						</div>
+
+						<br> <br>
+
+						<div class="form-group">
+							<label class="control-label">Depature :</label>
+							<div class='input-group date' id='datetimepicker1'>
+								<input type="date" class="form-control"/> <span
+									class="input-group-addon"> <span
+									class="glyphicon glyphicon-calendar"></span>
+								</span>
+							</div>
+						</div>
+						
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<div class="form-group">
+							<label for="select" class="control-label">Adults</label>
+							<div class="input-group">
+								<select class="form-control" id="select">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+							</div>
+						</div>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+						<div class="form-group">
+							<label for="select" class="control-label">Children</label>
+							<div class="input-group">
+								<select class="form-control" id="select">
+									<option value="0">0</option>									
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+							</div>
+						</div>
+
+						&nbsp;&nbsp;&nbsp;&nbsp;
+
+						<div class="form-group">
+							<label for="select" class="control-label">Economy</label>
+							<div class="input-group">
+								<select class="form-control" id="select">
+									<option>Economy</option>
+									<option>Business</option>
+								</select>
+							</div>
+						</div>
+						&nbsp;&nbsp;&nbsp;&nbsp; <br> <br>
+						<input type="submit" class="btn btn-default" value="Submit" />
+					</form>
+				</div>
+
+
 			</div>
-			<div class="col-md-8 banner-right">
-				<div class="sap_tabs">	
-					<div class="booking-info">
-						<h2>Book Domestic Flight Tickets</h2>
-					</div>
-										<div class="booking-form">
-											<!---strat-date-piker---->
-											<link rel="stylesheet" href="css/jquery-ui.css" />
-											<script src="js/jquery-ui.js"></script>
-													  <script>
-															  $(function() {
-																$( "#datepicker,#datepicker1" ).datepicker();
-															  });
-													  </script>
 
-											<!---/End-date-piker---->
-										
-											<div class="online_reservation">
-							         				<form action="${contextRoot}/flight/listFlight">
-											
-													<div class="b_room">
-														<div class="booking_room">
-															<div class="reservation">
-																<ul>		
-																	<li  class="span1_of_1 desti">
-																		 <h5>Flying from</h5>
-																		 <div class="book_date">
-																			  
-																				<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-																				<input type="text" placeholder="Type Departure City" class="typeahead1 input-md form-control tt-input" name="boardPoint" required="">
-																			  
-																		 </div>					
-																	 </li>
-																	 <li  class="span1_of_1 left desti">
-																		 <h5>Flying to</h5>
-																		 <div class="book_date">
-																		  
-																			<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-																			<input type="text" placeholder="Type Destination City" name="dropPoint"  class="typeahead1 input-md form-control tt-input" required="">
-																		  
-																		 </div>		
-																	 </li>
-																	 <div class="clearfix"></div>
-																</ul>
-															</div>
-															<div class="reservation">
-																<ul>	
-																	 <li  class="span1_of_1">
-																		 <h5>Departure</h5>
-																		 <div class="book_date">
-																		  
-																			<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-																			<input type="date" value="Select date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Select date';}">
-																		 
-																		 </div>		
-																	 </li>
-																	 <li class="span1_of_1 left">
-																		 <h5>Adults (18+)</h5>
-																		 <!----------start section_room----------->
-																		 <div class="section_room">
-																			  <select id="country" onchange="change_country(this.value)" class="frm-field required">
-																					<option value="1">1</option>
-																					<option value="2">2</option>         
-																					<option value="3">3</option>
-																					<option value="4">4</option>
-																					<option value="5">5</option>
-																					<option value="6">6</option>
-																			  </select>
-																		 </div>	
-																	</li>
-																	<li class="span1_of_1 left tab-children">
-																		 <h5>Children (0-17)</h5>
-																		 <!----------start section_room----------->
-																		 <div class="section_room">
-																			  <select id="country" onchange="change_country(this.value)" class="frm-field required">
-																					<option value="0">0</option>
-																					<option value="1">1</option>
-																					<option value="2">2</option>         
-																					<option value="3">3</option>
-																					<option value="4">4</option>
-																					<option value="5">5</option>
-																			  </select>
-																		 </div>	
-																	</li>
-																	<li class="span1_of_1 economy">
-																		 <h5>Class</h5>
-																		 <!----------start section_room----------->
-																		 <div class="section_room">
-																			  <select id="country" onchange="change_country(this.value)" class="frm-field required">
-																					<option value="economy">Economy</option>
-																					<option value="business">Business</option>     
-																			  </select>
-																		 </div>	
-																	</li>
-																	 <div class="clearfix"></div>
-																</ul>
-															</div>
-															<div class="reservation">
-																<ul>	
-																	 <li class="span1_of_3">
-																			<div class="date_btn">
-																				 
-																					<input type="submit" value="Search" />
-																				 
-																			</div>
-																	 </li>
-																	 <div class="clearfix"></div>
-																</ul>
-															</div>
-														</div>
-														<div class="clearfix"></div>
-												
-													</div>
-											    </form>
-											</div>
-											<!---->
-										</div>	
+			<br> <br>
+
+			<div class="row">
+				<div class="col-sm-10">
+					<div id="myCarousel" class="carousel slide" data-ride="carousel">
+						<!-- Indicators -->
+						<ol class="carousel-indicators">
+							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+							<li data-target="#myCarousel" data-slide-to="1"></li>
+							<li data-target="#myCarousel" data-slide-to="2"></li>
+						</ol>
+
+						<!-- Wrapper for slides -->
+						<div class="carousel-inner">
+
+							<div class="item active">
+								<img src="${images}/xyz.png" alt="Los Angeles" style="width: 100%;">
+								<div class="carousel-caption">
+									<h3>Los Angeles</h3>
+									<p>LA is always so much fun!</p>
 								</div>
-							</div> 			        					            	      
-						  </div>	
-					  </div>	
+							</div>
+
+							<div class="item">
+								<img src="${images}/pqr.jpg" alt="Chicago" style="width: 100%;">
+								<div class="carousel-caption">
+									<h3>Chicago</h3>
+									<p>Thank you, Chicago!</p>
+								</div>
+							</div>
+
+							<div class="item">
+								<img src="${images}/abc.jpeg" alt="New York" style="width: 100%">
+								<div class="carousel-caption">
+									<h3>New York</h3>
+									<p>We love the Big Apple!</p>
+								</div>
+							</div>
+
+						</div>
+
+						<!-- Left and right controls -->
+						<a class="left carousel-control" href="#myCarousel"
+							data-slide="prev"> <span
+							class="glyphicon glyphicon-chevron-left"></span> <span
+							class="sr-only">Previous</span>
+						</a> <a class="right carousel-control" href="#myCarousel"
+							data-slide="next"> <span
+							class="glyphicon glyphicon-chevron-right"></span> <span
+							class="sr-only">Next</span>
+						</a>
+					</div>
 				</div>
 			</div>
-			<div class="clearfix"> </div>
 		</div>
-		<!-- //container -->
 	</div>
-	<!-- //banner -->
-	<div class="move-text">
-		<div class="marquee">Register your hotel with us free of cost.<a href="signup.html">Here</a></div>
-		<script type="text/javascript" src="js/jquery.marquee.min.js"></script>
-        <script>
-		  $('.marquee').marquee({ pauseOnHover: true });
-		  //@ sourceURL=pen.js
-		</script>
-	</div>
-	
+<br>
