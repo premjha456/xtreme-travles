@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 
 @Entity
@@ -14,27 +17,37 @@ public class Bus {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	@Column(name="bus_name")
+	@NotBlank(message="Plese Enter Bus Name")
 	private String busName; 
 	@Column(name="bus_type")
+	@NotBlank(message="Plese Enter Bus Type")
 	private String busType; 
+	@NotBlank(message="Plese Enter Aminites")
 	private String aminities;
 	@Column(name="bus_reg_no")
+	@NotBlank(message="Plese Enter Bus Reg No")
 	private String busRegNo;
 	@Column(name="board_point")
+	@NotBlank(message="Plese Enter BoardPoint")
 	private String boardPoint;
 	@Column(name="board_time")
+	@NotBlank(message="Plese Enter BoardTime")
 	private String boardTime; 
 	@Column(name="drop_point")
+	@NotBlank(message="Plese Enter DropPoint")
 	private String dropPoint; 
 	@Column(name="drop_time")
+	@NotBlank(message="Plese Enter DropTime")
 	private String dropTime; 
 	@Column(name="max_seats")
+	@Min(value=1)
 	private int maxSeats;
 	@Column(name="seats_available")
 	private int seatsAvailable;
+	@Min(value=1)
 	private double price;
-	@Column(name="is_enabled")
-	private boolean isEnabled;
+	@Column(name="active")
+	private boolean active;
 	
 	
 	public int getId() {
@@ -105,27 +118,28 @@ public class Bus {
 	public void setSeatsAvailable(int seatsAvailable) {
 		this.seatsAvailable = seatsAvailable;
 	}
-	public boolean isEnabled() {
-		return isEnabled;
-	}
-	public void setEnabled(boolean isEnabled) {
-		this.isEnabled = isEnabled;
-	}
 	
-	
+
 	public double getPrice() {
 		return price;
 	}
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 	@Override
 	public String toString() {
 		return "Bus [id=" + id + ", busName=" + busName + ", busType=" + busType + ", aminities=" + aminities
 				+ ", busRegNo=" + busRegNo + ", boardPoint=" + boardPoint + ", boardTime=" + boardTime + ", dropPoint="
 				+ dropPoint + ", dropTime=" + dropTime + ", maxSeats=" + maxSeats + ", seatsAvailable=" + seatsAvailable
-				+ ", price=" + price + ", isEnabled=" + isEnabled + "]";
+				+ ", price=" + price + ", active=" + active + "]";
 	}
+	
 	
 	
 

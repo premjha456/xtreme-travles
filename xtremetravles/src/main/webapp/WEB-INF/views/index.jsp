@@ -82,6 +82,10 @@ window.contextRoot='${contextRoot}'
 <c:if test="${clickedDeals == true }">
 				<%@include file="holidays.jsp"%>
 </c:if>
+
+<c:if test="${clickedManageBus == true }">
+				<%@include file="manageBus.jsp"%>
+</c:if>
 	
 	<c:if test="${clickedHotels == true }">
 				<%@include file="hotels.jsp"%>
@@ -101,6 +105,9 @@ window.contextRoot='${contextRoot}'
 	src="${js}/jquery.dataTables.js"></script>
 <script
 	src="${js}/dataTables.bootstrap4.js"></script>
+
+<script
+	src="${js}/bootbox.min.js"></script>
 
 <script
 	src="${js}/script.js"></script>

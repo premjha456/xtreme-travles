@@ -45,7 +45,7 @@ public class BusTestCase {
 		bus.setMaxSeats(40);
 		bus.setSeatsAvailable(40);
 		bus.setPrice(1000);
-		bus.setEnabled(true);
+		bus.setActive(true);
 		
 		assertEquals("Successfully added a category inside the table!",true,busDao.add(bus));
 		

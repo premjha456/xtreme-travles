@@ -15,7 +15,7 @@
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-map-marker"></i></span> <input
-									class="form-control" type="text" name="boardPoint">
+									class="form-control" type="text" name="boardPoint" required>
 							</div>
 						</div>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -25,7 +25,7 @@
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-map-marker"></i></span> <input
-									class="form-control" type="text" name="dropPoint">
+									class="form-control" type="text" name="dropPoint" required>
 							</div>
 						</div>
 
@@ -34,7 +34,7 @@
 						<div class="form-group">
 							<label class="control-label">Depature :</label>
 							<div class='input-group date' id='datetimepicker1'>
-								<input type="date" class="form-control" name="date"/> <span
+								<input type="date" class="form-control" name="date"/ required> <span
 									class="input-group-addon"> <span
 									class="glyphicon glyphicon-calendar"></span>
 								</span>
@@ -52,7 +52,7 @@
 						<div class="form-group">
 							<label for="select" class="control-label">No. Of Seats</label>
 							<div class="input-group">
-								<select class="form-control" id="select" name="seats">
+								<select class="form-control" id="select" name="seats" required>
 									<option value="1">1</option>
 									<option value="2">2</option>
 									<option value="3">3</option>

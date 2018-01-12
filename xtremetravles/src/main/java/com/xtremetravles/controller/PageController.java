@@ -21,7 +21,7 @@ public class PageController {
 	@Autowired
 	private FlightDao flightDao;
 		
-	@RequestMapping(value = {"/", "/home", "/index"})
+	@RequestMapping(value = {"/", "/home", "/index","/flight"})
 	public ModelAndView index() {		
 		ModelAndView mv = new ModelAndView("index");		
 			
@@ -163,4 +163,14 @@ public class PageController {
 
 		return mv;				
 }
+	
+	@RequestMapping(value ="/register")
+	public ModelAndView reg() {		
+		ModelAndView mv = new ModelAndView("index");		
+			
+		mv.addObject("clickedRegister", true);
+
+		return mv;				
+}
+
 }

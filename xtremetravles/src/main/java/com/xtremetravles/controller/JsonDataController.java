@@ -38,6 +38,16 @@ public class JsonDataController {
 		return busDao.listBusByPlace(boardPoint,dropPoint);
 	}
 	
+	
+	@RequestMapping("/admin/all/bus")
+	@ResponseBody
+	public List<Bus> getAllBusAdmin(){
+		
+		return busDao.list();
+	}
+	
+	
+	
 	@RequestMapping("/all/flight")
 	@ResponseBody
 	public List<Flight> getAllFlight(){

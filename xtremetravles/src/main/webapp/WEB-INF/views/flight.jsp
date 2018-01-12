@@ -15,7 +15,7 @@
 							<div class="input-group">
 								<span class="input-group-addon">
 								<i class="glyphicon glyphicon-map-marker"></i></span> 
-									<input class="form-control" type="text" name="boardPoint"/>
+									<input class="form-control" type="text" name="boardPoint" required/>
 							</div>
 						</div>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -25,7 +25,7 @@
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-map-marker"></i></span> <input
-									class="form-control" type="text" name="dropPoint">
+									class="form-control" type="text" name="dropPoint" required>
 							</div>
 						</div>
 
@@ -34,7 +34,7 @@
 						<div class="form-group">
 							<label class="control-label">Depature :</label>
 							<div class='input-group date' id='datetimepicker1'>
-								<input type="date" class="form-control"/> <span
+								<input type="date" class="form-control" required/> <span
 									class="input-group-addon"> <span
 									class="glyphicon glyphicon-calendar"></span>
 								</span>
@@ -45,7 +45,7 @@
 						<div class="form-group">
 							<label for="select" class="control-label">Adults</label>
 							<div class="input-group">
-								<select class="form-control" id="select">
+								<select class="form-control" id="select" required>
 									<option value="1">1</option>
 									<option value="2">2</option>
 									<option value="3">3</option>
@@ -61,7 +61,7 @@
 						<div class="form-group">
 							<label for="select" class="control-label">Children</label>
 							<div class="input-group">
-								<select class="form-control" id="select">
+								<select class="form-control" id="select" required>
 									<option value="0">0</option>									
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -77,7 +77,7 @@
 						<div class="form-group">
 							<label for="select" class="control-label">Economy</label>
 							<div class="input-group">
-								<select class="form-control" id="select">
+								<select class="form-control" id="select" required>
 									<option>Economy</option>
 									<option>Business</option>
 								</select>

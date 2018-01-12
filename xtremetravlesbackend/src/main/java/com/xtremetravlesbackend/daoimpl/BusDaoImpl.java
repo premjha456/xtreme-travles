@@ -27,8 +27,7 @@ public class BusDaoImpl implements BusDao {
 	public List<Bus> list() {
 return sessionFactory
 		  .getCurrentSession()
-		          .createQuery("FROM Bus WHERE is_enabled=:is_enabled", Bus.class)
-		               .setParameter("is_enabled", true)
+		          .createQuery("FROM Bus", Bus.class)
 		                   .getResultList();
 	}
 
@@ -65,7 +64,7 @@ return sessionFactory
 	@Override
 	public boolean delete(Bus bus) {
 		
-		bus.setEnabled(false);
+		bus.setActive(false);
 		try {
 	           sessionFactory
 				   .getCurrentSession()
@@ -83,8 +82,8 @@ return sessionFactory
 
 return sessionFactory
 		  .getCurrentSession()
-		          .createQuery("FROM Bus WHERE is_enabled=:is_enabled", Bus.class)
-		               .setParameter("is_enabled", true)
+		          .createQuery("FROM Bus WHERE active=:active", Bus.class)
+		               .setParameter("active", true)
 		                   .getResultList();
 		}
 
@@ -93,8 +92,8 @@ return sessionFactory
 
 		return sessionFactory
 				  .getCurrentSession()
-				          .createQuery("FROM Bus WHERE is_enabled=:is_enabled AND board_point=:board_point AND drop_point=:drop_point", Bus.class)
-				               .setParameter("is_enabled", true)
+				          .createQuery("FROM Bus WHERE active=:active AND board_point=:board_point AND drop_point=:drop_point", Bus.class)
+				               .setParameter("active", true)
 				                  .setParameter("board_point", bp)
 				                      .setParameter("drop_point",dp)
 				                          .getResultList();
