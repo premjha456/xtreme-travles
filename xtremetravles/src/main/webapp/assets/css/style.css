@@ -18,6 +18,10 @@ footer {
 	height: 60px;
 }
 
+.table.no-border tr td, .table.no-border tr th {
+  border-width: 0;
+}
+
 .d-apps, .a-cards {
 	margin: 1em 0 0 0;
 }

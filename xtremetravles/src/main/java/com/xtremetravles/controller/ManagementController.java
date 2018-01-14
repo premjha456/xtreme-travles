@@ -25,6 +25,7 @@ public class ManagementController {
 	@Autowired
 	private BusDao busDao;
 	
+	//bus management first time after load and show  code
 	@RequestMapping(value="/bus",method=RequestMethod.GET)
 	public ModelAndView manageProducts(@RequestParam(name="case", required=false) String case1){
 		
@@ -33,7 +34,6 @@ public class ManagementController {
 
 		Bus bus = new Bus();
 	
-		bus.setActive(true);
 		mv.addObject("bus", bus);
 		
 		if (case1!=null) {
@@ -47,7 +47,7 @@ public class ManagementController {
 	}
 	
 	
-
+	//bus management submit button code
 	@RequestMapping(value="/bus",method=RequestMethod.POST)
 	public String handelAddBus(@Valid @ModelAttribute("bus") Bus bus1,BindingResult result,Model model){
 		
@@ -69,7 +69,7 @@ public class ManagementController {
 		return "redirect:/manage/bus?case=bus";
 	}
 	
-	
+	//bus management edit button code
 	@RequestMapping("/{id}/bus")
 	public ModelAndView manageBusEdit(@PathVariable int id) {		
 
@@ -85,7 +85,7 @@ public class ManagementController {
 		
 	}
 
-	
+	//bus management checkbox code
 	@RequestMapping(value="/bus/{id}/activation", method=RequestMethod.POST)
 	@ResponseBody
 	public String handelbusActivation(@PathVariable int id){
@@ -100,5 +100,24 @@ public class ManagementController {
 		return (state)?"You have Successfully Deactivated the Bus"
 				:"You have Successfully Activated the Bus";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

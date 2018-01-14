@@ -15,6 +15,9 @@
 <title>Bootstrap Example</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
+
 <link rel="stylesheet"
 	href="${css}/bootstrap.css">
 <link rel="stylesheet" href="${css}/bootstrap-theme.css">
@@ -91,6 +94,18 @@ window.contextRoot='${contextRoot}'
 				<%@include file="hotels.jsp"%>
 </c:if>
 	
+<c:if test="${clickedRegister == true }">
+				<%@include file="register.jsp"%>
+</c:if>
+
+<c:if test="${clickedRegisterUser == true }">
+				<%@include file="registerUser.jsp"%>
+</c:if>
+
+<c:if test="${clickFeedLogin == true }">
+				<%@include file="login.jsp"%>
+</c:if>
+
 			<!-- Footer bottom -->
 			<%@ include file="fb.jsp"%>
 

@@ -19,9 +19,9 @@
 				<li><a href="${contextRoot}/manage/bus">&nbsp;&nbsp;&nbsp;Manage Bus&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><span class="glyphicon glyphicon-user"></span>
+				<li><a href="${contextRoot}/registerUser" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><span class="glyphicon glyphicon-user"></span>
 						Sign Up</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+				<li><a href="${contextRoot}/login"><span class="glyphicon glyphicon-log-in"></span>
 						Login</a></li>
 			</ul>
 			
