@@ -25,9 +25,9 @@ public class BusDaoImpl implements BusDao {
 
 	@Override
 	public List<Bus> list() {
-return sessionFactory
-		  .getCurrentSession()
-		          .createQuery("FROM Bus", Bus.class)
+    return sessionFactory
+		     .getCurrentSession()
+		           .createQuery("FROM Bus", Bus.class)
 		                   .getResultList();
 	}
 

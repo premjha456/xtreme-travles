@@ -20,9 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.xtremetravles.util.FileUploadUtility;
 import com.xtremetravlesbackend.dao.BusDao;
+import com.xtremetravlesbackend.dao.CabDao;
 import com.xtremetravlesbackend.dao.FlightDao;
 import com.xtremetravlesbackend.dao.UserDao;
 import com.xtremetravlesbackend.dto.Bus;
+import com.xtremetravlesbackend.dto.Cab;
 import com.xtremetravlesbackend.dto.Flight;
 import com.xtremetravlesbackend.dto.User;
 
@@ -38,11 +40,14 @@ public class PageController {
 	@Autowired
 	private UserDao userDao;
 	
+	@Autowired
+	private CabDao cabDao;
 	@RequestMapping(value = {"/", "/home", "/index","/flight"})
 	public ModelAndView index() {		
 		ModelAndView mv = new ModelAndView("index");		
 			
 		mv.addObject("clickedFlight", true);
+		mv.addObject("title", "Book Domestic Flight Tickets");
 
 		return mv;				
 }
@@ -51,7 +56,7 @@ public class PageController {
 	@RequestMapping(value ="/flight/listFlight")
 	public ModelAndView viewFlight(@RequestParam("boardPoint") String boardPoint,@RequestParam("dropPoint") String dropPoint) {		
 		ModelAndView mv = new ModelAndView("index");		
-		
+		mv.addObject("title", "Flight Search");
 		mv.addObject("boardPoint", boardPoint);
 		mv.addObject("dropPoint", dropPoint);
 		mv.addObject("clickedViewFlight", true);
@@ -67,7 +72,7 @@ public class PageController {
 		Flight flight= flightDao.get(id);
 		mv.addObject("flight", flight);
 		mv.addObject("clickedReviewFlight", true);
-
+		mv.addObject("title", "Flight Review");
 		return mv;
 		
 	}
@@ -90,7 +95,7 @@ public class PageController {
 		mv.addObject("curl", "http://localhost:8080/xtremetravles/bus/booking/payment/cancel");
         
 		mv.addObject("clickedConfirmBooking", true);
-
+		mv.addObject("title", "Confirm Booking");
 		return mv;
 		
 	}
@@ -162,6 +167,32 @@ public class PageController {
 
 		return mv;				
 }
+	
+	
+	@RequestMapping(value ="/cab/listCab")
+	public ModelAndView listCabs(@RequestParam("boardPoint") String boardPoint,@RequestParam("dropPoint") String dropPoint) {		
+		ModelAndView mv = new ModelAndView("index");		
+		
+		mv.addObject("boardPoint", boardPoint);
+		mv.addObject("dropPoint", dropPoint);
+		mv.addObject("clickedListCab", true);
+
+		return mv;				
+}
+
+	@RequestMapping("/cab/{id}/cabReview")
+	public ModelAndView reviewCab(@PathVariable int id){
+		ModelAndView mv = new ModelAndView("index");
+		
+		Cab cab = cabDao.get(id);
+		mv.addObject("cab", cab);
+		mv.addObject("clickedReviewCab", true);
+		mv.addObject("title", "Cab Review");
+		return mv;
+		
+	}
+	
+	
 	
 	@RequestMapping(value ="/deals")
 	public ModelAndView deals() {		
@@ -258,11 +289,10 @@ public class PageController {
 		
 				
 				//provide login page to admin,user,agent  
-				@RequestMapping(value ="/login")
+				@RequestMapping(value="/login")
 				public ModelAndView feedLoginPage(@RequestParam(name="error", required = false) String error,@RequestParam(name="logout", required = false) String logout) {		
-					ModelAndView mv = new ModelAndView("index");		
-						
-					mv.addObject("clickFeedLogin", true);
+					ModelAndView mv = new ModelAndView("index");	
+					
 					if(error!=null) {
 						mv.addObject("message", "Username and Password is invalid!");
 					}
@@ -271,10 +301,13 @@ public class PageController {
 						mv.addObject("logout", "You have logged out successfully!");
 					}
 					
+					mv.addObject("clickFeedLogin", true);
 					return mv;				
 			}
 					
-					
+			
+				
+			
 				@RequestMapping(value="/logout")
 				public String logout(HttpServletRequest request, HttpServletResponse response) {
 					
@@ -283,8 +316,16 @@ public class PageController {
 				        new SecurityContextLogoutHandler().logout(request, response, auth);
 				    }
 					
-					return "redirect:/login?logout='logout'";
+					return "redirect:/login?logout=logout";
 				}	
 				
+				@RequestMapping(value="/access-denied")
+				public ModelAndView accessDenied() {
+					ModelAndView mv = new ModelAndView("error");		
+					mv.addObject("errorTitle", "Aha! Caught You.");		
+					mv.addObject("errorDescription", "You are not authorized to view this page!");		
+					mv.addObject("title", "403 Access Denied");		
+					return mv;
+				}
 				
 }

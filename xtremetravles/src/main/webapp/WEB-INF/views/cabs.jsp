@@ -8,24 +8,24 @@
 				<div class="panel-body">
 
 
-					<form class="form-inline" action="/action_page.php">
+					<form class="form-inline" action="${contextRoot}/cab/listCab">
 
 						<div class="form-group">
-							<label class="control-label">Flying From :</label>
+							<label class="control-label">From :</label>
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-map-marker"></i></span> <input
-									class="form-control" type="text">
+									class="form-control" type="text" name="boardPoint">
 							</div>
 						</div>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<div class="form-group">
-							<label class="control-label">Flying To :</label>
+							<label class="control-label">To :</label>
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-map-marker"></i></span> <input
-									class="form-control" type="text">
+									class="form-control" type="text" name="dropPoint">
 							</div>
 						</div>
 
@@ -34,7 +34,7 @@
 						<div class="form-group">
 							<label class="control-label">Depature :</label>
 							<div class='input-group date' id='datetimepicker1'>
-								<input type="date" class="form-control" /> <span
+								<input type="date" class="form-control" / name="departDate"> <span
 									class="input-group-addon"> <span
 									class="glyphicon glyphicon-calendar"></span>
 								</span>
@@ -47,13 +47,13 @@
             
         </script>
 
-						&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<div class="form-group">
-							<label for="select" class="control-label">Adults</label>
+							<label for="select" class="control-label">Pick Up Time</label>
 							<div class="input-group">
-								<select class="form-control" id="select">
-									<option value="1">1</option>
-									<option value="2">2</option>
+								<select class="form-control" id="select" name="deparTime">
+									<option value="1">7:30 PM</option>
+									<option value="2">8:00 PM</option>
 									<option value="3">3</option>
 									<option value="4">4</option>
 									<option value="5">5</option>
@@ -62,33 +62,6 @@
 						</div>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 
-
-
-						<div class="form-group">
-							<label for="select" class="control-label">Children</label>
-							<div class="input-group">
-								<select class="form-control" id="select">
-									<option value="0">0</option>									
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-								</select>
-							</div>
-						</div>
-
-						&nbsp;&nbsp;&nbsp;&nbsp;
-
-						<div class="form-group">
-							<label for="select" class="control-label">Economy</label>
-							<div class="input-group">
-								<select class="form-control" id="select">
-									<option>Economy</option>
-									<option>Business</option>
-								</select>
-							</div>
-						</div>
 						&nbsp;&nbsp;&nbsp;&nbsp; <br> <br>
 						<button type="submit" class="btn btn-default">Submit</button>
 					</form>

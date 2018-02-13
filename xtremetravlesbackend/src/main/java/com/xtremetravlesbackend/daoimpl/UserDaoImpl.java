@@ -42,4 +42,16 @@ public class UserDaoImpl implements UserDao {
 		return false;
 	}
 
+	@Override
+	public User getUserByEmail(String username) {
+
+		return sessionFactory
+				  .getCurrentSession()
+				          .createQuery("FROM User WHERE active=:active AND email=:username", User.class)
+				               .setParameter("active", true)
+				                  .setParameter("username", username)
+				                          .getSingleResult();
+	}
+
+	
 }

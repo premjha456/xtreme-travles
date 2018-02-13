@@ -17,11 +17,15 @@
   <dependencies>
     <!-- Link backend project -->
 		<dependency>
+		<groupId>com</groupId>
+  <artifactId>xtremetravlesbackend</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+		</dependency>
+  <dependency>
 			<groupId>com</groupId>
   <artifactId>xtremetravlesbackend</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 </dependency>
-  
   <!-- JAVA EE -->
 		<dependency>
 			<groupId>javax</groupId>

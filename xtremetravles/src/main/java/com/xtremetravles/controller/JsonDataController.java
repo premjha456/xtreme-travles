@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xtremetravlesbackend.dao.BusDao;
+import com.xtremetravlesbackend.dao.CabDao;
 import com.xtremetravlesbackend.dao.FlightDao;
 import com.xtremetravlesbackend.dto.Bus;
+import com.xtremetravlesbackend.dto.Cab;
 import com.xtremetravlesbackend.dto.Flight;
 
 @Controller
@@ -22,6 +24,11 @@ public class JsonDataController {
 	
 	@Autowired
 	private  FlightDao flightDao;
+	
+	@Autowired
+	private CabDao cabDao;
+	
+	
 	
 	@RequestMapping("/all/bus")
 	@ResponseBody
@@ -60,6 +67,21 @@ public class JsonDataController {
 	public List<Flight> getFlightByPlace(@PathVariable String boardPoint,@PathVariable String dropPoint){
 		
 		return flightDao.listFlightsByPlace  (boardPoint,dropPoint);
+	}
+	
+	@RequestMapping("/all/cabs")
+	@ResponseBody
+	public List<Cab> getAllCabs(){
+		
+		return cabDao.listActiveCabs();
+	}
+	
+	
+	@RequestMapping("/{boardPoint}/{dropPoint}/cabs")
+	@ResponseBody
+	public List<Cab> getCabByPlace(@PathVariable String boardPoint,@PathVariable String dropPoint){
+		
+		return cabDao.listCabByPlace(boardPoint,dropPoint);
 	}
 	
 }

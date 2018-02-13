@@ -1,4 +1,50 @@
-
+#holder{  
+   height:180px;   
+   width:350px;
+   background-color:#F5F5F5;
+   border:1px solid #A4A4A4;
+   margin-left:10px;  
+  }
+   #place {
+   position:relative;
+   margin:7px;
+   }
+     #place a{
+   font-size:0.6em;
+   }
+     #place li
+     {
+         list-style: none outside none;
+         position: absolute;   
+     }    
+      
+   #place .seat{
+   background:url("images/available_seat_img.png") no-repeat scroll 0 0 transparent;
+   height:100px;
+   width:100px;
+   display:block;  
+   }
+      #place .selectedSeat
+      { 
+    background-image:url("images/booked_seat_img.png");        
+      }
+     #place .selectingSeat
+      { 
+    background-image:url("images/selected_seat_img.png");        
+      }
+    #place .row-2, #place .row-3{
+    margin-top:10px;
+    }
+   #seatDescription{
+   padding:0px;
+   }
+    #seatDescription li{
+    verticle-align:middle;    
+    list-style: none outside none;
+     padding-left:35px;
+    height:35px;
+    float:left;
+    }
 footer {
 	margin: 0;
 }
@@ -104,6 +150,11 @@ footer {
 	
 }
 
+.cabImg{
+	height: 100px;
+	width: 200px;
+	
+}
 
 
 /*Toggle Switch code*/

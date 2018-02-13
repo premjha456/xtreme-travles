@@ -1,11 +1,11 @@
 <div class="container">
 
-	<div class="well well-lg">${flight}</div>
+	<div class="well well-lg">${cab}</div>
 	<div class="col-sm-11">
 		<div class="well well-sm">
 			<h4>
 				<span class="label label-default">&nbsp;&nbsp;1&nbsp;&nbsp;</span>&nbsp;&nbsp;Review
-				Your Bookings
+				Your Trip Details
 			</h4>
 
 		</div>
@@ -13,7 +13,7 @@
 	<div class="col-sm-7">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3>Ticket Details</h3>
+				<h3>Cab Details</h3>
 			</div>
 			<div class="panel-body">
 				<h5>
@@ -22,29 +22,29 @@
 				<br>
 				<div class="container">
 					<div class="col-sm-2" align="center">
-						<p>${flight.boardPoint}</p>
+						<p>${cab.boardPoint}</p>
 
 						<h2>
-							<b><p>${flight.boardTime}</p></b>
+							<b><p>${cab.boardTime}</p></b>
 						</h2>
 						<p>
-							<b>${flight.boardPoint}</b>
+							<b>${bus.boardPoint}</b>
 						</p>
 					</div>
 
 					<div class="col-sm-2">
-						<img src="${images}/fly.JPG" class="img-rounded"
-							alt="" width="170" height="40">
+						<img src="${images}/buslogo.JPG" class="img-rounded"
+							alt="" width="170" height="20">
 					</div>
 
 					<div class="col-sm-2">
-						<p>${flight.dropPoint}</p>
+						<p>${bus.dropPoint}</p>
 
 						<h2>
-							<b><p>${flight.dropTime}</p></b>
+							<b><p>${bus.dropTime}</p></b>
 						</h2>
 						<p>
-							<b>${flight.dropPoint}</b>
+							<b>${bus.dropPoint}</b>
 						</p>
 					</div>
 				</div>
@@ -98,7 +98,7 @@
 			<div class="panel-body">
 				<div class="col-sm-3">
 					<h4>
-						<p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${flight.fare }</p>
+						<p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${bus.price }</p>
 					</h4>
 				</div>
 
@@ -107,7 +107,7 @@
 
 				<h4>
 					<p align="right">You
-						Pay:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${flight.fare}</p>
+						Pay:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${bus.price }</p>
 				</h4>
 
 			</div>
@@ -118,7 +118,7 @@
 	<div class="col-sm-11">
 		<div class="well well-sm">
 			<h4>
-				<span class="label label-default">&nbsp;&nbsp;2&nbsp;&nbsp;</span>&nbsp;&nbsp;Enter Traveller
+				<span class="label label-default">&nbsp;&nbsp;2&nbsp;&nbsp;</span>&nbsp;&nbsp;Traveller
 				Details
 			</h4>
 
@@ -134,7 +134,7 @@
 			</div>
 			<div class="panel-body">
 
-				<form class="form-inline" action="${contextRoot}/flight/confirmBooking">
+				<form class="form-inline" action="${contextRoot}/bus/confirmBooking">
 					<div class="form-group">
 						<label for="sel1">Traveller 1 Name</label> <select
 							class="form-control" id="sel1" name="sel1">
@@ -158,7 +158,7 @@
 						<div class="form-group">
 
 							<h4>
-								Seat No: <span class="badge">${(flight.maxSeats-flight.seatsAvailable)+1}</span>
+								Seat No: <span class="badge">${(bus.maxSeats-bus.seatsAvailable)+1}</span>
 							</h4>
 						</div>
 						<br>
@@ -175,9 +175,9 @@
 							<label for="email">Mobile Number:&nbsp;&nbsp;</label> <input
 								type="text" class="form-control" id="phone" placeholder=""
 								name="phone"> <br>
-							<br> <input type="hidden" name="id" value="${flight.id}" /> <input
+							<br> <input type="hidden" name="id" value="${bus.id }" /> <input
 								type="hidden" name="seatNo"
-								value="${(flight.maxSeats-flight.seatsAvailable)+1}" /> <input
+								value="${(bus.maxSeats-bus.seatsAvailable)+1}" /> <input
 								class="btn btn-primary btn-lg" type="submit"
 								class="form-control" value="Confirm Booking">
 

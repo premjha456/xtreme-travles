@@ -64,7 +64,8 @@
 					
 					    <input type="hidden" id="role" name="role" value="USER"/>
 					    <input type="hidden" id="active" name="active" value="true"/>
-					    
+					                   <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+					   
 						<div class="form-group">
 							
 							<div class="col-md-offset-4 col-md-4">
@@ -75,6 +76,8 @@
 						</div>						
 										
 					</form>
+
+          <div style="float: right;"><h4><a href="${contextRoot}/register/user/agent">Looking of Travel Agent Account ? Register Here</a></h4></div>
 
 				</div>
 

@@ -15,24 +15,7 @@
 			</div>
 		</div>
 	</c:if>
-    
-	  <div class="jumbotron">
 
-	<div class="row">
-		
-		<div class="col-sm-offset-4 col-sm-4">
-			<div class="text-center">	
-				
-				<h2>Welcome!</h2>
-				<h3>xtremetravles.com</h3>
-				<h5>You can use your email address as username to login!</h5>
-				
-				
-			</div>
-		</div>
-	
-	</div>
-	</div>
 			<div class="col-md-offset-2 col-md-8">
 	
 	 <div class="panel panel-primary">
@@ -51,6 +34,7 @@
         <input type="password" class="form-control" id="pwd" placeholder="Enter Password" name="password">
       </div>
     </div>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
     
     <div class="form-group">        
@@ -59,6 +43,7 @@
       </div>
     </div>
   </form>
+          <div style="float: right;"><h4><a href="${contextRoot}/registerUser">Need a Account?Register Here</a></h4></div>
     </div>
     </div>
   </div>

@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Bootstrap Example</title>
+<title>Xtreme Travles - ${title}</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="_csrf" content="${_csrf.token}">
@@ -38,7 +38,8 @@ window.contextRoot='${contextRoot}'
 		<!-- Navbar  End-->
 
 		<div class="content">
-			<c:if test="${clickedFlight == true }">
+		
+			<c:if test="${clickedFlight == true}">
 				<%@include file="flight.jsp"%>
 </c:if>
 	
@@ -75,6 +76,14 @@ window.contextRoot='${contextRoot}'
 
 	<c:if test="${clickedCab == true }">
 				<%@include file="cabs.jsp"%>
+</c:if>
+
+<c:if test="${clickedListCab == true }">
+				<%@include file="cabsResult.jsp"%>
+</c:if>
+
+<c:if test="${clickedReviewCab == true }">
+				<%@include file="cabReview.jsp"%>
 </c:if>
 
 
