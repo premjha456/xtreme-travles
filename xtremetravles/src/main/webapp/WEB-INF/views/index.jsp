@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"  import="java.sql.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
@@ -24,7 +24,49 @@
 <link rel="stylesheet" href="${css}/style.css">
 
 <link rel="stylesheet" href="${css}/dataTables.bootstrap4.css">
+<style type="text/css">
+ #place {
+   position:relative;
+   margin:7px;
+   }
+     #place a{
+   font-size:0.6em;
+   }
+     #place li
+     {
+         list-style: none outside none;
+         position: absolute;   
+     }    
+      
+   #place .seat{
+   background:url(${images}/available_seat_img.png) no-repeat scroll 0 0 transparent;
+   height:100px;
+   width:100px;
+   display:block;  
+   }
+      #place .selectedSeat
+      { 
+    background-image:url(${images}/booked_seat_img.png);        
+      }
+     #place .selectingSeat
+      { 
+    background-image:url(${images}/selected_seat_img.png);        
+      }
+    #place .row-2, #place .row-3{
+    margin-top:10px;
+    }
+   #seatDescription{
+   padding:0px;
+   }
+    #seatDescription li{
+    verticle-align:middle;    
+    list-style: none outside none;
+     padding-left:35px;
+    height:35px;
+    float:left;
+    }
 
+</style>
 <script type="text/javascript">
 window.contextRoot='${contextRoot}'
 </script>

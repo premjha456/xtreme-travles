@@ -1,5 +1,7 @@
 package com.xtremetravles.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -116,6 +118,8 @@ public class PageController {
 
 		mv.addObject("boardPoint", boardPoint);
 		mv.addObject("dropPoint", dropPoint);
+		List<Bus> buslist= busDao.listBusByPlace(boardPoint,dropPoint);
+		mv.addObject("buslist", buslist);
 		mv.addObject("clickedListBus", true);
 
 		return mv;
