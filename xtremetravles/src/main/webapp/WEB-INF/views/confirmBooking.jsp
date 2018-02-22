@@ -130,7 +130,7 @@ function submitPayuForm() {
  
   </div>
   </div>
-  
+  <a href="google.com">Google</a>
   
     <div class="col-sm-7">
   <div class="panel panel-default">

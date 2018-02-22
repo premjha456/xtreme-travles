@@ -1,11 +1,15 @@
 package com.xtremetravles.controller;
 
-import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.omg.PortableServer.POAPackage.ServantNotActive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -118,8 +122,6 @@ public class PageController {
 
 		mv.addObject("boardPoint", boardPoint);
 		mv.addObject("dropPoint", dropPoint);
-		List<Bus> buslist= busDao.listBusByPlace(boardPoint,dropPoint);
-		mv.addObject("buslist", buslist);
 		mv.addObject("clickedListBus", true);
 
 		return mv;
@@ -129,11 +131,43 @@ public class PageController {
 	@RequestMapping("/bus/{id}/busReview")
 	public ModelAndView reviewBus(@PathVariable int id){
 		ModelAndView mv = new ModelAndView("index");
-		
-		Bus bus= busDao.get(id);
-		mv.addObject("bus", bus);
-		mv.addObject("clickedReviewBus", true);
+				Bus bus= busDao.get(id);
+				Connection con=null;  
+			    StringBuffer seatNo=new StringBuffer();
 
+				try{  
+				    Class.forName("org.h2.Driver");  
+				    con=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/xtremetravels","prem","prem");  
+				    PreparedStatement ps=con.prepareStatement("select * from seatlayout where busId=?"); 
+				    ps.setInt(1,id );
+				    ResultSet rs=ps.executeQuery(); 
+				    System.out.println("Inside Query");
+				    String s="";
+				    String set="";
+				    while(rs.next()){  
+				    	System.out.println(s);
+				    	seatNo.append("[");
+				    	for (int i = 1; i <= 5; i++) {
+					    	s= "s"+i;
+						   set  = rs.getString(s);
+						   System.out.println(s+"-"+set);
+					    	if(set.equals("b")){
+					    		seatNo.append(i);
+					    		if (i<5) {
+					    			seatNo.append(",");
+								}
+						       }
+						}
+				    	seatNo.append("]");
+				    	}  
+				    System.out.println(seatNo);
+				}catch(Exception e){System.out.println(e);} 
+
+
+		mv.addObject("bus", bus);
+		mv.addObject("seatNo", seatNo.toString());
+		mv.addObject("clickedReviewBus", true);
+  
 		return mv;
 		
 	}

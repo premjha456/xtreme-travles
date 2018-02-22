@@ -18,54 +18,49 @@
 
 				<div class="panel-heading">
 
-					<h4>Bus Management</h4>
+					<h4>Flight Management</h4>
 
 				</div>
 
 				<div class="panel-body">
-					<sf:form class="form-horizontal" modelAttribute="bus" action="${contextRoot}/manage/bus" method="POST" >
+					<sf:form class="form-horizontal" modelAttribute="flight" action="${contextRoot}/manage/flight" method="POST" >
 						<div class="form-group">
 							<label class="control-label col-md-4">Flight Name</label>
 							<div class="col-md-8">
-								<sf:input type="text" path="busName" class="form-control"
-									placeholder="Bus Name" />
-								<sf:errors path="busName" cssClass="help-block" element="em"/> 
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label class="control-label col-md-4">Aminities</label>
-							<div class="col-md-8">
-								<sf:input type="text" path="aminities" class="form-control"
-									placeholder="Bus Reg No" /> 
-								<sf:errors path="aminities" cssClass="help-block" element="em"/>	
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label class="control-label col-md-4">Bus Type</label>
-							<div class="col-md-8">
-								<sf:select path="busType" class="form-control">
-								<option value="Sleeper">Sleeper</option>
-				                <option value="Seater">Seater</option>
-				                <option value="SleeperAc">SleeperAc</option>
-					
+							
+							<sf:select path="flightName" class="form-control">
+								<option value="Indigo">Indigo</option>
+				                <option value="Jet AirWays">Jet AirWays</option>
+				                <option value="Air India">Air India</option>
+					            <option value="SpiceJet">SpiceJet</option>
 							</sf:select>
-								<div class="text-right">
+					        <sf:errors path="flightName" cssClass="help-block" element="em"/> 
+							</div>
+						</div>
+						
+						
+						<div class="form-group">
+							<label class="control-label col-md-4">Flight Type</label>
+							<div class="col-md-8">
+							<sf:input type="text" path="flightType" class="form-control"
+									placeholder="Flight Type" /> 
+								<sf:errors path="flightType" cssClass="help-block" element="em"/>
+								
+											<div class="text-right">
 									<br/>			
 									<sf:hidden path="id"/>
-									<sf:hidden path="active" value="true" />														
+									<sf:hidden path="enabled" value="true" />														
 								</div>							
 							</div>
 							
 						</div>
 						
 						<div class="form-group">
-							<label class="control-label col-md-4">Bus Reg No</label>
+							<label class="control-label col-md-4">Flight No</label>
 							<div class="col-md-8">
-								<sf:input type="text" path="busRegNo" class="form-control"
-									placeholder="Bus Reg No" /> 
-								<sf:errors path="busRegNo" cssClass="help-block" element="em"/>	
+								<sf:input type="text" path="flightNo" class="form-control"
+									placeholder="Flight No" /> 
+								<sf:errors path="flightNo" cssClass="help-block" element="em"/>	
 							</div>
 						</div>
 
@@ -126,9 +121,9 @@
                        <div class="form-group">
 							<label class="control-label col-md-4">Fare</label>
 							<div class="col-md-8">
-								<sf:input type="number" path="price" class="form-control"
+								<sf:input type="number" path="fare" class="form-control"
 									placeholder="Fare" />
-								<sf:errors path="price" cssClass="help-block" element="em"/> 
+								<sf:errors path="fare" cssClass="help-block" element="em"/> 
 							<div class="text-right">
 									<br/>			
 																						
@@ -157,7 +152,7 @@
 
 	
 	<hr/>	
-	<h1>Available Bus</h1>
+	<h1>Available Flight</h1>
 	<hr/>
 	
 	<div class="row">
@@ -166,14 +161,13 @@
 		<div class='col-xs-12'>
 		
 		
-			<table id="busTable" class="table table-condensed table-bordered">
+			<table id="flightTable" class="table table-condensed table-bordered">
 							
 				<thead>					
 					<tr>					
-						<th>BusName</th>
-						<th>BusType</th>
-						<th>Aminities</th>
-						<th>BusRegNo</th>
+						<th>FlightName</th>
+						<th>FlightType</th>
+						<th>FlightNo</th>
 						<th>BoardPoint</th>
 						<th>BoardTime</th>
 						<th>DropPoint</th>
@@ -187,10 +181,9 @@
 				
 				<tfoot>
 					<tr>					
-						<th>BusName</th>
-						<th>BusType</th>
-						<th>Aminities</th>
-						<th>BusRegNo</th>
+						<th>FlightName</th>
+						<th>FlightType</th>
+						<th>FlightNo</th>
 						<th>BoardPoint</th>
 						<th>BoardTime</th>
 						<th>DropPoint</th>

@@ -18,8 +18,7 @@
 <meta name="_csrf" content="${_csrf.token}">
 <meta name="_csrf_header" content="${_csrf.headerName}">
 
-<link rel="stylesheet"
-	href="${css}/bootstrap.css">
+<link rel="stylesheet" href="${css}/bootstrap.css">
 <link rel="stylesheet" href="${css}/bootstrap-theme.css">
 <link rel="stylesheet" href="${css}/style.css">
 
@@ -103,7 +102,7 @@ window.contextRoot='${contextRoot}'
 </c:if>
 	
 	<c:if test="${clickedReviewBus == true }">
-				<%@include file="busReview.jsp"%>
+				<%@include file="busReviews.jsp"%>
 </c:if>
 
 <c:if test="${clickedPaymentSuccess == true }">
@@ -141,6 +140,11 @@ window.contextRoot='${contextRoot}'
 				<%@include file="manageBus.jsp"%>
 </c:if>
 	
+
+<c:if test="${clickedManageFlight == true }">
+				<%@include file="manageFlight.jsp"%>
+</c:if>
+
 	<c:if test="${clickedHotels == true }">
 				<%@include file="hotels.jsp"%>
 </c:if>

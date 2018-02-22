@@ -1,5 +1,9 @@
 package com.xtremetravles.controller;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +72,15 @@ public class JsonDataController {
 		
 		return flightDao.listFlightsByPlace  (boardPoint,dropPoint);
 	}
+	
+	
+	@RequestMapping("/admin/all/flight")
+	@ResponseBody
+	public List<Flight> getAllFlightAdmin(){
+		
+		return flightDao.list();
+	}
+	
 	
 	@RequestMapping("/all/cabs")
 	@ResponseBody
