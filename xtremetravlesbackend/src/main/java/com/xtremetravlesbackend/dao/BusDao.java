@@ -3,6 +3,7 @@ package com.xtremetravlesbackend.dao;
 import java.util.List;
 
 import com.xtremetravlesbackend.dto.Bus;
+import com.xtremetravlesbackend.dto.User;
 
 public interface BusDao {
 
@@ -12,6 +13,7 @@ public interface BusDao {
 	public boolean update(Bus bus);
 	public boolean delete(Bus bus);
 	public List<Bus> listActiveBuses();
-	public List<Bus> listBusByPlace(String bp, String dp);
+	public List<Bus> listBusByPlace(String bp, String dp,String date);
+	public List<Bus> listBusByAgentId(User user);
 	
 }

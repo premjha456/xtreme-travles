@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xtremetravlesbackend.dao.BusDao;
 import com.xtremetravlesbackend.dto.Bus;
+import com.xtremetravlesbackend.dto.User;
 
 @Repository("busDao")
 @Transactional
@@ -88,15 +89,26 @@ return sessionFactory
 		}
 
 	@Override
-	public List<Bus> listBusByPlace(String bp,String dp) {
+	public List<Bus> listBusByPlace(String bp,String dp,String date) {
 
 		return sessionFactory
 				  .getCurrentSession()
-				          .createQuery("FROM Bus WHERE active=:active AND board_point=:board_point AND drop_point=:drop_point", Bus.class)
+				          .createQuery("FROM Bus WHERE active=:active AND board_point=:board_point AND drop_point=:drop_point AND date=:date", Bus.class)
 				               .setParameter("active", true)
 				                  .setParameter("board_point", bp)
 				                      .setParameter("drop_point",dp)
-				                          .getResultList();
+				                           .setParameter("date",date)
+				                               .getResultList();
+	}
+
+	@Override
+	public List<Bus> listBusByAgentId(User user) {
+		return sessionFactory
+				  .getCurrentSession()
+				          .createQuery("FROM Bus WHERE user=:user", Bus.class)
+				                   .setParameter("user", user)
+				                       .getResultList();
+
 	}
 
 

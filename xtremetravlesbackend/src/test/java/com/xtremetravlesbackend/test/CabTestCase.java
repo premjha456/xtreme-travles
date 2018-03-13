@@ -35,13 +35,14 @@ private static AnnotationConfigApplicationContext context;
 	public void testAddCab() {
 		
 		cab = new Cab();
-		cab.setCabName("Indica, Swift or similar");
-		cab.setCabType("HATCHBACK");
+		cab.setCabName("Innova, Xylo or similar");
+		cab.setCabType("SUV");
 		cab.setCabServiceProvider("Xtreme Travles Pvt Ltd");
-		cab.setAminities("AC,4 Seats,2 Luggage");
+		cab.setAminities("AC,6 Seats,4 Luggage");
 	    cab.setBoardPoint("Mumbai");
 	    cab.setDropPoint("Goa");
-		cab.setFare(2000);
+	    cab.setDate("5/5/2017");
+		cab.setFare(4000);
 		cab.setActive(true);
 		assertEquals("Successfully added a category inside the table!",true,cabDao.add(cab));
 		

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -38,7 +39,12 @@ public class Bus {
 	private String dropPoint; 
 	@Column(name="drop_time")
 	@NotBlank(message="Plese Enter DropTime")
-	private String dropTime; 
+	private String dropTime;
+	@Column(name="date")
+	@NotBlank(message="Plese Enter Date")
+	private String date;
+	@ManyToOne
+	private User user;	
 	@Column(name="max_seats")
 	@Min(value=1)
 	private int maxSeats;
@@ -104,6 +110,20 @@ public class Bus {
 	public void setDropTime(String dropTime) {
 		this.dropTime = dropTime;
 	}
+	
+	
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public int getMaxSeats() {
 		return maxSeats;
 	}
@@ -136,9 +156,10 @@ public class Bus {
 	public String toString() {
 		return "Bus [id=" + id + ", busName=" + busName + ", busType=" + busType + ", aminities=" + aminities
 				+ ", busRegNo=" + busRegNo + ", boardPoint=" + boardPoint + ", boardTime=" + boardTime + ", dropPoint="
-				+ dropPoint + ", dropTime=" + dropTime + ", maxSeats=" + maxSeats + ", seatsAvailable=" + seatsAvailable
-				+ ", price=" + price + ", active=" + active + "]";
+				+ dropPoint + ", dropTime=" + dropTime + ", date=" + date + ", user=" + user + ", maxSeats=" + maxSeats
+				+ ", seatsAvailable=" + seatsAvailable + ", price=" + price + ", active=" + active + "]";
 	}
+	
 	
 	
 	

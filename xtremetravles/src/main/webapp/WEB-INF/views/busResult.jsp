@@ -1,10 +1,11 @@
 <script type="text/javascript">
 					window.boardPoint='${boardPoint}';
 						window.dropPoint='${dropPoint}';
-					</script>
+						window.date='${date}';
+
+						</script>
 					
-					
-	
+                    
 	
     			
 <table id="listbus" class="table table-striped table-borderd">

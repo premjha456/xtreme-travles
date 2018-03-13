@@ -19,7 +19,13 @@
 				<li><a href="${contextRoot}/hotels">&nbsp;&nbsp;&nbsp;Hotels&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 				<li><a href="${contextRoot}/bus">&nbsp;&nbsp;&nbsp;Bus&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 				<li><a href="${contextRoot}/cabs">&nbsp;&nbsp;&nbsp;Cabs&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-				<li><a href="${contextRoot}/manage/bus">&nbsp;&nbsp;&nbsp;Manage Bus&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				
+				<security:authorize access="hasAuthority('AGENT')">
+				<li><a href="${contextRoot}/manage/bus">&nbsp;&nbsp;&nbsp;Manage Buses&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li><a href="${contextRoot}/manage/flight">&nbsp;&nbsp;&nbsp;Manage Flights&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li><a href="${contextRoot}/manage/cab">&nbsp;&nbsp;&nbsp;Manage Cabs&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li><a href="${contextRoot}/manage/hotel">&nbsp;&nbsp;&nbsp;Manage Hotels&nbsp;&nbsp;&nbsp;&nbsp;</a></li>			
+				</security:authorize>
 			</ul>
 			
 			<security:authorize access="isAnonymous()">
@@ -38,9 +44,12 @@
   <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
   <ul class="dropdown-menu">
     <li><a href="#">View Profile</a></li>
-    <li role="separator" class="divider"></li>
+    	<security:authorize access="hasAuthority('USER')">
+    	    <li role="separator" class="divider"></li>
     <li><a href="#">My Bookings</a></li>
-    <li role="separator" class="divider"></li>
+        <li role="separator" class="divider"></li>
+    
+    </security:authorize>
     <li><a href="${contextRoot}/logout">Logout</a></li>
   </ul>
 </li> 

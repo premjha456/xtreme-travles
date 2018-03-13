@@ -25,10 +25,10 @@
 						<p>${cab.boardPoint}</p>
 
 						<h2>
-							<b><p>${cab.boardTime}</p></b>
+							<b><p>${cab.boardPoint}</p></b>
 						</h2>
 						<p>
-							<b>${bus.boardPoint}</b>
+							<b>${cab.boardPoint}</b>
 						</p>
 					</div>
 
@@ -38,13 +38,13 @@
 					</div>
 
 					<div class="col-sm-2">
-						<p>${bus.dropPoint}</p>
+						<p>${cab.dropPoint}</p>
 
 						<h2>
-							<b><p>${bus.dropTime}</p></b>
+							<b><p>${cab.dropPoint}</p></b>
 						</h2>
 						<p>
-							<b>${bus.dropPoint}</b>
+							<b>${cab.dropPoint}</b>
 						</p>
 					</div>
 				</div>
@@ -57,29 +57,31 @@
 					<div class="col-sm-2">
 						<p>Opreator:</p>
 
-						<b><p>${bus.busName}</p></b>
+						<b><p>${cab.cabType}</p></b>
 						<p>
-							<b>${bus.busType}</b>
+							<b>${cab.cabServiceProvider}</b>
 						</p>
 					</div>
 
 					<div class="col-sm-2">
 						<p>Boarding Point & Time</p>
 
-						<b><p>${bus.busType}</p></b>
+						<b><p>${cab.cabType}</p></b>
 						<p>
-							<b>${bus.boardTime}</b>
+							<b>${cab.boardPoint}</b>
 						</p>
 					</div>
 
-					<div class="col-sm-2">
-						<p>Seat No(s):</p>
+                    <div class="col-sm-2">
+						<p>Cab Details:</p>
 
-						<b><p>${(bus.maxSeats-bus.seatsAvailable)+1}</p></b>
+						<b><p>${cab.cabName}</p></b>
+						<p>
+							<b>${cab.aminities}</b>
+						</p>
 					</div>
-				</div>
-
-
+                    
+				
 			</div>
 			<!-- panel body  2 finish -->
 
@@ -88,7 +90,7 @@
 		</div>
 
 	</div>
-
+</div>
 
 	<div class="col-sm-4">
 		<div class="panel panel-default">
@@ -98,7 +100,7 @@
 			<div class="panel-body">
 				<div class="col-sm-3">
 					<h4>
-						<p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${bus.price }</p>
+						<p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${cab.fare }</p>
 					</h4>
 				</div>
 
@@ -107,7 +109,7 @@
 
 				<h4>
 					<p align="right">You
-						Pay:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${bus.price }</p>
+						Pay:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${cab.fare }</p>
 				</h4>
 
 			</div>
@@ -155,13 +157,7 @@
 							<option value="Others">Others</option>
 						</select> <input type="text" class="form-control" id="age"
 							placeholder="Age" name="age">
-						<div class="form-group">
-
-							<h4>
-								Seat No: <span class="badge">${(bus.maxSeats-bus.seatsAvailable)+1}</span>
-							</h4>
-						</div>
-						<br>
+												<br>
 						<br>
 
 						<div class="form-group">
@@ -171,15 +167,14 @@
 						</div>
 						<br>
 						<br>
+
+					
 						<div class="form-group">
 							<label for="email">Mobile Number:&nbsp;&nbsp;</label> <input
 								type="text" class="form-control" id="phone" placeholder=""
 								name="phone"> <br>
-							<br> <input type="hidden" name="id" value="${bus.id }" /> <input
-								type="hidden" name="seatNo"
-								value="${(bus.maxSeats-bus.seatsAvailable)+1}" /> <input
-								class="btn btn-primary btn-lg" type="submit"
-								class="form-control" value="Confirm Booking">
+							<br> <input type="hidden" name="id" value="${bus.id }" /> 
+							 <input class="btn btn-primary btn-lg" type="submit" class="form-control" value="Confirm Booking">
 
 						</div>
 				</form>

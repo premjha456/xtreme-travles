@@ -134,7 +134,7 @@
 			</div>
 			<div class="panel-body">
 
-				<form class="form-inline" action="${contextRoot}/flight/confirmBooking">
+				<form class="form-inline" action="${contextRoot}/book/flight/confirmBooking">
 					<div class="form-group">
 						<label for="sel1">Traveller 1 Name</label> <select
 							class="form-control" id="sel1" name="sel1">

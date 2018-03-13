@@ -27,7 +27,5 @@ public class UserModel {
 	public String toString() {
 		return "UserModel [id=" + id + ", fullName=" + fullName + ", role=" + role + "]";
 	}
-	
-	
 	 
 }

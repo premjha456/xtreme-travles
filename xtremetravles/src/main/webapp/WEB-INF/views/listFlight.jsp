@@ -1,7 +1,9 @@
 <script type="text/javascript">
 					window.boardPoint='${boardPoint}';
 						window.dropPoint='${dropPoint}';
-					</script>
+						window.date='${date}';
+
+						</script>
 <div class="container">
 			
 				

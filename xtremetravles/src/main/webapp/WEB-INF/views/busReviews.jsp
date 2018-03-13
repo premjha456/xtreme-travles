@@ -21,7 +21,9 @@ window.seatNo='${seatNo}'
 	</div>
 	
 	
-	
+	<script type="text/javascript">
+	console.log('Hello')
+	</script>
 	<div class="col-sm-7">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -101,7 +103,7 @@ window.seatNo='${seatNo}'
 
 	</div>
 
-	<div class="col-sm-5">
+<div class="col-sm-5">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3>Select Seats</h3>
@@ -113,63 +115,7 @@ window.seatNo='${seatNo}'
 					
 				<div id="holder">
 					<ul id="place">
-					 <script type="text/javascript">
-    
-    $(document).ready(function(){
-    	      var settings = {
-                rows: 4,
-                cols: 9,
-                rowCssPrefix: 'row-',
-                colCssPrefix: 'col-',
-                seatWidth: 35,
-                seatHeight: 35,
-                seatCss: 'seat',
-                selectedSeatCss: 'selectedSeat',
-        selectingSeatCss: 'selectingSeat'
-            };
-
-            var init = function (reservedSeat) {
-                var str = [], seatNo, className;
-                for (i = 0; i < settings.rows; i++) {
-                    for (j = 0; j < settings.cols; j++) {
-                        seatNo = (i + j * settings.rows + 1);
-                        className = settings.seatCss + ' ' + settings.rowCssPrefix + i.toString() + ' ' + settings.colCssPrefix + j.toString();
-                        if ($.isArray(reservedSeat) && $.inArray(seatNo, reservedSeat) != -1) {
-                            className += ' ' + settings.selectedSeatCss;
-                        }
-                        str.push('<li class="' + className + '"' +
-                                  'style="top:' + (i * settings.seatHeight).toString() + 'px;left:' + (j * settings.seatWidth).toString() + 'px">' +
-                                  '<a title="' + seatNo + '">' + seatNo + '</a>' +
-                                  '</li>');
-                    }
-                }
-                $('#place').html(str.join(''));
-            };
-
-            //case I: Show from starting
-            //init();
-
-            //Case II: If already booked
-            console.log(window.seatNo);
-            var reservedSeat = [8,9];
-            init(reservedSeat);
-            
-
-            $('.' + settings.seatCss).click(function () {
-      if ($(this).hasClass(settings.selectedSeatCss)){
-        alert('This seat is already reserved');
-      }
-      else{
-                $(this).toggleClass(settings.selectingSeatCss);
-        }
-            });
-
-            
-        });
-    
-    </script>
-
-					
+							
 					</ul>
 				</div>
 				</div>
@@ -197,7 +143,10 @@ window.seatNo='${seatNo}'
 	</div>
 </div>
 
-	
+	<script type="text/javascript">
+	console.log('Hello')
+
+	</script>
 	
 	<div class="col-sm-11">
 	<div class="well well-sm">
@@ -218,7 +167,7 @@ window.seatNo='${seatNo}'
 		</div>
 		<div class="panel-body">
 
-			<form class="form-inline" action="${contextRoot}/bus/confirmBooking">
+			<form class="form-inline" action="${contextRoot}/book/bus/confirmBooking">
 				<div class="form-group">
 					<label for="sel1">Traveller 1 Name</label> <select
 						class="form-control" id="sel1" name="sel1">
@@ -270,3 +219,65 @@ window.seatNo='${seatNo}'
 </div>
 	
 </div>
+					 <script type="text/javascript">
+					 
+						console.log('Hello1')
+
+   
+$( document ).ready(function (){
+    	
+    	console.log('Hello2')
+
+    	      var settings = {
+                rows: 4,
+                cols: 9,
+                rowCssPrefix: 'row-',
+                colCssPrefix: 'col-',
+                seatWidth: 35,
+                seatHeight: 35,
+                seatCss: 'seat',
+                selectedSeatCss: 'selectedSeat',
+        selectingSeatCss: 'selectingSeat'
+            };
+           
+            var init = function (reservedSeat) {
+                var str = [], seatNo, className;
+                for (i = 0; i < settings.rows; i++) {
+                    for (j = 0; j < settings.cols; j++) {
+                        seatNo = (i + j * settings.rows + 1);
+                        className = settings.seatCss + ' ' + settings.rowCssPrefix + i.toString() + ' ' + settings.colCssPrefix + j.toString();
+                        if ($.isArray(reservedSeat) && $.inArray(seatNo, reservedSeat) != -1) {
+                            className += ' ' + settings.selectedSeatCss;
+                        }
+                        str.push('<li class="' + className + '"' +
+                                  'style="top:' + (i * settings.seatHeight).toString() + 'px;left:' + (j * settings.seatWidth).toString() + 'px">' +
+                                  '<a title="' + seatNo + '">' + seatNo + '</a>' +
+                                  '</li>');
+                    }
+                }
+                $('#place').html(str.join(''));
+            };
+
+            //case I: Show from starting
+            //init();
+
+            //Case II: If already booked
+            console.log(window.seatNo);
+            var reservedSeat = [8,9];
+            init(reservedSeat);
+            
+
+            $('.' + settings.seatCss).click(function () {
+      if ($(this).hasClass(settings.selectedSeatCss)){
+        alert('This seat is already reserved');
+      }
+      else{
+                $(this).toggleClass(settings.selectingSeatCss);
+        }
+            });
+
+            
+        });
+						console.log('Hello')
+
+    </script>

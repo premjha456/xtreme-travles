@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.xtremetravlesbackend.dao.CabDao;
 import com.xtremetravlesbackend.dto.Bus;
 import com.xtremetravlesbackend.dto.Cab;
+import com.xtremetravlesbackend.dto.User;
 
 @Repository("cabDao")
 @Transactional
@@ -87,15 +88,27 @@ public class CabDaoImpl implements CabDao {
 	}
 
 	@Override
-	public List<Cab> listCabByPlace(String bp, String dp) {
+	public List<Cab> listCabByPlace(String bp, String dp,String date) {
 
 		return sessionFactory
 				  .getCurrentSession()
-				          .createQuery("FROM Cab WHERE active=:active AND board_point=:board_point AND drop_point=:drop_point", Cab.class)
+				          .createQuery("FROM Cab WHERE active=:active AND board_point=:board_point AND drop_point=:drop_point AND date=:date", Cab.class)
 				               .setParameter("active", true)
 				                  .setParameter("board_point", bp)
 				                      .setParameter("drop_point",dp)
-				                          .getResultList();
+				                          .setParameter("date",date)
+				                              .getResultList();
+	}
+
+	@Override
+	public List<Cab> listCabsByAgentId(User user) {
+
+		return sessionFactory
+				  .getCurrentSession()
+				          .createQuery("FROM Cab WHERE user=:user", Cab.class)
+				                   .setParameter("user", user)
+				                       .getResultList();
+
 	}
 	}
 	

@@ -39,7 +39,7 @@ public boolean empty(String s)
 	String merchant_key="4BK3yI9F";
 	String salt="yhBmbct1EM";
 	String action1 ="";
-	String base_url="https://secure.payu.in";
+	String base_url="https://sandboxsecure.payu.in";
 	int error=0;
 	String hashString="";
 	
@@ -130,7 +130,7 @@ function submitPayuForm() {
  
   </div>
   </div>
-  <a href="google.com">Google</a>
+  <a href="https://www.google.co.in/">Google</a>
   
     <div class="col-sm-7">
   <div class="panel panel-default">

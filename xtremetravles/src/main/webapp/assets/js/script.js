@@ -20,7 +20,7 @@ $(document).ready(function(){
 	
 	
 	  var $url=window.contextRoot + '/json/data/'+ window.boardPoint +'/'
-							+ window.dropPoint + '/cabs';
+							+ window.dropPoint +'/'+ window.date+'/cabs';
 
 						
 						$.ajax({
@@ -33,7 +33,7 @@ $(document).ready(function(){
 		                              var p=res[i];
 		                              data+='<tr><td>'+'<img src="' + window.contextRoot
 		 									+ '/resources/images/' + p.cabType
-		 									+ '.png" class="cabImg"/></td><td>'+'<b><font size="5">'+p.cabType+'</font></b><br>'+p.aminities+'<br>'+ p.cabName+'</td><td><font size="5">'+p.boardPoint+'</font></td><td><font size="5">'+p.dropPoint+'</font></td><td> <font size="5"> &#8377;'+p.fare+'</font><br><b>(Excluding GST)</b></br></td><td><a href="'+window.contextRoot+'/cab/'+p.id+'/cabReview" class="btn btn-primary">Select Cab</a></td></tr>';
+		 									+ '.png" class="cabImg"/></td><td>'+'<b><font size="5">'+p.cabType+'</font></b><br>'+p.aminities+'<br>'+ p.cabName+'</td><td><font size="5">'+p.boardPoint+'</font></td><td><font size="5">'+p.dropPoint+'</font></td><td> <font size="5"> &#8377;'+p.fare+'</font><br><b>(Excluding GST)</b></br></td><td><a href="'+window.contextRoot+'/book/cab/'+p.id+'/cabReview" class="btn btn-primary">Select Cab</a></td></tr>';
 		                          }
 		                          $('#content').html(data);
 		                       },
@@ -70,7 +70,7 @@ var $table =$('#listbus');
 			jsonUrl = window.contextRoot + '/json/data/all/bus';
 		} else {
 			jsonUrl = window.contextRoot + '/json/data/'+ window.boardPoint +'/'
-					+ window.dropPoint + '/bus';
+					+ window.dropPoint +'/'+ window.date +'/bus';
 }
 		console.log(jsonUrl);
 		$table.DataTable({
@@ -116,7 +116,7 @@ var $table =$('#listbus');
 						var str = '';
 						str += '<a href="'
 								+ window.contextRoot
-								+ '/bus/'
+								+ '/book/bus/'
 								+ data
 								+ '/busReview" class="btn btn-primary">Select Bus</a> &#160;';
 
@@ -139,7 +139,7 @@ var $table =$('#listbus');
 			jsonUrl = window.contextRoot + '/json/data/all/flight';
 		} else {
 			jsonUrl = window.contextRoot + '/json/data/'+ window.boardPoint +'/'
-					+ window.dropPoint + '/flight';
+					+ window.dropPoint +'/'+window.date+'/flight';
 	}
 		console.log(jsonUrl);
 		$table.DataTable({
@@ -192,7 +192,7 @@ var $table =$('#listbus');
 						var str = '';
 						str += '<a href="'
 								+ window.contextRoot
-								+ '/flight/'
+								+ '/book/flight/'
 								+ data
 								+ '/flightReview" class="btn btn-primary">&nbsp;&nbsp;&nbsp;Book&nbsp;&nbsp;&nbsp;</a> &#160;';
 
@@ -214,7 +214,7 @@ var $table =$('#listbus');
 		
 		if($tabel.length) {
 			
-			var jsonUrl = window.contextRoot + '/json/data/admin/all/bus';
+			var jsonUrl = window.contextRoot + '/json/data/agent/'+window.id+'/all/bus';
 			console.log(jsonUrl);
 			
 			$tabel.DataTable({
@@ -358,7 +358,7 @@ var $table =$('#listbus');
 			
 			if($tabel.length) {
 				
-				var jsonUrl = window.contextRoot + '/json/data/admin/all/flight';
+				var jsonUrl = window.contextRoot + '/json/data/agent/'+window.id+'/all/flight';
 				console.log(jsonUrl);
 				
 				$tabel.DataTable({
@@ -483,5 +483,130 @@ var $table =$('#listbus');
 				});
 				
 				} 	
+			
+			
+			
+var $tabel = $('#cabTable');
+			
+			
+			if($tabel.length) {
+				
+				var jsonUrl = window.contextRoot + '/json/data/agent/'+window.id+'/all/cab';
+				console.log(jsonUrl);
+				
+				$tabel.DataTable({
+							lengthMenu : [ [ 10, 30, 50, -1 ], [ '10 Records', '30 Records', '50 Records', 'ALL' ] ],
+							pageLength : 10,
+							ajax : {
+								url : jsonUrl,
+								dataSrc : ''
+							},
+							columns : [		
+
+
+							           	{data   :  'cabName'
+							           	},
+							           	{
+											data : 'cabType'
+										},
+										{
+											data : 'cabServiceProvider'
+										},
+										
+										{
+											data : 'aminities'
+										},
+										{
+											data : 'boardPoint'
+										},
+										
+										{
+											data : 'dropPoint'
+										},
+										
+										{
+											data : 'date'
+										},
+										
+								        {
+											data : 'fare',
+											mRender : function(data, type, row) {
+												return '&#8377; ' + data
+											}
+										},
+										{
+											data : 'active',
+											bSortable : false,
+											mRender : function(data, type, row) {
+												var str = '';
+												if(data) {											
+													str += '<label class="switch"> <input type="checkbox" value="'+row.id+'" checked="checked">  <div class="slider round"> </div></label>';
+													
+												}else {
+													str += '<label class="switch"> <input type="checkbox" value="'+row.id+'">  <div class="slider round"> </div></label>';
+												}
+												
+												return str;
+											}
+										},
+										{
+											data : 'id',
+											bSortable : false,
+											mRender : function(data, type, row) {
+
+												var str = '';
+												str += '<a href="'
+														+ window.contextRoot
+														+ '/manage/'
+														+ data
+														+ '/cab" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a> &#160;';
+
+												return str;
+											}
+										}					           	
+							],
+							
+							initComplete: function () {
+								var api = this.api();
+		                        api.$('.switch input[type="checkbox"]').on('change',function(){
+		                       	 
+		                        	var dText = (this.checked)? 'You want to activate the Flight?': 'You want to de-activate the Flight?';
+		                			var checked = this.checked;
+		                            var checkbox = $(this);
+		                            var value=checkbox.prop('value')
+		                            debugger;
+		                            bootbox.confirm({
+		                						    	size: 'medium',
+		                						    	title: 'Product Activation/Deactivation',
+		                						    	message: dText,
+		                						    	callback: function (confirmed) {
+		                							        if (confirmed) {
+		                							        	console.log(value);
+		                							        	
+		                							        	var activationUrl=window.contextRoot+'/manage/cab/'+value+'/activation';
+		                							        	
+		                							        	$.post(activationUrl,function(data){
+		                							        		bootbox.alert({
+			                							            	size: 'medium',
+			                									    	title: 'Information',
+			                									    	message: data
+			                							            });
+		                							        	})
+		                							            
+		                							            }
+		                							       
+		                							        else {							        	
+		                							        	checkbox.prop('checked', !checked);
+		                							        }
+		                						    	}
+		                         });
+		                		
+		                         });
+							}
+				
+				});
+				
+				} 	
+
 		
 });

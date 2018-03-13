@@ -1,5 +1,6 @@
 package com.xtremetravles.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,21 +15,35 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.xtremetravles.model.UserModel;
 import com.xtremetravlesbackend.dao.BusDao;
+import com.xtremetravlesbackend.dao.CabDao;
 import com.xtremetravlesbackend.dao.FlightDao;
+import com.xtremetravlesbackend.dao.UserDao;
 import com.xtremetravlesbackend.dto.Bus;
+import com.xtremetravlesbackend.dto.Cab;
 import com.xtremetravlesbackend.dto.Flight;
+import com.xtremetravlesbackend.dto.User;
 
 @Controller
 @RequestMapping("/manage")
 public class ManagementController {
 
-	
+	@Autowired
+	private  HttpSession session;
+
 	@Autowired
 	private BusDao busDao;
 	
 	@Autowired
+	private UserDao userDao;
+	
+	@Autowired
 	private FlightDao flightDao;
+	
+	
+	@Autowired
+	private CabDao cabDao;
 	
 	//bus management first time after load and show  code
 	@RequestMapping(value="/bus",method=RequestMethod.GET)
@@ -63,6 +78,10 @@ public class ManagementController {
 		
 			return "index";
 } 
+		UserModel userModel=(UserModel)session.getAttribute("userModel");
+		User user =userDao.getUserById(userModel.getId());
+		bus1.setUser(user);
+		
 		if(bus1.getId()==0)
 		{
 	    busDao.add(bus1);
@@ -110,7 +129,7 @@ public class ManagementController {
 	
 	
 	
-	//bus management first time after load and show  code
+	//flight management first time after load and show  code
 		@RequestMapping(value="/flight",method=RequestMethod.GET)
 		public ModelAndView manageFlights(@RequestParam(name="case", required=false) String case1){
 			
@@ -125,14 +144,14 @@ public class ManagementController {
 				
 				if (case1.equals("flight")) {
 					
-					mv.addObject("message", "Bus Added Successfully");
+					mv.addObject("message", "Flight Added Successfully");
 				}
 			}
 			return mv;
 		}
 		
 		
-		//bus management submit button code
+		//flight management submit button code
 		@RequestMapping(value="/flight",method=RequestMethod.POST)
 		public String handelAddFlight(@Valid @ModelAttribute("flight") Flight flight1,BindingResult result,Model model){
 			
@@ -143,6 +162,10 @@ public class ManagementController {
 			
 				return "index";
 	} 
+			UserModel userModel=(UserModel)session.getAttribute("userModel");
+			User user =userDao.getUserById(userModel.getId());
+			flight1.setUser(user);
+			
 			if(flight1.getId()==0)
 			{
 		    flightDao.add(flight1);
@@ -154,7 +177,7 @@ public class ManagementController {
 			return "redirect:/manage/flight?case=flight";
 		}
 		
-		//bus management edit button code
+		//flight management edit button code
 		@RequestMapping("/{id}/flight")
 		public ModelAndView manageFlightEdit(@PathVariable int id) {		
 
@@ -170,7 +193,7 @@ public class ManagementController {
 			
 		}
 
-		//bus management checkbox code
+		//flight management checkbox code
 		@RequestMapping(value="/flight/{id}/activation", method=RequestMethod.POST)
 		@ResponseBody
 		public String handelFlight1Activation(@PathVariable int id){
@@ -186,19 +209,86 @@ public class ManagementController {
 					:"You have Successfully Activated the Flight";
 		}
 		
+		
+		
+		//cab management first time after load and show  code
+				@RequestMapping(value="/cab",method=RequestMethod.GET)
+				public ModelAndView manageCabs(@RequestParam(name="case", required=false) String case1){
+					
+					ModelAndView mv = new ModelAndView("index");
+					mv.addObject("clickedManageCab", true);
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+					Cab cab = new Cab();
+				
+					mv.addObject("cab", cab);
+					
+					if (case1!=null) {
+						
+						if (case1.equals("cab")) {
+							
+							mv.addObject("message", "Cab Added Successfully");
+						}
+					}
+					return mv;
+				}
+				
+				
+				//cab management submit button code
+				@RequestMapping(value="/cab",method=RequestMethod.POST)
+				public String handelAddCab(@Valid @ModelAttribute("cab") Cab cab1,BindingResult result,Model model){
+					
+					
+					if(result.hasErrors()) {
+						model.addAttribute("message", "Validation fails for adding the cab!");
+						model.addAttribute("clickedManageCab",true);
+					
+						return "index";
+			} 
+					UserModel userModel=(UserModel)session.getAttribute("userModel");
+					User user =userDao.getUserById(userModel.getId());
+					cab1.setUser(user);
+					
+					if(cab1.getId()==0)
+					{
+				    cabDao.add(cab1);
+					}
+					else{
+						
+						cabDao.update(cab1);
+					}
+					return "redirect:/manage/cab?case=cab";
+				}
+				
+				//cab management edit button code
+				@RequestMapping("/{id}/cab")
+				public ModelAndView manageCabEdit(@PathVariable int id) {		
+
+					ModelAndView mv = new ModelAndView("index");	
+					mv.addObject("title","Cab Management");		
+					mv.addObject("clickedManageCab",true);
+					
+					// Product nProduct = new Product();		
+					mv.addObject("cab", cabDao.get(id));
+
+						
+					return mv;
+					
+				}
+
+				//cab management checkbox code
+				@RequestMapping(value="/cab/{id}/activation", method=RequestMethod.POST)
+				@ResponseBody
+				public String handelCabActivation(@PathVariable int id){
+					
+					Cab cab = cabDao.get(id);
+					 
+					boolean state =cab.isActive();
+					cab.setActive(!cab.isActive());
+					
+					cabDao.update(cab);
+					
+					return (state)?"You have Successfully Deactivated the Flight"
+							:"You have Successfully Activated the Flight";
+				}
 
 }

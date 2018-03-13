@@ -34,7 +34,7 @@
 						<div class="form-group">
 							<label class="control-label">Depature :</label>
 							<div class='input-group date' id='datetimepicker1'>
-								<input type="date" class="form-control" required/> <span
+								<input type="date" name="date" class="form-control" required/> <span
 									class="input-group-addon"> <span
 									class="glyphicon glyphicon-calendar"></span>
 								</span>

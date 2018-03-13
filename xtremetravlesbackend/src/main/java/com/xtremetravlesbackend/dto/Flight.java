@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Flight {
@@ -25,7 +28,12 @@ public class Flight {
 	@Column(name="drop_point")
 	private String dropPoint; 
 	@Column(name="drop_time")
-	private String dropTime; 
+	private String dropTime;
+	@Column(name="date")
+	@NotBlank(message="Plese Enter Date")
+	private String date;
+	@ManyToOne
+	private User user;	
 	@Column(name="max_seats")
 	private int maxSeats;
 	@Column(name="seats_available")
@@ -81,6 +89,19 @@ public class Flight {
 	public void setDropTime(String dropTime) {
 		this.dropTime = dropTime;
 	}
+	
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public int getMaxSeats() {
 		return maxSeats;
 	}
@@ -109,8 +130,9 @@ public class Flight {
 	public String toString() {
 		return "Flight [id=" + id + ", flightName=" + flightName + ", flightType=" + flightType + ", flightNo="
 				+ flightNo + ", boardPoint=" + boardPoint + ", boardTime=" + boardTime + ", dropPoint=" + dropPoint
-				+ ", dropTime=" + dropTime + ", maxSeats=" + maxSeats + ", seatsAvailable=" + seatsAvailable + ", fare="
-				+ fare + ", isEnabled=" + isEnabled + "]";
+				+ ", dropTime=" + dropTime + ", date=" + date + ", user=" + user + ", maxSeats=" + maxSeats
+				+ ", seatsAvailable=" + seatsAvailable + ", fare=" + fare + ", isEnabled=" + isEnabled + "]";
 	}
+	
 	
 }

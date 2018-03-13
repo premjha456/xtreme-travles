@@ -34,7 +34,7 @@
 						<div class="form-group">
 							<label class="control-label">Depature :</label>
 							<div class='input-group date' id='datetimepicker1'>
-								<input type="date" class="form-control" / name="departDate"> <span
+								<input type="date" class="form-control" name="date" /> <span
 									class="input-group-addon"> <span
 									class="glyphicon glyphicon-calendar"></span>
 								</span>
@@ -46,17 +46,16 @@
             });
             
         </script>
-
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               &nbsp;&nbsp;&nbsp;&nbsp;
 						<div class="form-group">
-							<label for="select" class="control-label">Pick Up Time</label>
+							<label for="select" class="control-label">PickUp Time</label>
 							<div class="input-group">
-								<select class="form-control" id="select" name="deparTime">
-									<option value="1">7:30 PM</option>
-									<option value="2">8:00 PM</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
+								<select class="form-control" id="select" name="putime" required>
+									<option value="7:30">7:30</option>
+									<option value="8:00">8:00</option>
+									<option value="8:30">8:30</option>
+									<option value="9:00">9:00</option>
+									<option value="9:30">9:30</option>
 								</select>
 							</div>
 						</div>

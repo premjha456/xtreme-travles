@@ -60,18 +60,19 @@ public class PageController {
 
 	
 	@RequestMapping(value ="/flight/listFlight")
-	public ModelAndView viewFlight(@RequestParam("boardPoint") String boardPoint,@RequestParam("dropPoint") String dropPoint) {		
+	public ModelAndView viewFlight(@RequestParam("boardPoint") String boardPoint,@RequestParam("dropPoint") String dropPoint,@RequestParam("date") String date) {		
 		ModelAndView mv = new ModelAndView("index");		
 		mv.addObject("title", "Flight Search");
 		mv.addObject("boardPoint", boardPoint);
 		mv.addObject("dropPoint", dropPoint);
+		mv.addObject("date", date);
 		mv.addObject("clickedViewFlight", true);
 
 		return mv;				
 }
 
 	
-	@RequestMapping("/flight/{id}/flightReview")
+	@RequestMapping("/book/flight/{id}/flightReview")
 	public ModelAndView reviewFlight(@PathVariable int id){
 		ModelAndView mv = new ModelAndView("index");
 		
@@ -83,7 +84,7 @@ public class PageController {
 		
 	}
 	
-	@RequestMapping("/flight/confirmBooking")
+	@RequestMapping("/book/flight/confirmBooking")
 	public ModelAndView confirmFlightBook(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("age") int age,@RequestParam("gender") String gender,@RequestParam("email") String email,@RequestParam("phone") String phone){
 		ModelAndView mv = new ModelAndView("index");
 		Flight flight =flightDao.get(id);
@@ -100,7 +101,7 @@ public class PageController {
 		mv.addObject("furl", "http://localhost:8080/xtremetravles/bus/booking/payment/fail");
 		mv.addObject("curl", "http://localhost:8080/xtremetravles/bus/booking/payment/cancel");
         
-		mv.addObject("clickedConfirmBooking", true);
+		mv.addObject("clickedConfirmFlightBooking", true);
 		mv.addObject("title", "Confirm Booking");
 		return mv;
 		
@@ -117,18 +118,19 @@ public class PageController {
 }
 	
 	@RequestMapping("/bus/listBus")
-	public ModelAndView viewBus(@RequestParam("boardPoint") String boardPoint,@RequestParam("dropPoint") String dropPoint){
+	public ModelAndView viewBus(@RequestParam("boardPoint") String boardPoint,@RequestParam("dropPoint") String dropPoint,@RequestParam("date") String date){
 		ModelAndView mv = new ModelAndView("index");		
 
 		mv.addObject("boardPoint", boardPoint);
 		mv.addObject("dropPoint", dropPoint);
+		mv.addObject("date", date);
 		mv.addObject("clickedListBus", true);
 
 		return mv;
 	}
 	
 	
-	@RequestMapping("/bus/{id}/busReview")
+	@RequestMapping("/book/bus/{id}/busReview")
 	public ModelAndView reviewBus(@PathVariable int id){
 		ModelAndView mv = new ModelAndView("index");
 				Bus bus= busDao.get(id);
@@ -173,7 +175,7 @@ public class PageController {
 	}
 	
 
-	@RequestMapping("/bus/confirmBooking")
+	@RequestMapping("/book/bus/confirmBooking")
 	public ModelAndView confirmBook(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("age") int age,@RequestParam("gender") String gender,@RequestParam("email") String email,@RequestParam("phone") String phone,@RequestParam("seatNo") String seatNo){
 		ModelAndView mv = new ModelAndView("index");
 		Bus bus =busDao.get(id);
@@ -191,7 +193,7 @@ public class PageController {
 		mv.addObject("curl", "http://localhost:8080/xtremetravles/bus/booking/payment/cancel");
 		mv.addObject("seatNo", seatNo);
         
-		mv.addObject("clickedConfirmBooking", true);
+		mv.addObject("clickedConfirmBusBooking", true);
 
 		return mv;
 		
@@ -208,17 +210,18 @@ public class PageController {
 	
 	
 	@RequestMapping(value ="/cab/listCab")
-	public ModelAndView listCabs(@RequestParam("boardPoint") String boardPoint,@RequestParam("dropPoint") String dropPoint) {		
+	public ModelAndView listCabs(@RequestParam("boardPoint") String boardPoint,@RequestParam("dropPoint") String dropPoint,@RequestParam("date") String date) {		
 		ModelAndView mv = new ModelAndView("index");		
 		
 		mv.addObject("boardPoint", boardPoint);
 		mv.addObject("dropPoint", dropPoint);
+		mv.addObject("date", date);
 		mv.addObject("clickedListCab", true);
 
 		return mv;				
 }
 
-	@RequestMapping("/cab/{id}/cabReview")
+	@RequestMapping("/book/cab/{id}/cabReview")
 	public ModelAndView reviewCab(@PathVariable int id){
 		ModelAndView mv = new ModelAndView("index");
 		

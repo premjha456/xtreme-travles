@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -33,6 +34,11 @@ public class Cab {
 	@Column(name="drop_point")
 	@NotBlank(message="Plese Enter DropPoint")
 	private String dropPoint; 
+	@Column(name="date")
+	@NotBlank(message="Plese Enter Date")
+	private String date;
+	@ManyToOne
+	private User user;	
 	@Min(value=1)
 	private double fare;
 	@Column(name="active")
@@ -81,6 +87,20 @@ public class Cab {
 	public void setDropPoint(String dropPoint) {
 		this.dropPoint = dropPoint;
 	}
+	
+	
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public double getFare() {
 		return fare;
 	}
@@ -97,8 +117,10 @@ public class Cab {
 	public String toString() {
 		return "Cab [id=" + id + ", cabName=" + cabName + ", cabType=" + cabType + ", aminities=" + aminities
 				+ ", cabServiceProvider=" + cabServiceProvider + ", boardPoint=" + boardPoint + ", dropPoint="
-				+ dropPoint + ", fare=" + fare + ", active=" + active + "]";
+				+ dropPoint + ", date=" + date + ", user=" + user + ", fare=" + fare + ", active=" + active + "]";
 	}
+	
+	
 	
 	
 	

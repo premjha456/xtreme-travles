@@ -53,5 +53,10 @@ public class UserDaoImpl implements UserDao {
 				                          .getSingleResult();
 	}
 
+	@Override
+	public User getUserById(int id) {
+		return sessionFactory.getCurrentSession().get(User.class, Integer.valueOf(id));
+	}
+
 	
 }

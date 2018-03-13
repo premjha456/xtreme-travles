@@ -128,8 +128,9 @@ window.contextRoot='${contextRoot}'
 </c:if>
 
 
-<c:if test="${clickedConfirmBooking == true }">
-				<%@include file="confirmBooking.jsp"%>
+
+<c:if test="${clickedConfirmBusBooking == true }">
+				<%@include file="confirmBusBooking.jsp"%>
 </c:if>
 
 <c:if test="${clickedDeals == true }">
@@ -143,6 +144,10 @@ window.contextRoot='${contextRoot}'
 
 <c:if test="${clickedManageFlight == true }">
 				<%@include file="manageFlight.jsp"%>
+</c:if>
+
+<c:if test="${clickedManageCab == true }">
+				<%@include file="manageCab.jsp"%>
 </c:if>
 
 	<c:if test="${clickedHotels == true }">

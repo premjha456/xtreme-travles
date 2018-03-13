@@ -1,11 +1,10 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
-
 <script type="text/javascript">
 					window.id='${userModel.id}';
 					console.log(id);
  					</script>
-
+	
 <div class="container">
 
 	<c:if test="${not empty message}">	
@@ -24,49 +23,60 @@
 
 				<div class="panel-heading">
 
-					<h4>Flight Management</h4>
+					<h4>Cab Management</h4>
 
 				</div>
 
 				<div class="panel-body">
-					<sf:form class="form-horizontal" modelAttribute="flight" action="${contextRoot}/manage/flight" method="POST" >
+					<sf:form class="form-horizontal" modelAttribute="cab" action="${contextRoot}/manage/cab" method="POST" >
 						<div class="form-group">
-							<label class="control-label col-md-4">Flight Name</label>
+							<label class="control-label col-md-4">Cab Name</label>
 							<div class="col-md-8">
-							
-							<sf:select path="flightName" class="form-control">
-								<option value="Indigo">Indigo</option>
-				                <option value="Jet AirWays">Jet AirWays</option>
-				                <option value="Air India">Air India</option>
-					            <option value="SpiceJet">SpiceJet</option>
+								<sf:select path="cabName" class="form-control">
+								<option value="Indica, Swift or similar">Indica, Swift or similar</option>
+				                <option value="Dzire, Etios or similar">Dzire, Etios or similar</option>
+				                <option value="Innova, Xylo or similar">Innova, Xylo or similar</option>
+					
 							</sf:select>
-					        <sf:errors path="flightName" cssClass="help-block" element="em"/> 
+					
+								<sf:errors path="cabName" cssClass="help-block" element="em"/> 
 							</div>
 						</div>
 						
-						
 						<div class="form-group">
-							<label class="control-label col-md-4">Flight Type</label>
+							<label class="control-label col-md-4">Cab Type</label>
 							<div class="col-md-8">
-							<sf:input type="text" path="flightType" class="form-control"
-									placeholder="Flight Type" /> 
-								<sf:errors path="flightType" cssClass="help-block" element="em"/>
-								
-											<div class="text-right">
+								<sf:select path="cabType" class="form-control">
+								<option value="HATCHBACK">HATCHBACK</option>
+				                <option value="SEDAN">SEDAN</option>
+				                <option value="SUV">SUV</option>
+					
+							</sf:select>
+								<div class="text-right">
 									<br/>			
 									<sf:hidden path="id"/>
-									<sf:hidden path="enabled" value="true" />														
+									<sf:hidden path="active" value="true" />														
 								</div>							
 							</div>
 							
 						</div>
-						
+					
 						<div class="form-group">
-							<label class="control-label col-md-4">Flight No</label>
+							<label class="control-label col-md-4">Aminities</label>
 							<div class="col-md-8">
-								<sf:input type="text" path="flightNo" class="form-control"
-									placeholder="Flight No" /> 
-								<sf:errors path="flightNo" cssClass="help-block" element="em"/>	
+								<sf:input type="text" path="aminities" class="form-control"
+									placeholder="Aminities" /> 
+								<sf:errors path="aminities" cssClass="help-block" element="em"/>	
+							</div>
+						</div>
+						
+							
+						<div class="form-group">
+							<label class="control-label col-md-4">Cab Service Provider</label>
+							<div class="col-md-8">
+								<sf:input type="text" path="cabServiceProvider" class="form-control"
+									placeholder="Cab Service Provider" /> 
+								<sf:errors path="cabServiceProvider" cssClass="help-block" element="em"/>	
 							</div>
 						</div>
 
@@ -79,15 +89,7 @@
 							</div>
 						</div>
 
-						<div class="form-group">
-							<label class="control-label col-md-4">Board Time</label>
-							<div class="col-md-8">
-								<sf:input type="text" path="boardTime" class="form-control"
-									placeholder="Board Time" />
-								<sf:errors path="boardTime" cssClass="help-block" element="em"/>
-							</div>
-						</div>
-
+						
 						<div class="form-group">
 							<label class="control-label col-md-4">Drop Point</label>
 							<div class="col-md-8">
@@ -97,15 +99,8 @@
 							</div>
 						</div>
 
-                        <div class="form-group">
-							<label class="control-label col-md-4">Drop Time</label>
-							<div class="col-md-8">
-								<sf:input type="text" path="dropTime" class="form-control"
-									placeholder="Drop Time" />
-								<sf:errors path="dropTime" cssClass="help-block" element="em"/> 
-							</div>
-						</div>
-                        <div class="form-group">
+                        
+                       <div class="form-group">
 							<label class="control-label col-md-4">Depature Date</label>
 							<div class="col-md-8">
 								<sf:input type="date" id='datetimepicker1' path="date" class="form-control"
@@ -120,25 +115,7 @@
             
         </script>
  
-                        
-                       <div class="form-group">
-							<label class="control-label col-md-4">Maximum Seats</label>
-							<div class="col-md-8">
-								<sf:input type="number" path="maxSeats" class="form-control"
-									placeholder="Maximum Seats" />
-								<sf:errors path="maxSeats" cssClass="help-block" element="em"/> 
-							</div>
-						</div>
- 
-                       <div class="form-group">
-							<label class="control-label col-md-4">Seats Available</label>
-							<div class="col-md-8">
-								<sf:input type="number" path="seatsAvailable" class="form-control"
-									placeholder="Maximum Seats" />
-								<sf:errors path="seatsAvailable" cssClass="help-block" element="em"/> 
-							</div>
-						</div>
- 
+                      
                        <div class="form-group">
 							<label class="control-label col-md-4">Fare</label>
 							<div class="col-md-8">
@@ -173,7 +150,7 @@
 
 	
 	<hr/>	
-	<h1>Available Flight</h1>
+	<h1>Available Bus</h1>
 	<hr/>
 	
 	<div class="row">
@@ -182,18 +159,17 @@
 		<div class='col-xs-12'>
 		
 		
-			<table id="flightTable" class="table table-condensed table-bordered">
+			<table id="cabTable" class="table table-condensed table-bordered">
 							
 				<thead>					
 					<tr>					
-						<th>FlightName</th>
-						<th>FlightType</th>
-						<th>FlightNo</th>
+						<th>CabName</th>
+						<th>CabType</th>
+						<th>Cab Service Provider</th>
+						<th>Aminities</th>
 						<th>BoardPoint</th>
-						<th>BoardTime</th>
 						<th>DropPoint</th>
-						<th>DropTime</th>
-						<th>SeatsAvailable</th>
+						<th>Date</th>						
 						<th>Fare</th>
 						<th>Activate/Deactivate</th>
 						<th>Edit</th>
@@ -202,14 +178,13 @@
 				
 				<tfoot>
 					<tr>					
-						<th>FlightName</th>
-						<th>FlightType</th>
-						<th>FlightNo</th>
+						<th>CabName</th>
+						<th>CabType</th>
+						<th>Cab Service Provider</th>
+						<th>Aminities</th>
 						<th>BoardPoint</th>
-						<th>BoardTime</th>
 						<th>DropPoint</th>
-						<th>DropTime</th>
-						<th>SeatsAvailable</th>
+						<th>Date</th>
 						<th>Fare</th>
 						<th>Activate/Deactivate</th>
 						<th>Edit</th>

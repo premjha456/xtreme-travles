@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xtremetravlesbackend.dao.FlightDao;
 import com.xtremetravlesbackend.dto.Flight;
+import com.xtremetravlesbackend.dto.User;
 
 @Repository("flightDao")
 @Transactional
@@ -92,15 +93,27 @@ public class FlightDaoImpl implements FlightDao {
 	}
 
 	@Override
-	public List<Flight> listFlightsByPlace(String bp, String dp) {
+	public List<Flight> listFlightsByPlace(String bp, String dp,String date) {
 		return sessionFactory
 				  .getCurrentSession()
-				          .createQuery("FROM Flight WHERE is_enabled=:is_enabled AND board_point=:board_point AND drop_point=:drop_point", Flight.class)
+				          .createQuery("FROM Flight WHERE is_enabled=:is_enabled AND board_point=:board_point AND drop_point=:drop_point AND date=:date", Flight.class)
 				               .setParameter("is_enabled", true)
 				                  .setParameter("board_point", bp)
 				                      .setParameter("drop_point",dp)
-				                          .getResultList();	
+				                          .setParameter("date",date)
+				                              .getResultList();	
 		
+	}
+
+	@Override
+	public List<Flight> listFlightByAgentId(User user) {
+		return sessionFactory
+				  .getCurrentSession()
+				          .createQuery("FROM Flight WHERE user=:user", Flight.class)
+				               .setParameter("user", user)
+				                       .getResultList();
+
+
 	}
 
 }

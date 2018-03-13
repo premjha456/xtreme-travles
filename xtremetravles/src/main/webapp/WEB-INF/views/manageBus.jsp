@@ -1,5 +1,10 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
+<script type="text/javascript">
+					window.id='${userModel.id}';
+					console.log(id);
+ 					</script>
+	
 <div class="container">
 
 	<c:if test="${not empty message}">	
@@ -106,6 +111,21 @@
 						</div>
 
                        <div class="form-group">
+							<label class="control-label col-md-4">Depature Date</label>
+							<div class="col-md-8">
+								<sf:input type="date" id='datetimepicker1' path="date" class="form-control"
+									placeholder="Depature Date" />
+								<sf:errors path="date" cssClass="help-block" element="em"/> 
+							</div>
+						</div>
+ <script type="text/javascript">
+						        	$('#datetimepicker').data("DateTimePicker").(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+            
+        </script>
+ 
+                      <div class="form-group">
 							<label class="control-label col-md-4">Maximum Seats</label>
 							<div class="col-md-8">
 								<sf:input type="number" path="maxSeats" class="form-control"

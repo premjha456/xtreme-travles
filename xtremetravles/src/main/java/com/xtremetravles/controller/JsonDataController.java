@@ -1,9 +1,5 @@
 package com.xtremetravles.controller;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xtremetravlesbackend.dao.BusDao;
 import com.xtremetravlesbackend.dao.CabDao;
 import com.xtremetravlesbackend.dao.FlightDao;
+import com.xtremetravlesbackend.dao.UserDao;
 import com.xtremetravlesbackend.dto.Bus;
 import com.xtremetravlesbackend.dto.Cab;
 import com.xtremetravlesbackend.dto.Flight;
+import com.xtremetravlesbackend.dto.User;
 
 @Controller
 @RequestMapping("/json/data")
@@ -28,6 +26,9 @@ public class JsonDataController {
 	
 	@Autowired
 	private  FlightDao flightDao;
+	
+	@Autowired
+	private  UserDao userDao;
 	
 	@Autowired
 	private CabDao cabDao;
@@ -42,19 +43,20 @@ public class JsonDataController {
 	}
 	
 	
-	@RequestMapping("/{boardPoint}/{dropPoint}/bus")
+	@RequestMapping("/{boardPoint}/{dropPoint}/{date}/bus")
 	@ResponseBody
-	public List<Bus> getBusByPlace(@PathVariable String boardPoint,@PathVariable String dropPoint){
+	public List<Bus> getBusByPlace(@PathVariable String boardPoint,@PathVariable String dropPoint,@PathVariable String date){
 		
-		return busDao.listBusByPlace(boardPoint,dropPoint);
+		return busDao.listBusByPlace(boardPoint,dropPoint,date);
 	}
 	
 	
-	@RequestMapping("/admin/all/bus")
+	@RequestMapping("/agent/{id}/all/bus")
 	@ResponseBody
-	public List<Bus> getAllBusAdmin(){
+	public List<Bus> getAllBusAgent(@PathVariable int id){
 		
-		return busDao.list();
+		User user=userDao.getUserById(id);
+		return busDao.listBusByAgentId(user);
 	}
 	
 	
@@ -66,19 +68,20 @@ public class JsonDataController {
 		return flightDao.listActiveFlights();
 	}
 	
-	@RequestMapping("/{boardPoint}/{dropPoint}/flight")
+	@RequestMapping("/{boardPoint}/{dropPoint}/{date}/flight")
 	@ResponseBody
-	public List<Flight> getFlightByPlace(@PathVariable String boardPoint,@PathVariable String dropPoint){
+	public List<Flight> getFlightByPlace(@PathVariable String boardPoint,@PathVariable String dropPoint,@PathVariable String date){
 		
-		return flightDao.listFlightsByPlace  (boardPoint,dropPoint);
+		return flightDao.listFlightsByPlace(boardPoint,dropPoint,date);
 	}
 	
 	
-	@RequestMapping("/admin/all/flight")
+	@RequestMapping("/agent/{id}/all/flight")
 	@ResponseBody
-	public List<Flight> getAllFlightAdmin(){
+	public List<Flight> getAllFlightAgent(@PathVariable int id){
 		
-		return flightDao.list();
+		User user=userDao.getUserById(id);
+		return flightDao.listFlightByAgentId(user);
 	}
 	
 	
@@ -90,11 +93,24 @@ public class JsonDataController {
 	}
 	
 	
-	@RequestMapping("/{boardPoint}/{dropPoint}/cabs")
+	@RequestMapping("/{boardPoint}/{dropPoint}/{date}/cabs")
 	@ResponseBody
-	public List<Cab> getCabByPlace(@PathVariable String boardPoint,@PathVariable String dropPoint){
-		
-		return cabDao.listCabByPlace(boardPoint,dropPoint);
+	public List<Cab> getCabByPlace(@PathVariable String boardPoint,@PathVariable String dropPoint,@PathVariable String date){
+		List<Cab> cc= cabDao.listCabByPlace(boardPoint,dropPoint,date);
+		for (Cab cab : cc) {
+			System.out.println(cab);
+		}
+		return cabDao.listCabByPlace(boardPoint,dropPoint,date);
 	}
+	
+	
+	@RequestMapping("/agent/{id}/all/cab")
+	@ResponseBody
+	public List<Cab> getAllCabAgent(@PathVariable int id){
+		
+		User user=userDao.getUserById(id);
+		return cabDao.listCabsByAgentId(user);
+	}
+	
 	
 }
