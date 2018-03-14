@@ -134,13 +134,30 @@ function submitPayuForm() {
   
     <div class="col-sm-7">
   <div class="panel panel-default">
-    <div class="panel-heading"><h3>Bus Details</h3></div>
-    <div class="panel-body">
+  
+  
+  <c:if test="${clickedConfirmBusBooking == true }">
+       <div class="panel-heading"><h3>Bus Details</h3></div>
+</c:if>
+
+  <c:if test="${clickedConfirmCabBooking == true }">
+       <div class="panel-heading"><h3>Cab Details</h3></div>
+</c:if>
+ 
+  <c:if test="${clickedConfirmFlightBooking == true }">
+       <div class="panel-heading"><h3>Flight Details</h3></div>
+</c:if>
+        
+   <c:if test="${clickedConfirmBusBooking == true }">
+ <div class="panel-body">
       <h5><span class="label label-default">DEPART</span></h5>
       <br>
       <div class="container">
+      
     <div class="col-sm-2">
-    <p>${bus.boardPoint}</p>
+   
+
+ <p>${bus.boardPoint}</p>
     
     <h2><b><p>${bus.boardTime}</p></b></h2>
         <p><b>${bus.boardPoint}</b></p>
@@ -191,8 +208,138 @@ function submitPayuForm() {
       </div>
           <!-- panel body  2 finish -->
       
+
+</c:if>
   
+   <c:if test="${clickedConfirmCabBooking == true }">
+<div class="panel-body">
+      <h5><span class="label label-default">DEPART</span></h5>
+      <br>
+      <div class="container">
+      
+    <div class="col-sm-2">
+   
+
+ <p>${cab.boardPoint}</p>
     
+    <h2><b><p>${cab.boardPoint}</p></b></h2>
+        <p><b>${cab.boardPoint}</b></p>
+    </div>
+    
+     <div class="col-sm-2">
+    <p>${cab.dropPoint}</p>
+    
+    <h2><b><p>${cab.dropPoint}</p></b></h2>
+        <p><b>${cab.dropPoint}</b></p>
+    </div>
+    
+     <div class="col-sm-2">
+    <p>${cab.dropPoint}</p>
+    
+    <h2><b><p>${cab.dropPoint}</p></b></h2>
+        <p><b>${cab.dropPoint}</b></p>
+    </div>
+    </div>
+      
+    </div>
+    <!-- panel body finish -->
+      <div class="panel-footer">
+      
+      <div class="container">
+    <div class="col-sm-2">
+    <p>Opreator:</p>
+    
+                 <b><p>${cab.cabType}</p></b>
+						<p>
+							<b>${cab.cabServiceProvider}</b>
+						</p>
+    </div>
+    
+     <div class="col-sm-2">
+    <p>Boarding Point & Time</p>
+    
+    <b><p>${cab.cabType}</p></b>
+						<p>
+							<b>${cab.boardPoint}</b>
+						</p>
+    </div>
+    
+     <div class="col-sm-2">
+    <p>Cab Details:</p>
+
+						<b><p>${cab.cabName}</p></b>
+						<p>
+							<b>${cab.aminities}</b>
+						</p>
+</div>
+    </div>
+    
+      
+      </div>
+          <!-- panel body  2 finish -->
+ </c:if>
+ 
+  <c:if test="${clickedConfirmFlightBooking == true }">
+<div class="panel-body">
+      <h5><span class="label label-default">DEPART</span></h5>
+      <br>
+      <div class="container">
+      
+    <div class="col-sm-2">
+   
+
+ <p>${flight.boardPoint}</p>
+    
+    <h2><b><p>${flight.boardTime}</p></b></h2>
+        <p><b>${flight.boardPoint}</b></p>
+    </div>
+    
+     <div class="col-sm-2">
+   <img src="${images}/fly.JPG" class="img-rounded"
+							alt="" width="170" height="40">
+    </div>
+    
+     <div class="col-sm-2">
+    <p>${flight.dropPoint}</p>
+    
+    <h2><b><p>${flight.dropTime}</p></b></h2>
+        <p><b>${flight.dropPoint}</b></p>
+    </div>
+    </div>
+      
+    </div>
+    <!-- panel body finish -->
+      <div class="panel-footer">
+      
+      <div class="container">
+    <div class="col-sm-2">
+    <p>Opreator:</p>
+    
+    <b><p>${flight.flightName}</p></b>
+						<p>
+							<b>${flight.flightType}</b>
+						</p></div>
+    
+     <div class="col-sm-2">
+    <p>Boarding Point & Time</p>
+    
+    <b><p>${flight.boardPoint}</p></b>
+						<p>
+							<b>${flight.boardTime}</b>
+						</p></div>
+    
+     <div class="col-sm-2">
+    <p>Seat No(s):</p>
+    
+    <b><p>${seatNo}</p></b>
+    </div>
+    </div>
+    
+      
+      </div>
+          <!-- panel body  2 finish -->
+ </c:if>
+   
   </div>
     
   </div>
@@ -202,7 +349,18 @@ function submitPayuForm() {
     <div class="panel-heading"><h3>Fare Details</h3></div>
     <div class="panel-body">
     <div class="col-sm-3">
+    <c:if test="${clickedConfirmBusBooking == true }">
    <h4><p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${bus.price }</p></h4> 
+</c:if>
+
+  <c:if test="${clickedConfirmCabBooking == true }">
+   <h4><p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${cab.fare }</p></h4> 
+</c:if>
+ 
+  <c:if test="${clickedConfirmFlightBooking == true }">
+   <h4><p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${flight.fare }</p></h4> 
+</c:if>
+    
            </div>
     
     </div>
@@ -214,7 +372,18 @@ function submitPayuForm() {
       <input type="hidden" name="txnid" value="<%= txnid %>" />
       <input type="hidden" name="udf2" value="<%= txnid %>" />
 	  <input type="hidden" name="service_provider" value="payu_paisa" />
+	   <c:if test="${clickedConfirmBusBooking == true }">
            <input type="hidden" name="amount" value="${bus.price }" /> 
+</c:if>
+
+  <c:if test="${clickedConfirmCabBooking == true }">
+           <input type="hidden" name="amount" value="${cab.fare }" /> 
+</c:if>
+ 
+  <c:if test="${clickedConfirmFlightBooking == true }">
+           <input type="hidden" name="amount" value="${flight.fare }" /> 
+</c:if>
+	  
            <input type="hidden" name="firstname" id="firstname" value="${name }" /> 
            <input type="hidden" name="email" id="email" value="<%= (empty(params.get("email"))) ? "" : params.get("email") %>" /> 
            <input type="hidden" name="phone" value="${phone }" /> 
@@ -238,7 +407,17 @@ function submitPayuForm() {
            <input type="hidden" name="udf5" value="<%= (empty(params.get("udf5"))) ? "" : params.get("udf5") %>" /> 
            <input type="hidden" name="pg" value="<%= (empty(params.get("pg"))) ? "" : params.get("pg") %>" /> 
           <% if(empty(hash)){ %>
+           <c:if test="${clickedConfirmBusBooking == true }">
             <input class="btn btn-lg btn-primary" type="submit" value="&nbsp;&nbsp;&nbsp;Pay&nbsp;&nbsp;&#8377;&nbsp;${bus.price }&nbsp;&nbsp;&nbsp;   " /> 
+</c:if>
+
+  <c:if test="${clickedConfirmCabBooking == true }">
+            <input class="btn btn-lg btn-primary" type="submit" value="&nbsp;&nbsp;&nbsp;Pay&nbsp;&nbsp;&#8377;&nbsp;${cab.fare }&nbsp;&nbsp;&nbsp;   " /> 
+</c:if>
+ 
+  <c:if test="${clickedConfirmFlightBooking == true }">
+            <input class="btn btn-lg btn-primary" type="submit" value="&nbsp;&nbsp;&nbsp;Pay&nbsp;&nbsp;&#8377;&nbsp;${flight.fare }&nbsp;&nbsp;&nbsp;   " /> 
+</c:if>
           <% } %>
     </form>
          
@@ -287,8 +466,22 @@ function submitPayuForm() {
            <input type="text" class="form-control" id="phone" placeholder="" name="phone" value="${phone }" disabled="disabled">
      <br><br>
       </div>     
+       <c:if test="${clickedConfirmBusBooking == true }">
                       <input type="hidden" name="id" value="${bus.id }" />
-           <input type="hidden" name="seatNo" value="${(bus.maxSeats-bus.seatsAvailable)+1}" />
+                                 <input type="hidden" name="seatNo" value="${(bus.maxSeats-bus.seatsAvailable)+1}" />
+                      
+</c:if>
+
+  <c:if test="${clickedConfirmCabBooking == true }">
+                      <input type="hidden" name="id" value="${cab.id }" />
+</c:if>
+ 
+  <c:if test="${clickedConfirmFlightBooking == true }">
+                      <input type="hidden" name="id" value="${flight.id }" />
+                                 <input type="hidden" name="seatNo" value="${(flight.maxSeats-flight.seatsAvailable)+1}" />
+                      
+</c:if>
+      
       	
     </form>
     </div>

@@ -129,9 +129,10 @@ window.contextRoot='${contextRoot}'
 
 
 
-<c:if test="${clickedConfirmBusBooking == true }">
-				<%@include file="confirmBusBooking.jsp"%>
+<c:if test="${clickedConfirmBusBooking == true ||clickedConfirmFlightBooking==true || clickedConfirmCabBooking==true}">
+				<%@include file="confirmBooking.jsp"%>
 </c:if>
+
 
 <c:if test="${clickedDeals == true }">
 				<%@include file="holidays.jsp"%>

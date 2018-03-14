@@ -13,7 +13,7 @@ public interface BusDao {
 	public boolean update(Bus bus);
 	public boolean delete(Bus bus);
 	public List<Bus> listActiveBuses();
-	public List<Bus> listBusByPlace(String bp, String dp,String date);
+	public List<Bus> listBusByPlace(String bp, String dp,String date,int seat);
 	public List<Bus> listBusByAgentId(User user);
 	
 }

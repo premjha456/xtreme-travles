@@ -52,7 +52,7 @@
 						<div class="form-group">
 							<label for="select" class="control-label">No. Of Seats</label>
 							<div class="input-group">
-								<select class="form-control" id="select" name="seats" required>
+								<select class="form-control" id="select" name="seat" required>
 									<option value="1">1</option>
 									<option value="2">2</option>
 									<option value="3">3</option>

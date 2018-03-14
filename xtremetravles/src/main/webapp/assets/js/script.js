@@ -70,7 +70,7 @@ var $table =$('#listbus');
 			jsonUrl = window.contextRoot + '/json/data/all/bus';
 		} else {
 			jsonUrl = window.contextRoot + '/json/data/'+ window.boardPoint +'/'
-					+ window.dropPoint +'/'+ window.date +'/bus';
+					+ window.dropPoint +'/'+ window.date+'/'+window.seat+'/bus';
 }
 		console.log(jsonUrl);
 		$table.DataTable({
@@ -139,7 +139,7 @@ var $table =$('#listbus');
 			jsonUrl = window.contextRoot + '/json/data/all/flight';
 		} else {
 			jsonUrl = window.contextRoot + '/json/data/'+ window.boardPoint +'/'
-					+ window.dropPoint +'/'+window.date+'/flight';
+					+ window.dropPoint +'/'+window.date+'/'+window.requiredSeats+'/'+ window.travelClass+'/flight';
 	}
 		console.log(jsonUrl);
 		$table.DataTable({
@@ -194,6 +194,7 @@ var $table =$('#listbus');
 								+ window.contextRoot
 								+ '/book/flight/'
 								+ data
+								+'/'+ window.travelClass+'/'+ window.requiredSeats
 								+ '/flightReview" class="btn btn-primary">&nbsp;&nbsp;&nbsp;Book&nbsp;&nbsp;&nbsp;</a> &#160;';
 
 

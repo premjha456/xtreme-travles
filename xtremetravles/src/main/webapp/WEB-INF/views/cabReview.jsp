@@ -136,7 +136,7 @@
 			</div>
 			<div class="panel-body">
 
-				<form class="form-inline" action="${contextRoot}/bus/confirmBooking">
+				<form class="form-inline" action="${contextRoot}/book/cab/confirmBooking">
 					<div class="form-group">
 						<label for="sel1">Traveller 1 Name</label> <select
 							class="form-control" id="sel1" name="sel1">
@@ -150,7 +150,7 @@
 						 
 						<input type="text" class="form-control" id="name" placeholder="Enter Name" name="name"> 
 							
-							<select class="form-control" id="sel1" name="gender">
+							<select class="form-control" id="sel2" name="gender">
 							<option>Gender</option>
 							<option value="Male">Male</option>
 							<option value="Female">Female</option>
@@ -173,7 +173,7 @@
 							<label for="email">Mobile Number:&nbsp;&nbsp;</label> <input
 								type="text" class="form-control" id="phone" placeholder=""
 								name="phone"> <br>
-							<br> <input type="hidden" name="id" value="${bus.id }" /> 
+							<br> <input type="hidden" name="id" value="${cab.id }" /> 
 							 <input class="btn btn-primary btn-lg" type="submit" class="form-control" value="Confirm Booking">
 
 						</div>

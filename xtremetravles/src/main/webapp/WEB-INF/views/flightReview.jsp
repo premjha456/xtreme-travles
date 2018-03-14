@@ -57,25 +57,25 @@
 					<div class="col-sm-2">
 						<p>Opreator:</p>
 
-						<b><p>${bus.busName}</p></b>
+						<b><p>${flight.flightName}</p></b>
 						<p>
-							<b>${bus.busType}</b>
+							<b>${flight.flightType}</b>
 						</p>
 					</div>
 
 					<div class="col-sm-2">
 						<p>Boarding Point & Time</p>
 
-						<b><p>${bus.busType}</p></b>
+						<b><p>${flight.boardPoint}</p></b>
 						<p>
-							<b>${bus.boardTime}</b>
+							<b>${flight.boardTime}</b>
 						</p>
 					</div>
 
 					<div class="col-sm-2">
 						<p>Seat No(s):</p>
 
-						<b><p>${(bus.maxSeats-bus.seatsAvailable)+1}</p></b>
+						<b><p>${(flight.maxSeats-flight.seatsAvailable)+1}</p></b>
 					</div>
 				</div>
 
@@ -98,7 +98,8 @@
 			<div class="panel-body">
 				<div class="col-sm-3">
 					<h4>
-						<p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${flight.fare }</p>
+						<p>PerPassenger:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${flight.fare }</p>
+						<p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${flight.fare*requiredSeats}</p>
 					</h4>
 				</div>
 
@@ -106,8 +107,7 @@
 			<div class="panel-footer">
 
 				<h4>
-					<p align="right">You
-						Pay:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${flight.fare}</p>
+					<p align="right">You Pay:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${flight.fare*requiredSeats}</p>
 				</h4>
 
 			</div>
@@ -135,6 +135,8 @@
 			<div class="panel-body">
 
 				<form class="form-inline" action="${contextRoot}/book/flight/confirmBooking">
+	
+				
 					<div class="form-group">
 						<label for="sel1">Traveller 1 Name</label> <select
 							class="form-control" id="sel1" name="sel1">
@@ -182,6 +184,9 @@
 								class="form-control" value="Confirm Booking">
 
 						</div>
+						</div>
+				
+				
 				</form>
 			</div>
 		</div>

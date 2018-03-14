@@ -1,9 +1,11 @@
 <script type="text/javascript">
-					window.boardPoint='${boardPoint}';
+					    window.boardPoint='${boardPoint}';
 						window.dropPoint='${dropPoint}';
 						window.date='${date}';
+                        window.requiredSeats='${requiredSeats}'
+                        window.travelClass='${travelClass}'
 
-						</script>
+                        </script>
 <div class="container">
 			
 				

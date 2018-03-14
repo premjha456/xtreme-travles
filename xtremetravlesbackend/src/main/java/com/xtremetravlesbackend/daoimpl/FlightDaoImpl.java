@@ -93,15 +93,16 @@ public class FlightDaoImpl implements FlightDao {
 	}
 
 	@Override
-	public List<Flight> listFlightsByPlace(String bp, String dp,String date) {
+	public List<Flight> listFlightsByPlace(String bp, String dp,String date,int seat) {
 		return sessionFactory
 				  .getCurrentSession()
-				          .createQuery("FROM Flight WHERE is_enabled=:is_enabled AND board_point=:board_point AND drop_point=:drop_point AND date=:date", Flight.class)
+				          .createQuery("FROM Flight WHERE is_enabled=:is_enabled AND board_point=:board_point AND drop_point=:drop_point AND date=:date AND seats_available >= :seat", Flight.class)
 				               .setParameter("is_enabled", true)
 				                  .setParameter("board_point", bp)
 				                      .setParameter("drop_point",dp)
 				                          .setParameter("date",date)
-				                              .getResultList();	
+				                              .setParameter("seat",seat)
+				                                  .getResultList();	
 		
 	}
 

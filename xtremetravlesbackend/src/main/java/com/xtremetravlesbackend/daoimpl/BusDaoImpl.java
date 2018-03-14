@@ -89,16 +89,16 @@ return sessionFactory
 		}
 
 	@Override
-	public List<Bus> listBusByPlace(String bp,String dp,String date) {
+	public List<Bus> listBusByPlace(String bp,String dp,String date,int seat) {
 
 		return sessionFactory
 				  .getCurrentSession()
-				          .createQuery("FROM Bus WHERE active=:active AND board_point=:board_point AND drop_point=:drop_point AND date=:date", Bus.class)
+				          .createQuery("FROM Bus WHERE active=:active AND board_point=:board_point AND drop_point=:drop_point AND date=:date AND seats_available>=:seat", Bus.class)
 				               .setParameter("active", true)
 				                  .setParameter("board_point", bp)
 				                      .setParameter("drop_point",dp)
 				                           .setParameter("date",date)
-				                               .getResultList();
+				                               .setParameter("seat",seat) .getResultList();
 	}
 
 	@Override

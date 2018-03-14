@@ -45,7 +45,7 @@
 						<div class="form-group">
 							<label for="select" class="control-label">Adults</label>
 							<div class="input-group">
-								<select class="form-control" id="select" required>
+								<select class="form-control" id="select" name="adults" required>
 									<option value="1">1</option>
 									<option value="2">2</option>
 									<option value="3">3</option>
@@ -61,7 +61,7 @@
 						<div class="form-group">
 							<label for="select" class="control-label">Children</label>
 							<div class="input-group">
-								<select class="form-control" id="select" required>
+								<select class="form-control" id="select" name="childs" required>
 									<option value="0">0</option>									
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -77,7 +77,7 @@
 						<div class="form-group">
 							<label for="select" class="control-label">Economy</label>
 							<div class="input-group">
-								<select class="form-control" id="select" required>
+								<select class="form-control" id="select" name="class" required>
 									<option>Economy</option>
 									<option>Business</option>
 								</select>

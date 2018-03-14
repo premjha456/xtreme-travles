@@ -13,7 +13,7 @@ public interface FlightDao {
 	public boolean update(Flight flight);
 	public boolean delete(Flight flight);
 	public List<Flight> listActiveFlights();
-	public List<Flight> listFlightsByPlace(String bp, String dp,String date);
+	public List<Flight> listFlightsByPlace(String bp, String dp,String date,int seat);
 	public List<Flight> listFlightByAgentId(User user);
 	
 }

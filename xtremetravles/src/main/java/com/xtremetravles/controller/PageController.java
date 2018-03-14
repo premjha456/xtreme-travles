@@ -60,24 +60,28 @@ public class PageController {
 
 	
 	@RequestMapping(value ="/flight/listFlight")
-	public ModelAndView viewFlight(@RequestParam("boardPoint") String boardPoint,@RequestParam("dropPoint") String dropPoint,@RequestParam("date") String date) {		
+	public ModelAndView viewFlight(@RequestParam("boardPoint") String boardPoint,@RequestParam("dropPoint") String dropPoint,@RequestParam("date") String date,@RequestParam("adults") String adult,@RequestParam("childs") String child,@RequestParam("class") String travelClass) {		
 		ModelAndView mv = new ModelAndView("index");		
 		mv.addObject("title", "Flight Search");
 		mv.addObject("boardPoint", boardPoint);
 		mv.addObject("dropPoint", dropPoint);
 		mv.addObject("date", date);
+	    int requiredSeats=Integer.valueOf(adult)+Integer.valueOf(child);
+		mv.addObject("requiredSeats", requiredSeats);
+	    mv.addObject("travelClass", travelClass);
 		mv.addObject("clickedViewFlight", true);
-
 		return mv;				
 }
 
 	
-	@RequestMapping("/book/flight/{id}/flightReview")
-	public ModelAndView reviewFlight(@PathVariable int id){
+	@RequestMapping("/book/flight/{id}/{travelClass}/{requiredSeats}/flightReview")
+	public ModelAndView reviewFlight(@PathVariable int id,@PathVariable String travelClass,@PathVariable int requiredSeats){
 		ModelAndView mv = new ModelAndView("index");
 		
 		Flight flight= flightDao.get(id);
 		mv.addObject("flight", flight);
+		mv.addObject("travelClass", travelClass);
+		mv.addObject("requiredSeats", requiredSeats);
 		mv.addObject("clickedReviewFlight", true);
 		mv.addObject("title", "Flight Review");
 		return mv;
@@ -85,7 +89,7 @@ public class PageController {
 	}
 	
 	@RequestMapping("/book/flight/confirmBooking")
-	public ModelAndView confirmFlightBook(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("age") int age,@RequestParam("gender") String gender,@RequestParam("email") String email,@RequestParam("phone") String phone){
+	public ModelAndView confirmFlightBook(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("age") int age,@RequestParam("gender") String gender,@RequestParam("email") String email,@RequestParam("phone") String phone,@RequestParam("seatNo") String seatNo){
 		ModelAndView mv = new ModelAndView("index");
 		Flight flight =flightDao.get(id);
 		String product =flight.getFlightName()+"("+flight.getFlightType()+")"+"----"+flight.getBoardPoint()+"("+flight.getBoardTime()+")"+" TO "+flight.getDropPoint()+"("+flight.getDropTime()+")";
@@ -100,7 +104,8 @@ public class PageController {
 		mv.addObject("surl", "http://localhost:8080/xtremetravles/bus/booking/payment/success");
 		mv.addObject("furl", "http://localhost:8080/xtremetravles/bus/booking/payment/fail");
 		mv.addObject("curl", "http://localhost:8080/xtremetravles/bus/booking/payment/cancel");
-        
+		mv.addObject("seatNo", seatNo);
+   
 		mv.addObject("clickedConfirmFlightBooking", true);
 		mv.addObject("title", "Confirm Booking");
 		return mv;
@@ -118,12 +123,13 @@ public class PageController {
 }
 	
 	@RequestMapping("/bus/listBus")
-	public ModelAndView viewBus(@RequestParam("boardPoint") String boardPoint,@RequestParam("dropPoint") String dropPoint,@RequestParam("date") String date){
+	public ModelAndView viewBus(@RequestParam("boardPoint") String boardPoint,@RequestParam("dropPoint") String dropPoint,@RequestParam("date") String date,@RequestParam("seat") int seat){
 		ModelAndView mv = new ModelAndView("index");		
 
 		mv.addObject("boardPoint", boardPoint);
 		mv.addObject("dropPoint", dropPoint);
 		mv.addObject("date", date);
+		mv.addObject("seat", seat);
 		mv.addObject("clickedListBus", true);
 
 		return mv;
@@ -176,7 +182,7 @@ public class PageController {
 	
 
 	@RequestMapping("/book/bus/confirmBooking")
-	public ModelAndView confirmBook(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("age") int age,@RequestParam("gender") String gender,@RequestParam("email") String email,@RequestParam("phone") String phone,@RequestParam("seatNo") String seatNo){
+	public ModelAndView confirmBusBook(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("age") int age,@RequestParam("gender") String gender,@RequestParam("email") String email,@RequestParam("phone") String phone,@RequestParam("seatNo") String seatNo){
 		ModelAndView mv = new ModelAndView("index");
 		Bus bus =busDao.get(id);
 		String product =bus.getBusName()+"("+bus.getBusType()+")"+"----"+bus.getBoardPoint()+"("+bus.getBoardTime()+")"+" TO "+bus.getDropPoint()+"("+bus.getDropTime()+")";
@@ -194,6 +200,7 @@ public class PageController {
 		mv.addObject("seatNo", seatNo);
         
 		mv.addObject("clickedConfirmBusBooking", true);
+		mv.addObject("title", "Confirm Booking");
 
 		return mv;
 		
@@ -233,7 +240,30 @@ public class PageController {
 		
 	}
 	
-	
+	@RequestMapping("/book/cab/confirmBooking")
+	public ModelAndView confirmCabBook(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("age") int age,@RequestParam("gender") String gender,@RequestParam("email") String email,@RequestParam("phone") String phone){
+		ModelAndView mv = new ModelAndView("index");
+		Cab cab =cabDao.get(id);
+		String product =cab.getCabName()+"("+cab.getCabType()+")"+"--"+cab.getAminities()+"--"+"----"+cab.getBoardPoint()+" TO "+cab.getDropPoint();
+		System.out.println(email);
+		mv.addObject("cab", cab);
+		mv.addObject("name", name);
+		mv.addObject("age", age);
+		mv.addObject("gender", gender);
+		mv.addObject("email", email);
+		mv.addObject("phone", phone);
+		mv.addObject("productInfo", product);
+		mv.addObject("surl", "http://localhost:8080/xtremetravles/bus/booking/payment/success");
+		mv.addObject("furl", "http://localhost:8080/xtremetravles/bus/booking/payment/fail");
+		mv.addObject("curl", "http://localhost:8080/xtremetravles/bus/booking/payment/cancel");
+        
+		mv.addObject("clickedConfirmCabBooking", true);
+		mv.addObject("title", "Confirm Booking");
+
+		return mv;
+		
+	}
+
 	
 	@RequestMapping(value ="/deals")
 	public ModelAndView deals() {		

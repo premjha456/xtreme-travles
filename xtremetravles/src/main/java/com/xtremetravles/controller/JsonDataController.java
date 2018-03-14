@@ -43,11 +43,11 @@ public class JsonDataController {
 	}
 	
 	
-	@RequestMapping("/{boardPoint}/{dropPoint}/{date}/bus")
+	@RequestMapping("/{boardPoint}/{dropPoint}/{date}/{seat}/bus")
 	@ResponseBody
-	public List<Bus> getBusByPlace(@PathVariable String boardPoint,@PathVariable String dropPoint,@PathVariable String date){
+	public List<Bus> getBusByPlace(@PathVariable String boardPoint,@PathVariable String dropPoint,@PathVariable String date,@PathVariable int seat){
 		
-		return busDao.listBusByPlace(boardPoint,dropPoint,date);
+		return busDao.listBusByPlace(boardPoint,dropPoint,date,seat);
 	}
 	
 	
@@ -68,11 +68,11 @@ public class JsonDataController {
 		return flightDao.listActiveFlights();
 	}
 	
-	@RequestMapping("/{boardPoint}/{dropPoint}/{date}/flight")
+	@RequestMapping("/{boardPoint}/{dropPoint}/{date}/{seat}/{travelClass}/flight")
 	@ResponseBody
-	public List<Flight> getFlightByPlace(@PathVariable String boardPoint,@PathVariable String dropPoint,@PathVariable String date){
+	public List<Flight> getFlightByPlace(@PathVariable String boardPoint,@PathVariable String dropPoint,@PathVariable String date,@PathVariable int seat){
 		
-		return flightDao.listFlightsByPlace(boardPoint,dropPoint,date);
+		return flightDao.listFlightsByPlace(boardPoint,dropPoint,date,seat);
 	}
 	
 	

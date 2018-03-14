@@ -2,6 +2,7 @@
 					window.boardPoint='${boardPoint}';
 						window.dropPoint='${dropPoint}';
 						window.date='${date}';
+						window.seat='${seat}';
 
 						</script>
 					
