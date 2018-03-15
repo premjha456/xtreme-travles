@@ -117,7 +117,7 @@ var $table =$('#listbus');
 						str += '<a href="'
 								+ window.contextRoot
 								+ '/book/bus/'
-								+ data
+								+ data+'/'+window.seat
 								+ '/busReview" class="btn btn-primary">Select Bus</a> &#160;';
 
 

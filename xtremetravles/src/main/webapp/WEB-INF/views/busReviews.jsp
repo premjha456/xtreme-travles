@@ -6,7 +6,6 @@ window.seatNo='${seatNo}'
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 <div class="container">
 <c:set var="id" value="${bus.id}" />
-<c:set var="seatNo" value="${seatNo}" />
 
 
 <div class="well well-lg">${bus}</div>
@@ -89,8 +88,11 @@ window.seatNo='${seatNo}'
 					<div class="col-sm-2">
 						<p>Seat No(s):</p>
 
-						<b><p>${(bus.maxSeats-bus.seatsAvailable)+1}</p></b>
-					</div>
+                   <c:forEach items="${busSeatList}" var="se">
+         			<b><p>${se}</p></b>
+                     
+                 </c:forEach>
+                  					</div>
 				</div>
 
 
@@ -169,7 +171,7 @@ window.seatNo='${seatNo}'
 
 			<form class="form-inline" action="${contextRoot}/book/bus/confirmBooking">
 				<div class="form-group">
-					<label for="sel1">Traveller 1 Name</label> <select
+					<label for="sel1">Traveller Name</label> <select
 						class="form-control" id="sel1" name="sel1">
 						<option>Title</option>
 						<option value="Mr">Mr</option>
@@ -189,15 +191,20 @@ window.seatNo='${seatNo}'
 					<div class="form-group">
 
 						<h4>
-							Seat No: <span class="badge">${(bus.maxSeats-bus.seatsAvailable)+1}</span>
+							Seat No:
+							<c:forEach items="${busSeatList}" var="se">
+
+   							 <span class="badge">${se}</span>
+                    
+                 </c:forEach>
+                  
 						</h4>
 					</div>
 					<br> <br>
 
 					<div class="form-group">
 						<label for="email">Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-						<input type="email" class="form-control" id="email" placeholder=""
-							name="email">
+						<input type="email" class="form-control" id="email" placeholder=""	name="email">
 
 					</div>
 					<br> <br>
@@ -205,8 +212,7 @@ window.seatNo='${seatNo}'
 						<label for="email">Mobile Number:&nbsp;&nbsp;</label> <input
 							type="text" class="form-control" id="phone" placeholder=""
 							name="phone"> <br> <br> <input type="hidden"
-							name="id" value="${bus.id }" /> <input type="hidden"
-							name="seatNo" value="${(bus.maxSeats-bus.seatsAvailable)+1}" />
+							name="id" value="${bus.id }" />
 						<input class="btn btn-primary btn-lg" type="submit"
 							class="form-control" value="Confirm Booking">
 

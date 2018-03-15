@@ -57,18 +57,18 @@
 					<div class="col-sm-2">
 						<p>Opreator:</p>
 
-						<b><p>${cab.cabType}</p></b>
+						<b><p>${cab.cabServiceProvider}</p></b>
 						<p>
-							<b>${cab.cabServiceProvider}</b>
+							<b>${cab.cabType}</b>
 						</p>
 					</div>
 
 					<div class="col-sm-2">
 						<p>Boarding Point & Time</p>
 
-						<b><p>${cab.cabType}</p></b>
+						<b><p>${cab.boardPoint}</p></b>
 						<p>
-							<b>${cab.boardPoint}</b>
+							<b>${cabPickup}</b>
 						</p>
 					</div>
 
@@ -100,7 +100,7 @@
 			<div class="panel-body">
 				<div class="col-sm-3">
 					<h4>
-						<p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${cab.fare }</p>
+						<p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${cabFare }</p>
 					</h4>
 				</div>
 
@@ -109,7 +109,7 @@
 
 				<h4>
 					<p align="right">You
-						Pay:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${cab.fare }</p>
+						Pay:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${cabFare}</p>
 				</h4>
 
 			</div>
@@ -138,7 +138,7 @@
 
 				<form class="form-inline" action="${contextRoot}/book/cab/confirmBooking">
 					<div class="form-group">
-						<label for="sel1">Traveller 1 Name</label> <select
+						<label for="sel1">Traveller Name</label> <select
 							class="form-control" id="sel1" name="sel1">
 							<option>Title</option>
 							<option value="Mr">Mr</option>

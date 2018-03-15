@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.omg.PortableServer.POAPackage.ServantNotActive;
@@ -37,6 +40,9 @@ import com.xtremetravlesbackend.dto.User;
 @Controller
 public class PageController {
 
+	@Autowired
+	private  HttpSession session;
+	
 	@Autowired
 	private BusDao busDao;
 	
@@ -79,9 +85,35 @@ public class PageController {
 		ModelAndView mv = new ModelAndView("index");
 		
 		Flight flight= flightDao.get(id);
-		mv.addObject("flight", flight);
+		mv.addObject("flight", flight);		
 		mv.addObject("travelClass", travelClass);
 		mv.addObject("requiredSeats", requiredSeats);
+		int tClass=0;
+		if(travelClass.equals("Economy")){
+			tClass=1;
+		}
+		else if (travelClass.equals("Business")) {
+			tClass=5;
+		}
+		double f=tClass*requiredSeats*flight.getFare();
+		
+		session.setAttribute("flightFare", f);
+		session.setAttribute("flight", flight);
+		List<Integer> flightSeatList=new ArrayList<Integer>();
+		for (int i = 1; i <=requiredSeats; i++) {
+			int a=(flight.getMaxSeats()-flight.getSeatsAvailable())+i;	
+			System.out.println(a);
+			flightSeatList.add(new Integer(a));
+		}
+		session.setAttribute("flightSeatList", flightSeatList);
+		System.out.println(flightSeatList);	
+		if(flight.getSeatsAvailable()>0){
+			
+			flight.setSeatsAvailable(flight.getSeatsAvailable()-requiredSeats);
+			flightDao.update(flight); 
+            
+		}
+		
 		mv.addObject("clickedReviewFlight", true);
 		mv.addObject("title", "Flight Review");
 		return mv;
@@ -89,7 +121,7 @@ public class PageController {
 	}
 	
 	@RequestMapping("/book/flight/confirmBooking")
-	public ModelAndView confirmFlightBook(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("age") int age,@RequestParam("gender") String gender,@RequestParam("email") String email,@RequestParam("phone") String phone,@RequestParam("seatNo") String seatNo){
+	public ModelAndView confirmFlightBook(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("age") int age,@RequestParam("gender") String gender,@RequestParam("email") String email,@RequestParam("phone") String phone){
 		ModelAndView mv = new ModelAndView("index");
 		Flight flight =flightDao.get(id);
 		String product =flight.getFlightName()+"("+flight.getFlightType()+")"+"----"+flight.getBoardPoint()+"("+flight.getBoardTime()+")"+" TO "+flight.getDropPoint()+"("+flight.getDropTime()+")";
@@ -101,11 +133,10 @@ public class PageController {
 		mv.addObject("email", email);
 		mv.addObject("phone", phone);
 		mv.addObject("productInfo", product);
-		mv.addObject("surl", "http://localhost:8080/xtremetravles/bus/booking/payment/success");
-		mv.addObject("furl", "http://localhost:8080/xtremetravles/bus/booking/payment/fail");
-		mv.addObject("curl", "http://localhost:8080/xtremetravles/bus/booking/payment/cancel");
-		mv.addObject("seatNo", seatNo);
-   
+		mv.addObject("surl", "http://localhost:8080/xtremetravles/payu/booking/payment/success");
+		mv.addObject("furl", "http://localhost:8080/xtremetravles/payu/booking/payment/fail");
+		mv.addObject("curl", "http://localhost:8080/xtremetravles/payu/booking/payment/cancel");
+        
 		mv.addObject("clickedConfirmFlightBooking", true);
 		mv.addObject("title", "Confirm Booking");
 		return mv;
@@ -136,53 +167,75 @@ public class PageController {
 	}
 	
 	
-	@RequestMapping("/book/bus/{id}/busReview")
-	public ModelAndView reviewBus(@PathVariable int id){
+	@RequestMapping("/book/bus/{id}/{requiredSeats}/busReview")
+	public ModelAndView reviewBus(@PathVariable int id,@PathVariable int requiredSeats){
 		ModelAndView mv = new ModelAndView("index");
 				Bus bus= busDao.get(id);
-				Connection con=null;  
-			    StringBuffer seatNo=new StringBuffer();
+				
+				mv.addObject("bus", bus);
+				mv.addObject("clickedReviewBus", true);
+		  
+//				Connection con=null;  
+//			    StringBuffer seatNo=new StringBuffer();
+//
+//				try{  
+//				    Class.forName("org.h2.Driver");  
+//				    con=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/xtremetravels","prem","prem");  
+//				    PreparedStatement ps=con.prepareStatement("select * from seatlayout where busId=?"); 
+//				    ps.setInt(1,id );
+//				    ResultSet rs=ps.executeQuery(); 
+//				    System.out.println("Inside Query");
+//				    String s="";
+//				    String set="";
+//				    while(rs.next()){  
+//				    	System.out.println(s);
+//				    	seatNo.append("[");
+//				    	for (int i = 1; i <= 5; i++) {
+//					    	s= "s"+i;
+//						   set  = rs.getString(s);
+//						   System.out.println(s+"-"+set);
+//					    	if(set.equals("b")){
+//					    		seatNo.append(i);
+//					    		if (i<5) {
+//					    			seatNo.append(",");
+//								}
+//						       }
+//						}
+//				    	seatNo.append("]");
+//				    	}  
+//				    System.out.println(seatNo);
+//				}catch(Exception e){System.out.println(e);} 
+//
+//				mv.addObject("seatNo", seatNo.toString());
 
-				try{  
-				    Class.forName("org.h2.Driver");  
-				    con=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/xtremetravels","prem","prem");  
-				    PreparedStatement ps=con.prepareStatement("select * from seatlayout where busId=?"); 
-				    ps.setInt(1,id );
-				    ResultSet rs=ps.executeQuery(); 
-				    System.out.println("Inside Query");
-				    String s="";
-				    String set="";
-				    while(rs.next()){  
-				    	System.out.println(s);
-				    	seatNo.append("[");
-				    	for (int i = 1; i <= 5; i++) {
-					    	s= "s"+i;
-						   set  = rs.getString(s);
-						   System.out.println(s+"-"+set);
-					    	if(set.equals("b")){
-					    		seatNo.append(i);
-					    		if (i<5) {
-					    			seatNo.append(",");
-								}
-						       }
-						}
-				    	seatNo.append("]");
-				    	}  
-				    System.out.println(seatNo);
-				}catch(Exception e){System.out.println(e);} 
-
-
-		mv.addObject("bus", bus);
-		mv.addObject("seatNo", seatNo.toString());
-		mv.addObject("clickedReviewBus", true);
-  
+				
+				double f=requiredSeats*bus.getPrice();
+				
+				session.setAttribute("busFare", f);
+				session.setAttribute("bus", bus);
+				List<Integer> busSeatList=new ArrayList<Integer>();
+				for (int i = 1; i <=requiredSeats; i++) {
+					int a=(bus.getMaxSeats()-bus.getSeatsAvailable())+i;	
+					System.out.println(a);
+					busSeatList.add(new Integer(a));
+				}
+				session.setAttribute("busSeatList", busSeatList);
+				System.out.println(busSeatList);	
+				if(bus.getSeatsAvailable()>0){
+					
+					bus.setSeatsAvailable(bus.getSeatsAvailable()-requiredSeats);
+					busDao.update(bus); 
+		            
+				}
+				
+		
 		return mv;
 		
 	}
 	
 
 	@RequestMapping("/book/bus/confirmBooking")
-	public ModelAndView confirmBusBook(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("age") int age,@RequestParam("gender") String gender,@RequestParam("email") String email,@RequestParam("phone") String phone,@RequestParam("seatNo") String seatNo){
+	public ModelAndView confirmBusBook(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("age") int age,@RequestParam("gender") String gender,@RequestParam("email") String email,@RequestParam("phone") String phone){
 		ModelAndView mv = new ModelAndView("index");
 		Bus bus =busDao.get(id);
 		String product =bus.getBusName()+"("+bus.getBusType()+")"+"----"+bus.getBoardPoint()+"("+bus.getBoardTime()+")"+" TO "+bus.getDropPoint()+"("+bus.getDropTime()+")";
@@ -194,10 +247,9 @@ public class PageController {
 		mv.addObject("email", email);
 		mv.addObject("phone", phone);
 		mv.addObject("productInfo", product);
-		mv.addObject("surl", "http://localhost:8080/xtremetravles/bus/booking/payment/success");
-		mv.addObject("furl", "http://localhost:8080/xtremetravles/bus/booking/payment/fail");
-		mv.addObject("curl", "http://localhost:8080/xtremetravles/bus/booking/payment/cancel");
-		mv.addObject("seatNo", seatNo);
+		mv.addObject("surl", "http://localhost:8080/xtremetravles/payu/booking/payment/success");
+		mv.addObject("furl", "http://localhost:8080/xtremetravles/payu/booking/payment/fail");
+		mv.addObject("curl", "http://localhost:8080/xtremetravles/payu/booking/payment/cancel");
         
 		mv.addObject("clickedConfirmBusBooking", true);
 		mv.addObject("title", "Confirm Booking");
@@ -217,12 +269,13 @@ public class PageController {
 	
 	
 	@RequestMapping(value ="/cab/listCab")
-	public ModelAndView listCabs(@RequestParam("boardPoint") String boardPoint,@RequestParam("dropPoint") String dropPoint,@RequestParam("date") String date) {		
+	public ModelAndView listCabs(@RequestParam("boardPoint") String boardPoint,@RequestParam("dropPoint") String dropPoint,@RequestParam("date") String date,@RequestParam("putime") String putime) {		
 		ModelAndView mv = new ModelAndView("index");		
 		
 		mv.addObject("boardPoint", boardPoint);
 		mv.addObject("dropPoint", dropPoint);
 		mv.addObject("date", date);
+		session.setAttribute("cabPickup", putime);
 		mv.addObject("clickedListCab", true);
 
 		return mv;				
@@ -236,6 +289,12 @@ public class PageController {
 		mv.addObject("cab", cab);
 		mv.addObject("clickedReviewCab", true);
 		mv.addObject("title", "Cab Review");
+		
+		double f=cab.getFare();
+		
+		session.setAttribute("cabFare", f);
+		session.setAttribute("cab", cab);
+		
 		return mv;
 		
 	}
@@ -253,9 +312,9 @@ public class PageController {
 		mv.addObject("email", email);
 		mv.addObject("phone", phone);
 		mv.addObject("productInfo", product);
-		mv.addObject("surl", "http://localhost:8080/xtremetravles/bus/booking/payment/success");
-		mv.addObject("furl", "http://localhost:8080/xtremetravles/bus/booking/payment/fail");
-		mv.addObject("curl", "http://localhost:8080/xtremetravles/bus/booking/payment/cancel");
+		mv.addObject("surl", "http://localhost:8080/xtremetravles/payu/booking/payment/success");
+		mv.addObject("furl", "http://localhost:8080/xtremetravles/payu/booking/payment/fail");
+		mv.addObject("curl", "http://localhost:8080/xtremetravles/payu/booking/payment/cancel");
         
 		mv.addObject("clickedConfirmCabBooking", true);
 		mv.addObject("title", "Confirm Booking");

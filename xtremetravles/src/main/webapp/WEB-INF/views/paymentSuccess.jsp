@@ -1,12 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<p><h1>Transaction Successful
+You booked flight seats ${flightSeatList }
 
-</body>
-</html>
+You booked bus seats ${busSeatList }
+
+</h1></p>
+
+Your flight is ${flight }
+Your bus is ${bus }
+Your cab is ${cab }
+Pickup time is ${cabPickup }

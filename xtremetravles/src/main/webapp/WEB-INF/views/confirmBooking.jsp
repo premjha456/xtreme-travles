@@ -200,8 +200,11 @@ function submitPayuForm() {
      <div class="col-sm-2">
     <p>Seat No(s):</p>
     
-    <b><p>${seatNo}</p></b>
-    </div>
+    <c:forEach items="${busSeatList}" var="se">
+         			<b><p>${se}</p></b>
+                     
+                 </c:forEach>
+              </div>
     </div>
     
       
@@ -249,18 +252,18 @@ function submitPayuForm() {
     <div class="col-sm-2">
     <p>Opreator:</p>
     
-                 <b><p>${cab.cabType}</p></b>
+                 <b><p>${cab.cabServiceProvider}</p></b>
 						<p>
-							<b>${cab.cabServiceProvider}</b>
+							<b>${cab.cabType}</b>
 						</p>
     </div>
     
      <div class="col-sm-2">
     <p>Boarding Point & Time</p>
     
-    <b><p>${cab.cabType}</p></b>
+    <b><p>${cab.boardPoint}</p></b>
 						<p>
-							<b>${cab.boardPoint}</b>
+							<b>${cabPickup}</b>
 						</p>
     </div>
     
@@ -330,8 +333,10 @@ function submitPayuForm() {
     
      <div class="col-sm-2">
     <p>Seat No(s):</p>
-    
-    <b><p>${seatNo}</p></b>
+    <c:forEach items="${flightSeatList}" var="se">
+                        <b><p>${se}</p></b>
+                    
+                                 </c:forEach>
     </div>
     </div>
     
@@ -350,15 +355,15 @@ function submitPayuForm() {
     <div class="panel-body">
     <div class="col-sm-3">
     <c:if test="${clickedConfirmBusBooking == true }">
-   <h4><p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${bus.price }</p></h4> 
+   <h4><p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${busFare}</p></h4> 
 </c:if>
 
   <c:if test="${clickedConfirmCabBooking == true }">
-   <h4><p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${cab.fare }</p></h4> 
+   <h4><p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${cabFare }</p></h4> 
 </c:if>
  
   <c:if test="${clickedConfirmFlightBooking == true }">
-   <h4><p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${flight.fare }</p></h4> 
+   <h4><p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${flightFare}</p></h4> 
 </c:if>
     
            </div>
@@ -373,15 +378,15 @@ function submitPayuForm() {
       <input type="hidden" name="udf2" value="<%= txnid %>" />
 	  <input type="hidden" name="service_provider" value="payu_paisa" />
 	   <c:if test="${clickedConfirmBusBooking == true }">
-           <input type="hidden" name="amount" value="${bus.price }" /> 
+           <input type="hidden" name="amount" value="${busFare}" /> 
 </c:if>
 
   <c:if test="${clickedConfirmCabBooking == true }">
-           <input type="hidden" name="amount" value="${cab.fare }" /> 
+           <input type="hidden" name="amount" value="${cabFare }" /> 
 </c:if>
  
   <c:if test="${clickedConfirmFlightBooking == true }">
-           <input type="hidden" name="amount" value="${flight.fare }" /> 
+           <input type="hidden" name="amount" value="${flightFare}" /> 
 </c:if>
 	  
            <input type="hidden" name="firstname" id="firstname" value="${name }" /> 
@@ -408,15 +413,15 @@ function submitPayuForm() {
            <input type="hidden" name="pg" value="<%= (empty(params.get("pg"))) ? "" : params.get("pg") %>" /> 
           <% if(empty(hash)){ %>
            <c:if test="${clickedConfirmBusBooking == true }">
-            <input class="btn btn-lg btn-primary" type="submit" value="&nbsp;&nbsp;&nbsp;Pay&nbsp;&nbsp;&#8377;&nbsp;${bus.price }&nbsp;&nbsp;&nbsp;   " /> 
+            <input class="btn btn-lg btn-primary" type="submit" value="&nbsp;&nbsp;&nbsp;Pay&nbsp;&nbsp;&#8377;&nbsp;${busFare}&nbsp;&nbsp;&nbsp;   " /> 
 </c:if>
 
   <c:if test="${clickedConfirmCabBooking == true }">
-            <input class="btn btn-lg btn-primary" type="submit" value="&nbsp;&nbsp;&nbsp;Pay&nbsp;&nbsp;&#8377;&nbsp;${cab.fare }&nbsp;&nbsp;&nbsp;   " /> 
+            <input class="btn btn-lg btn-primary" type="submit" value="&nbsp;&nbsp;&nbsp;Pay&nbsp;&nbsp;&#8377;&nbsp;${cabFare }&nbsp;&nbsp;&nbsp;   " /> 
 </c:if>
  
   <c:if test="${clickedConfirmFlightBooking == true }">
-            <input class="btn btn-lg btn-primary" type="submit" value="&nbsp;&nbsp;&nbsp;Pay&nbsp;&nbsp;&#8377;&nbsp;${flight.fare }&nbsp;&nbsp;&nbsp;   " /> 
+            <input class="btn btn-lg btn-primary" type="submit" value="&nbsp;&nbsp;&nbsp;Pay&nbsp;&nbsp;&#8377;&nbsp;${flightFare}&nbsp;&nbsp;&nbsp;   " /> 
 </c:if>
           <% } %>
     </form>
@@ -434,26 +439,40 @@ function submitPayuForm() {
     <div class="panel-body">
     
     <form class="form-inline">          
-       <div class="col-xs-2">
-        <label for="ext">Traveller 1 Name</label>
+       <div class="form-group">
+        <label for="ext">Traveller Name</label>
       </div>
       
-       <div class="col-xs-4">   
+       <div class="form-group">   
       <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" value="Name: ${name }" disabled="disabled">
       </div>
       
-       <div class="col-xs-3">
+       <div class="form-group">
       <input type="text" class="form-control" id="gender" value="Gender: ${gender }" disabled="disabled">
       </div>
       
       
-       <div class="col-xs-2">
+       <div class="form-group">
        <input type="text" class="form-control" id="age" placeholder="Age" name="age" value="Age: ${age }" disabled="disabled">
        </div>
-       <br>
-            <div class="form-group">
+       <div class="form-group">
  
-  <h4>Seat No: <span class="badge">${seatNo }</span></h4> 
+ <c:if test="${clickedConfirmBusBooking == true }">
+
+<h4>Seat No: <c:forEach items="${busSeatList}" var="se">
+         			           <span class="badge"> <b><p>${se}</p></b></span>
+                                 </c:forEach></h4> 
+  
+</c:if>
+ 
+<c:if test="${clickedConfirmFlightBooking == true }">
+
+<h4>Seat No: <c:forEach items="${flightSeatList}" var="se">
+         			           <span class="badge"> <b><p>${se}</p></b></span>
+                                 </c:forEach></h4> 
+  
+</c:if>
+
     </div>
     <br><br>
      <div class="form-group">
@@ -468,7 +487,6 @@ function submitPayuForm() {
       </div>     
        <c:if test="${clickedConfirmBusBooking == true }">
                       <input type="hidden" name="id" value="${bus.id }" />
-                                 <input type="hidden" name="seatNo" value="${(bus.maxSeats-bus.seatsAvailable)+1}" />
                       
 </c:if>
 
@@ -478,7 +496,6 @@ function submitPayuForm() {
  
   <c:if test="${clickedConfirmFlightBooking == true }">
                       <input type="hidden" name="id" value="${flight.id }" />
-                                 <input type="hidden" name="seatNo" value="${(flight.maxSeats-flight.seatsAvailable)+1}" />
                       
 </c:if>
       

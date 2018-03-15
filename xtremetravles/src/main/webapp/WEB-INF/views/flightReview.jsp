@@ -74,8 +74,12 @@
 
 					<div class="col-sm-2">
 						<p>Seat No(s):</p>
-
-						<b><p>${(flight.maxSeats-flight.seatsAvailable)+1}</p></b>
+ 
+                     <c:forEach items="${flightSeatList}" var="se">
+         			<b><p>${se}</p></b>
+                     
+                 </c:forEach>
+                      
 					</div>
 				</div>
 
@@ -98,8 +102,8 @@
 			<div class="panel-body">
 				<div class="col-sm-3">
 					<h4>
-						<p>PerPassenger:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${flight.fare }</p>
-						<p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${flight.fare*requiredSeats}</p>
+						<p>PerPassenger:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${flight.fare}</p>
+						<p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${flightFare}</p>
 					</h4>
 				</div>
 
@@ -107,7 +111,7 @@
 			<div class="panel-footer">
 
 				<h4>
-					<p align="right">You Pay:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${flight.fare*requiredSeats}</p>
+					<p align="right">You Pay:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${flightFare}</p>
 				</h4>
 
 			</div>
@@ -160,7 +164,11 @@
 						<div class="form-group">
 
 							<h4>
-								Seat No: <span class="badge">${(flight.maxSeats-flight.seatsAvailable)+1}</span>
+								Seat No: 
+								<c:forEach items="${flightSeatList}" var="se">
+         			           <span class="badge"> <b><p>${se}</p></b></span>
+                                 </c:forEach>
+                                 
 							</h4>
 						</div>
 						<br>
@@ -178,8 +186,6 @@
 								type="text" class="form-control" id="phone" placeholder=""
 								name="phone"> <br>
 							<br> <input type="hidden" name="id" value="${flight.id}" /> <input
-								type="hidden" name="seatNo"
-								value="${(flight.maxSeats-flight.seatsAvailable)+1}" /> <input
 								class="btn btn-primary btn-lg" type="submit"
 								class="form-control" value="Confirm Booking">
 
