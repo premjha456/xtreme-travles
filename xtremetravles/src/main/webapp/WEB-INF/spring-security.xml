@@ -15,9 +15,9 @@
 	
 	<http pattern="/resources/**" security="none"/>
 	
-		<http pattern="/payu/checkout/**" security="none"/>
 
 
+	
 	<authentication-manager>
 <authentication-provider>
 	<jdbc-user-service data-source-ref="dataSource"

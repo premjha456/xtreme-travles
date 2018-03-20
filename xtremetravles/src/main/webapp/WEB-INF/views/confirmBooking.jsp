@@ -131,6 +131,9 @@ function submitPayuForm() {
   </div>
   </div>
   <a href="https://www.google.co.in/">Google</a>
+    <a href="https://www.payumoney.com/">Payumoney</a>
+    <a href="https://sboxcheckout.citruspay.com/">Citrus pay</a>
+    <a href=https://sandboxsecure.payu.in/>Sandbox</a>
   
     <div class="col-sm-7">
   <div class="panel panel-default">

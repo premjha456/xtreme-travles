@@ -66,6 +66,8 @@ public class User {
 	
 	@Column(name ="depositAmount")
 	private String depositAmount;
+	
+	
 
 	public int getId() {
 		return id;
@@ -277,6 +279,8 @@ public class User {
 		this.depositAmount = depositAmount;
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", addCode=" + addCode + ", panCode=" + panCode + ", firstName=" + firstName
@@ -290,6 +294,8 @@ public class User {
 				+ depositAmount + "]";
 	}
 
+	
+	
 	
 	
 	

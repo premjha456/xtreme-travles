@@ -14,6 +14,7 @@ import javax.validation.Valid;
 
 import org.omg.PortableServer.POAPackage.ServantNotActive;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -28,10 +29,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.xtremetravles.util.FileUploadUtility;
+import com.xtremetravlesbackend.dao.BookingDetailsDao;
 import com.xtremetravlesbackend.dao.BusDao;
 import com.xtremetravlesbackend.dao.CabDao;
 import com.xtremetravlesbackend.dao.FlightDao;
 import com.xtremetravlesbackend.dao.UserDao;
+import com.xtremetravlesbackend.dto.BookingDetails;
 import com.xtremetravlesbackend.dto.Bus;
 import com.xtremetravlesbackend.dto.Cab;
 import com.xtremetravlesbackend.dto.Flight;
@@ -54,6 +57,10 @@ public class PageController {
 	
 	@Autowired
 	private CabDao cabDao;
+	
+	@Autowired
+	private BookingDetailsDao bookingDao;
+	
 	@RequestMapping(value = {"/", "/home", "/index","/flight"})
 	public ModelAndView index() {		
 		ModelAndView mv = new ModelAndView("index");		
@@ -457,5 +464,46 @@ public class PageController {
 					mv.addObject("title", "403 Access Denied");		
 					return mv;
 				}
+				
+				
+				@RequestMapping("/payu/booking/payment/success")
+				public ModelAndView paymentSuccess(@RequestParam("txnid") String id,@RequestParam("status") String status,@RequestParam("payuMoneyId") String payuMoneyId,@RequestParam("firstname") String firstname,@RequestParam("email") String email,@RequestParam("phone") String phone,@RequestParam("amount") String amount,@RequestParam("productinfo") String productInfo){
+					 
+					ModelAndView mv = new ModelAndView("index");
+					System.out.println("Payment Success");
+                    System.out.println(id);
+                    System.out.println(status);
+                    System.out.println(payuMoneyId);
+                    System.out.println(firstname);
+                    System.out.println(email);
+                    System.out.println(phone);
+                    System.out.println(amount);
+                    System.out.println(productInfo);
+                    
+					mv.addObject("clickedPaymentSuccess", true);
+
+					return mv;
+				}
+
+
+				@RequestMapping("/payu/booking/payment/fail")
+				public ModelAndView paymentFail(){
+					 
+					ModelAndView mv = new ModelAndView("index");
+					mv.addObject("clickedPaymentFail", true);
+
+					return mv;
+				}
+
+				
+				@RequestMapping("/payu/booking/payment/cancel")
+				public ModelAndView paymentCancel(){
+					 
+					ModelAndView mv = new ModelAndView("index");
+					mv.addObject("clickedPaymentCancel", true);
+
+					return mv;
+				}
+
 				
 }

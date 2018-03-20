@@ -1,11 +1,140 @@
-<p><h1>Transaction Failed
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1" import="java.sql.*"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-You booked flight seats ${flightSeatList }
+<spring:url var="css" value="/resources/css" />
+<spring:url var="js" value="/resources/js" />
+<spring:url var="images" value="/resources/images" />
 
-You booked bus seats ${busSeatList }
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
-</h1></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Xtreme Travles - ${title}</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
 
-Yor flight is ${flight }
-Yor bus is ${bus }
-Your cab is ${cab }
+<link rel="stylesheet" href="${css}/bootstrap.css">
+<link rel="stylesheet" href="${css}/bootstrap-theme.css">
+<link rel="stylesheet" href="${css}/style.css">
+
+<link rel="stylesheet" href="${css}/dataTables.bootstrap4.css">
+
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+</style>
+
+
+<script type="text/javascript">
+	window.contextRoot = '${contextRoot}'
+</script>
+</head>
+<body>
+
+	<div class="wrapper">
+
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+
+					<a class="navbar-brand" href="${contextRoot}/home">Xtreme Travles</a>
+				</div>
+				<div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height: 1px;">
+					<ul class="nav navbar-nav">
+						<li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Booking Successful || E-Ticket&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+		<br>
+		<br>
+		<br>
+		<br>
+
+<div class="content">
+
+<div id="printarea">
+
+
+
+<table style="width:50%" border="0" style="border:2px solid gray; padding:5px" >
+  <tr>
+    <th colspan="2" align="Center" style="border-bottom: 2px solid gray; padding-bottom:5px"><img id="img1" alt="logo.jpg" src="${images}/logo.jpg" height="58px" width="105px"></th>
+    
+    <td align="left" colspan="2" style="color: Blue;border-bottom: 2px solid gray; padding-bottom: 5px">
+                                    H.O :- Xtreme Travels,Chembur,Mumbai ||
+                                    Ph  :- 9773565937
+                                    <br />
+                                    B.O :- Xtreme Travels,Santacurz,Mumbai ||
+                                    Ph  :- 9773565937
+                                </td>
+    </th> 
+  </tr>
+  <tr>
+    <td>Ticket Number:</td>
+    <td>12345</td>
+
+    <td>Transaction Id:</td>
+    <td><%=request.getParameter("txnid") %></td>
+  </tr>
+  <tr>
+    <td>Name:</td>
+    <td><p><%=request.getParameter("firstname") %></p></td>
+    
+    <td>Phone:</td>
+    <td><p><%=request.getParameter("phone") %></p></td>
+    
+  </tr>
+  
+
+   
+   <tr>
+    <td>Payment Status:</td>
+    <td><p>
+    Payment Not Successful
+    </p></td>
+    
+    <td>Ticket Status:</td>
+    <td><p>
+   Canceled/Failed 
+</p></td>
+    
+  </tr>
+  
+</table>
+      </div>
+    
+</div>
+
+
+
+
+		<script src="${js}/jquery.min.js"></script>
+		<script src="${js}/bootstrap.min.js"></script>
+
+		<script src="${js}/jquery.dataTables.js"></script>
+		<script src="${js}/dataTables.bootstrap4.js"></script>
+
+		<script src="${js}/bootbox.min.js"></script>
+
+		<script src="${js}/script.js"></script>
+	</div>
+
+</body>
+</html>
