@@ -101,15 +101,15 @@ th, td {
     
 
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Transaction Id:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><%=request.getParameter("txnid") %></td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;">${txnid }</td>
 
   </tr>
   <tr>
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Name:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p><%=request.getParameter("firstname") %></p></td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>${fname }</p></td>
     
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Phone:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p><%=request.getParameter("phone") %></p></td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>${phone }</p></td>
     
   </tr>
   
@@ -171,19 +171,10 @@ th, td {
  
  <tr>
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Seat Nos:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>
-<c:if test="${bus != null}"> 
-                                              ${busSeatList }</c:if> 
-                                              <c:if test="${flight != null}">
-                                              ${flightSeatList}
-                                              </c:if> 
-  
-</p></td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>${seatNo}</p></td>
     
     <td style="padding: 5px; text-align: left; border: 1px solid black;">No of Passengers:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>
-4
-</p></td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>4</p></td>
     
   </tr>
   
@@ -219,35 +210,20 @@ th, td {
                
                  <tr>
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Booking Date:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>
-   ${bookDate}
+    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>${bkdate}
 </p></td>
     
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Ticket Fare:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>
-
-<c:if test="${bus != null}"> 
-                                              ${busFare }</c:if> 
-                                              <c:if test="${flight != null}">
-                                              ${flightFare }
-                                              </c:if> 
-                                              <c:if test="${cab != null}}">
-                                              ${cabFare }
-                                              </c:if>
-</p></td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>${fare}</p></td>
     
    </tr>
    
    <tr>
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Payment Status:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>
-    Payment Successful
-    </p></td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>${paystatus }</p></td>
     
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Ticket Status:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>
-   Booked 
-</p></td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>${status}</p></td>
     
   </tr>
   

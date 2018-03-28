@@ -1,38 +1,56 @@
 package com.xtremetravlesbackend.dto;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.engine.internal.Cascade;
+
+@Entity
 public class BookingDetails {
 
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id; 
 	
-	private String pnr;
-	@ManyToOne
+	private long pnr;
+	private String transactionId;
+	
+	@ManyToOne(cascade={CascadeType.ALL})
 	private User user;
-	@ManyToOne
+	
+	private String passengerName;
+	private String passengerPhone;
+	
+	@ManyToOne(cascade={CascadeType.ALL})
 	private Bus bus;
-	@ManyToOne
+	
+	@ManyToOne(cascade={CascadeType.ALL})
 	private Flight flight;
-	@ManyToOne
+	@ManyToOne(cascade={CascadeType.ALL})
 	private Cab cab;
 	@Column(name="seat_nos")
 	private String seatNos;
 	private double fare;
+	@Column(name="booking_date")
+	private String date;
 	private boolean status;
+	private boolean paymentStatus;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getPnr() {
+	public long getPnr() {
 		return pnr;
 	}
-	public void setPnr(String pnr) {
+	public void setPnr(long pnr) {
 		this.pnr = pnr;
 	}
 	public User getUser() {
@@ -79,11 +97,46 @@ public class BookingDetails {
 	}
 	
 	
+	public String getTransactionId() {
+		return transactionId;
+	}
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public boolean isPaymentStatus() {
+		return paymentStatus;
+	}
+	public void setPaymentStatus(boolean paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
+	
+	
+	public String getPassengerName() {
+		return passengerName;
+	}
+	public void setPassengerName(String passengerName) {
+		this.passengerName = passengerName;
+	}
+	public String getPassengerPhone() {
+		return passengerPhone;
+	}
+	public void setPassengerPhone(String passengerPhone) {
+		this.passengerPhone = passengerPhone;
+	}
 	@Override
 	public String toString() {
-		return "BookingDetails [id=" + id + ", pnr=" + pnr + ", user=" + user + ", bus=" + bus + ", flight=" + flight
-				+ ", cab=" + cab + ", seatNos=" + seatNos + ", fare=" + fare + ", status=" + status + "]";
+		return "BookingDetails [id=" + id + ", pnr=" + pnr + ", transactionId=" + transactionId + ", user=" + user
+				+ ", bus=" + bus + ", flight=" + flight + ", cab=" + cab + ", seatNos=" + seatNos + ", fare=" + fare
+				+ ", date=" + date + ", status=" + status + ", paymentStatus=" + paymentStatus + "]";
 	}
-
+	
+	
+	
 
 }

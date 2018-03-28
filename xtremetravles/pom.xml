@@ -9,7 +9,7 @@
   <url>http://maven.apache.org</url>
   
   <properties>
-		<javaee.version>7.0</javaee.version>
+		<javaee.version>8.0</javaee.version>
 		<spring.version>4.3.6.RELEASE</spring.version>
 		<spring.security.version>4.2.2.RELEASE</spring.security.version>
 		
@@ -21,11 +21,19 @@
   <artifactId>xtremetravlesbackend</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 		</dependency>
-  <dependency>
-			<groupId>com</groupId>
-  <artifactId>xtremetravlesbackend</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+<dependency>
+    <groupId>com.sun.mail</groupId>
+    <artifactId>javax.mail</artifactId>
+    <version>1.6.0</version>
 </dependency>
+		
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context-support</artifactId>
+    <version>4.3.14.RELEASE</version>
+</dependency>
+  
   <!-- JAVA EE -->
 		<dependency>
 			<groupId>javax</groupId>
@@ -33,6 +41,7 @@
 			<version>${javaee.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		
   <!-- JUNIT -->
 		<dependency>
 			<groupId>junit</groupId>

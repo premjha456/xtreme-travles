@@ -26,31 +26,31 @@ public class GlobalController {
 	private User user = null;
 	private UserModel userModel=null;
 	
-//	@ModelAttribute("userModel")
-//	public UserModel getUserModel(){
-//		
-//		if (session.getAttribute("userModel")==null) {
-//			
-//			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//			
-//			if (!authentication.getPrincipal().equals("anonymousUser")) {
-//				
-//			user =	userDao.getUserByEmail(authentication.getName());
-//			
-//			if (user!=null) {
-//				
-//				userModel = new UserModel();
-//				userModel.setId(user.getId());
-//				userModel.setFullName(user.getFirstName()+' '+user.getLastName());
-//				userModel.setRole(user.getRole());
-//				
-//				session.setAttribute("userModel", userModel);
-//				return userModel;
-//			}
-//			}
-//		}
-//		
-//		return (UserModel) session.getAttribute("userModel");
-//	}
+	@ModelAttribute("userModel")
+	public UserModel getUserModel(){
+		
+		if (session.getAttribute("userModel")==null) {
+			
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			
+			if (!authentication.getPrincipal().equals("anonymousUser")) {
+				
+			user =	userDao.getUserByEmail(authentication.getName());
+			
+			if (user!=null) {
+				
+				userModel = new UserModel();
+				userModel.setId(user.getId());
+				userModel.setFullName(user.getFirstName()+' '+user.getLastName());
+				userModel.setRole(user.getRole());
+				
+				session.setAttribute("userModel", userModel);
+				return userModel;
+			}
+			}
+		}
+		
+		return (UserModel) session.getAttribute("userModel");
+	}
 	
 }

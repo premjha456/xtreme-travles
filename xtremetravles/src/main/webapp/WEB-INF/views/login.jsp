@@ -34,14 +34,20 @@
         <input type="password" class="form-control" id="pwd" placeholder="Enter Password" name="password">
       </div>
     </div>
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-               <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-    
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
         <button type="submit" class="btn btn-default">Login</button>
       </div>
     </div>
+    <div class="checkbox">
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           &nbsp;&nbsp;&nbsp;
+                       
+                       
+                                    <label>
+                                        <h5><a href="${contextRoot}/forgetpassword">Forget Password ?</a></h5>
+                                    </label>
+                                </div>
   </form>
           <div style="float: right;"><h4><a href="${contextRoot}/registerUser">Need a Account?Register Here</a></h4></div>
     </div>

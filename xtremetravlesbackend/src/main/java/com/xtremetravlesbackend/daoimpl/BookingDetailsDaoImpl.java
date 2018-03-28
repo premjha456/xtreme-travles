@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xtremetravlesbackend.dao.BookingDetailsDao;
 import com.xtremetravlesbackend.dto.BookingDetails;
+import com.xtremetravlesbackend.dto.Bus;
 import com.xtremetravlesbackend.dto.User;
 
 @Repository("bookingDao")
@@ -28,7 +29,7 @@ public class BookingDetailsDaoImpl implements BookingDetailsDao {
 	public List<BookingDetails> getBookingDetailByUserid(User user) {
 		return sessionFactory
 				.getCurrentSession()
-				     .createQuery("Select * From BookingDetails Where user=:user", BookingDetails.class)
+				     .createQuery("From BookingDetails Where user=:user", BookingDetails.class)
 				         .setParameter("user", user)
 				              .getResultList();
 	}
@@ -37,9 +38,62 @@ public class BookingDetailsDaoImpl implements BookingDetailsDao {
 	public List<BookingDetails> getBookingDetailsByStatus(boolean status) {
 		return sessionFactory
 				.getCurrentSession()
-				     .createQuery("Select * From BookingDetails Where status=:status", BookingDetails.class)
+				     .createQuery("From BookingDetails Where status=:status", BookingDetails.class)
 				         .setParameter("status", status)
 				              .getResultList();
+	}
+
+	@Override
+	public boolean add(BookingDetails bookingDetails) {
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(bookingDetails);
+	          				return true;
+
+			} catch (Exception e) {
+	        e.printStackTrace();
+			}
+			return false; 
+
+	}
+
+	@Override
+	public boolean update(BookingDetails bookingDetails) {
+		try {
+			sessionFactory.getCurrentSession().update(bookingDetails);
+	          				return true;
+
+			} catch (Exception e) {
+	        e.printStackTrace();
+			}
+			return false; 
+
+
+	}
+
+	@Override
+	public boolean delete(BookingDetails bookingDetails) {
+	
+		
+		try {
+			sessionFactory.getCurrentSession().update(bookingDetails);
+	          				return true;
+
+			} catch (Exception e) {
+	        e.printStackTrace();
+			}
+			return false; 
+
+
+	
+	}
+
+	@Override
+	public BookingDetails getBookingDetailByPnr(long pnr) {
+		return sessionFactory
+				.getCurrentSession()
+				     .createQuery("From BookingDetails Where pnr=:pnr", BookingDetails.class)
+				         .setParameter("pnr", pnr)
+				              .getSingleResult();
 	}
 
 }

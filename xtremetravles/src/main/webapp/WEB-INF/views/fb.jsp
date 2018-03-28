@@ -50,13 +50,13 @@
 					<div class="col-sm-4">
 						<h3>More Links</h3>
 						<h5>
-							<a href="#">Print E-Ticket</a><br>
+							<a href="${contextRoot}/getTicket?to=print">Print E-Ticket</a><br>
 						</h5>
 						<h5>
 							<a href="#">Customer Support</a><br>
 						</h5>
 						<h5>
-							<a href="#">Cancel Tickets</a><br>
+							<a href="${contextRoot}/getTicket?to=cancel">Cancel Tickets</a><br>
 						</h5>
 						<h5>
 							<a href="#">Customer Fourm</a><br>

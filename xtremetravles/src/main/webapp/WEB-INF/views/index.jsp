@@ -15,9 +15,6 @@
 <title>Xtreme Travles - ${title}</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="_csrf" content="${_csrf.token}">
-<meta name="_csrf_header" content="${_csrf.headerName}">
-
 <link rel="stylesheet" href="${css}/bootstrap.css">
 <link rel="stylesheet" href="${css}/bootstrap-theme.css">
 <link rel="stylesheet" href="${css}/style.css">
@@ -109,16 +106,7 @@ window.contextRoot='${contextRoot}'
 				<%@include file="busReviews.jsp"%>
 			</c:if>
 
-			<c:if test="${clickedPaymentSuccess == true }">
-				<%@include file="paymentSuccess.jsp"%>
-			</c:if>
-			<c:if test="${clickedPaymentFail == true }">
-				<%@include file="paymentFail.jsp"%>
-			</c:if>
-			<c:if test="${clickedPaymentCancel == true }">
-				<%@include file="paymentCancel.jsp"%>
-			</c:if>
-
+			
 			<c:if test="${clickedCab == true }">
 				<%@include file="cabs.jsp"%>
 			</c:if>
@@ -168,10 +156,15 @@ window.contextRoot='${contextRoot}'
 				<%@include file="registerUser.jsp"%>
 			</c:if>
 
+			<c:if test="${checkOtp == true }">
+				<%@include file="checkUserOtp.jsp"%>
+			</c:if>
+			
+			
 			<c:if test="${clickFeedLogin == true }">
 				<%@include file="login.jsp"%>
 			</c:if>
-
+			
 			<!-- Footer bottom -->
 			<%@ include file="fb.jsp"%>
 

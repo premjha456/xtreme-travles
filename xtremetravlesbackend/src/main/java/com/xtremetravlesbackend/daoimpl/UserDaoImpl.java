@@ -32,8 +32,17 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public boolean update(User user) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+	           sessionFactory
+				   .getCurrentSession()
+				         .update(user);
+				return true;
+
+			} catch (Exception e) {
+	        e.printStackTrace();
+			}
+			return false;
+
 	}
 
 	@Override

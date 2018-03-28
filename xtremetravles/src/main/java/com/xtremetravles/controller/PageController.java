@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +17,8 @@ import javax.validation.Valid;
 import org.omg.PortableServer.POAPackage.ServantNotActive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -28,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.xtremetravles.model.UserModel;
 import com.xtremetravles.util.FileUploadUtility;
 import com.xtremetravlesbackend.dao.BookingDetailsDao;
 import com.xtremetravlesbackend.dao.BusDao;
@@ -61,6 +66,9 @@ public class PageController {
 	@Autowired
 	private BookingDetailsDao bookingDao;
 	
+//	@Autowired
+//	MailSender mailSender;
+//	
 	@RequestMapping(value = {"/", "/home", "/index","/flight"})
 	public ModelAndView index() {		
 		ModelAndView mv = new ModelAndView("index");		
@@ -349,138 +357,71 @@ public class PageController {
 		return mv;				
 }
 	
-	//add agent registration page
-	@RequestMapping(value ="/register/user/agent",method=RequestMethod.GET)
-	public ModelAndView reg(@RequestParam(name="case", required=false)String case1) {		
-		ModelAndView mv = new ModelAndView("index");		
-			
-		User user = new User();
-		mv.addObject("clickedRegister", true);
-		mv.addObject("user", user);
-		return mv;				
-}
-
-	
-	//bus management submit button code
-		@RequestMapping(value="/register/user/agent",method=RequestMethod.POST)
-		public String handelAddBus(@Valid @ModelAttribute("user") User user1,BindingResult result,Model model,HttpServletRequest request){
-						
-			if(result.hasErrors()) {
-				model.addAttribute("message", "Validation fails for registering the user!");
-				model.addAttribute("clickedRegister",true);
-			
-				return "index";
-	} 
-			if(user1.getId()==0)
-			{
-		    userDao.add(user1);
-			}
-			else{
-				
-				userDao.update(user1);
-			}
-			
-			if(!user1.getAddressProof().getOriginalFilename().equals("") ){
-				FileUploadUtility.uploadAddressProof(request, user1.getAddressProof(), user1.getAddCode()); 
-			 }
-			
-			if(!user1.getPanCardProof().getOriginalFilename().equals("") ){
-				FileUploadUtility.uploadPanCardProof(request, user1.getPanCardProof(), user1.getPanCode()); 
-			 }
-			
-			return "redirect:/login";
-		}
-		
-	
-	
-	
-	//add user registration page  
-		@RequestMapping(value ="/registerUser",method=RequestMethod.GET)
-		public ModelAndView regUserPage() {		
-			ModelAndView mv = new ModelAndView("index");		
-				
-			User user = new User();
-			mv.addObject("clickedRegisterUser", true);
-			mv.addObject("user", user);
-			return mv;				
-	}
 		
 		
-		
-		//add normal user to the database   
-				@RequestMapping(value ="/register/user/normal")
-				public String regUser(@RequestParam("firstName") String fname,@RequestParam("lastName") String lname,@RequestParam("email") String email,@RequestParam("contactNumber") String contact,@RequestParam("password") String password,@RequestParam("role") String role,@RequestParam("active") boolean active) {		
-					User user = new User();
-					user.setFirstName(fname);
-					user.setLastName(lname);
-					user.setEmail(email);
-					user.setContactNumber(contact);
-					user.setPassword(password);
-					user.setRole(role);
-					user.setActive(active);
-					
-					userDao.add(user);
-					
-					return "redirect:/login";				
-			}
-		
-				
-				//provide login page to admin,user,agent  
-				@RequestMapping(value="/login")
-				public ModelAndView feedLoginPage(@RequestParam(name="error", required = false) String error,@RequestParam(name="logout", required = false) String logout) {		
-					ModelAndView mv = new ModelAndView("index");	
-					
-					if(error!=null) {
-						mv.addObject("message", "Username and Password is invalid!");
-					}
-					
-					if(logout!=null) {
-						mv.addObject("logout", "You have logged out successfully!");
-					}
-					
-					mv.addObject("clickFeedLogin", true);
-					return mv;				
-			}
-					
-			
-				
-			
-				@RequestMapping(value="/logout")
-				public String logout(HttpServletRequest request, HttpServletResponse response) {
-					
-					Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-				    if (auth != null){    
-				        new SecurityContextLogoutHandler().logout(request, response, auth);
-				    }
-					
-					return "redirect:/login?logout=logout";
-				}	
-				
-				@RequestMapping(value="/access-denied")
-				public ModelAndView accessDenied() {
-					ModelAndView mv = new ModelAndView("error");		
-					mv.addObject("errorTitle", "Aha! Caught You.");		
-					mv.addObject("errorDescription", "You are not authorized to view this page!");		
-					mv.addObject("title", "403 Access Denied");		
-					return mv;
-				}
-				
 				
 				@RequestMapping("/payu/booking/payment/success")
-				public ModelAndView paymentSuccess(@RequestParam("txnid") String id,@RequestParam("status") String status,@RequestParam("payuMoneyId") String payuMoneyId,@RequestParam("firstname") String firstname,@RequestParam("email") String email,@RequestParam("phone") String phone,@RequestParam("amount") String amount,@RequestParam("productinfo") String productInfo){
+				public ModelAndView paymentSuccess(@RequestParam("txnid") String id,@RequestParam("status") String status,@RequestParam("firstname") String firstname,@RequestParam("phone") String phone,@RequestParam("amount") String amount,@RequestParam("productinfo") String productInfo,HttpSession session){
 					 
-					ModelAndView mv = new ModelAndView("index");
-					System.out.println("Payment Success");
-                    System.out.println(id);
-                    System.out.println(status);
-                    System.out.println(payuMoneyId);
-                    System.out.println(firstname);
-                    System.out.println(email);
-                    System.out.println(phone);
-                    System.out.println(amount);
-                    System.out.println(productInfo);
-                    
-					mv.addObject("clickedPaymentSuccess", true);
+					ModelAndView mv = new ModelAndView("index2");
+					BookingDetails bookingDetails = new BookingDetails();
+					
+					Random random = new Random();
+					long pnr=random.nextInt(1_000_000_000) + (random.nextInt(90) + 10) * 1_000_000_000L;
+					bookingDetails.setPnr(pnr);
+					mv.addObject("pnr", pnr);
+					
+					bookingDetails.setTransactionId(id);
+					
+					bookingDetails.setPassengerName(firstname);
+					bookingDetails.setPassengerPhone(phone);
+					UserModel u=(UserModel) session.getAttribute("userModel");
+					User user = userDao.getUserById(u.getId());
+					
+					bookingDetails.setUser(user);
+					
+					if (session.getAttribute("bus")!=null) {
+						
+						Bus bus=(Bus)session.getAttribute("bus");
+						
+						bookingDetails.setBus(bus);
+		                   bookingDetails.setSeatNos(session.getAttribute("busSeatList").toString());
+		                   bookingDetails.setFare((double)session.getAttribute("busFare"));
+
+
+						
+					}
+					
+                   
+                   if (session.getAttribute("flight")!=null) {
+	
+	               Flight flight=(Flight)session.getAttribute("flight");
+	
+	                bookingDetails.setFlight(flight);
+	                   bookingDetails.setSeatNos(session.getAttribute("flightSeatList").toString());
+	                   bookingDetails.setFare((double)session.getAttribute("flightFare"));
+
+
+}
+					
+                   if (session.getAttribute("cab")!=null) {
+                		
+    	               Cab cab=(Cab)session.getAttribute("cab");
+	                   bookingDetails.setSeatNos(null);
+    	                bookingDetails.setCab(cab);
+    	                   bookingDetails.setFare((double)session.getAttribute("cabFare"));
+
+    	
+    }
+                   LocalDate date = LocalDate.now();
+                  
+                   bookingDetails.setDate(date.toString());
+                   mv.addObject("bookDate", date);
+                   bookingDetails.setStatus(true);
+                   bookingDetails.setPaymentStatus(true);
+                   
+                   bookingDao.add(bookingDetails);
+                   mv.addObject("clickedPaymentSuccess", true);
 
 					return mv;
 				}
@@ -504,6 +445,49 @@ public class PageController {
 
 					return mv;
 				}
+
+				@RequestMapping("/getTicket")
+				public ModelAndView printTicket(){
+					 
+					ModelAndView mv = new ModelAndView("index2");
+					mv.addObject("clickedGetTicket", true);
+
+					return mv;
+				}
+				
+				@RequestMapping("/printTicket")
+				public ModelAndView printETicket(@RequestParam("pnrno") long pnr){
+					 
+					ModelAndView mv = new ModelAndView("index2");
+					mv.addObject("clickedEPrintTicket", true);
+					BookingDetails details=bookingDao.getBookingDetailByPnr(pnr);
+					
+					mv.addObject("pnr", details.getPnr());
+					mv.addObject("txnid", details.getTransactionId());
+					mv.addObject("fname", details.getPassengerName());
+					mv.addObject("phone", details.getPassengerPhone());
+					mv.addObject("bus", details.getBus());
+					mv.addObject("flight", details.getFlight());
+					mv.addObject("cab", details.getCab());
+					mv.addObject("seatNo", details.getSeatNos());
+					mv.addObject("bkdate", details.getDate());
+					mv.addObject("fare", details.getFare());
+					if (details.isStatus()==true && details.isPaymentStatus()==true ) {
+						mv.addObject("status","Booked" );	
+						mv.addObject("paystatus", "Payment Successful ");
+
+					}
+					else if (details.isStatus()==false || details.isPaymentStatus()==false ) {
+						mv.addObject("status","Canceled" );	
+						mv.addObject("paystatus", "Payment UnSuccessful ");
+
+					}
+					
+					System.out.println(details);
+
+					return mv;
+				}
+				
 
 				
 }

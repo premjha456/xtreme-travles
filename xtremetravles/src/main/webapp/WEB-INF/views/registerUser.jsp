@@ -9,7 +9,7 @@
 
 				<div class="panel-heading">
 
-					<h4>Bus Management</h4>
+					<h4>Register User</h4>
 
 				</div>
 
@@ -61,10 +61,6 @@
 									placeholder="Confirm Password" />
 							</div>
 						</div>
-					
-					    <input type="hidden" id="role" name="role" value="USER"/>
-					    <input type="hidden" id="active" name="active" value="true"/>
-					                   <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 					   
 						<div class="form-group">
 							
