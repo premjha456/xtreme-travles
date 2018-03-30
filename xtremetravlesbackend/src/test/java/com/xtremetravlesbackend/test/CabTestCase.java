@@ -42,6 +42,7 @@ private static AnnotationConfigApplicationContext context;
 	    cab.setBoardPoint("Mumbai");
 	    cab.setDropPoint("Goa");
 	    cab.setDate("5/5/2017");
+	    cab.setCabNo("Mh03 us 1234");
 		cab.setFare(4000);
 		cab.setActive(true);
 		assertEquals("Successfully added a category inside the table!",true,cabDao.add(cab));

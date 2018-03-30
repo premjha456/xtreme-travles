@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.ws.rs.QueryParam;
 
 import org.omg.PortableServer.POAPackage.ServantNotActive;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,7 +114,7 @@ public class PageController {
 		double f=tClass*requiredSeats*flight.getFare();
 		
 		session.setAttribute("flightFare", f);
-		session.setAttribute("flight", flight);
+		session.setAttribute("flightsession", flight);
 		List<Integer> flightSeatList=new ArrayList<Integer>();
 		for (int i = 1; i <=requiredSeats; i++) {
 			int a=(flight.getMaxSeats()-flight.getSeatsAvailable())+i;	
@@ -151,7 +152,7 @@ public class PageController {
 		mv.addObject("surl", "http://localhost:8080/xtremetravles/payu/booking/payment/success");
 		mv.addObject("furl", "http://localhost:8080/xtremetravles/payu/booking/payment/fail");
 		mv.addObject("curl", "http://localhost:8080/xtremetravles/payu/booking/payment/cancel");
-        
+        System.out.println(session.getAttribute("flightsession"));
 		mv.addObject("clickedConfirmFlightBooking", true);
 		mv.addObject("title", "Confirm Booking");
 		return mv;
@@ -227,7 +228,7 @@ public class PageController {
 				double f=requiredSeats*bus.getPrice();
 				
 				session.setAttribute("busFare", f);
-				session.setAttribute("bus", bus);
+				session.setAttribute("bussession", bus);
 				List<Integer> busSeatList=new ArrayList<Integer>();
 				for (int i = 1; i <=requiredSeats; i++) {
 					int a=(bus.getMaxSeats()-bus.getSeatsAvailable())+i;	
@@ -265,7 +266,8 @@ public class PageController {
 		mv.addObject("surl", "http://localhost:8080/xtremetravles/payu/booking/payment/success");
 		mv.addObject("furl", "http://localhost:8080/xtremetravles/payu/booking/payment/fail");
 		mv.addObject("curl", "http://localhost:8080/xtremetravles/payu/booking/payment/cancel");
-        
+		//to check session
+        System.out.println(session.getAttribute("bussession"));
 		mv.addObject("clickedConfirmBusBooking", true);
 		mv.addObject("title", "Confirm Booking");
 
@@ -290,6 +292,7 @@ public class PageController {
 		mv.addObject("boardPoint", boardPoint);
 		mv.addObject("dropPoint", dropPoint);
 		mv.addObject("date", date);
+		System.out.println(putime);
 		session.setAttribute("cabPickup", putime);
 		mv.addObject("clickedListCab", true);
 
@@ -303,15 +306,11 @@ public class PageController {
 		Cab cab = cabDao.get(id);
 		mv.addObject("cab", cab);
 		mv.addObject("clickedReviewCab", true);
-		mv.addObject("title", "Cab Review");
-		
-		double f=cab.getFare();
-		
+		mv.addObject("title", "Cab Review");		
+		double f=cab.getFare();		
 		session.setAttribute("cabFare", f);
-		session.setAttribute("cab", cab);
-		
-		return mv;
-		
+		session.setAttribute("cabsession", cab);	
+		return mv;		
 	}
 	
 	@RequestMapping("/book/cab/confirmBooking")
@@ -330,7 +329,7 @@ public class PageController {
 		mv.addObject("surl", "http://localhost:8080/xtremetravles/payu/booking/payment/success");
 		mv.addObject("furl", "http://localhost:8080/xtremetravles/payu/booking/payment/fail");
 		mv.addObject("curl", "http://localhost:8080/xtremetravles/payu/booking/payment/cancel");
-        
+        System.out.println(session.getAttribute("cabsession"));
 		mv.addObject("clickedConfirmCabBooking", true);
 		mv.addObject("title", "Confirm Booking");
 
@@ -366,6 +365,7 @@ public class PageController {
 					ModelAndView mv = new ModelAndView("index2");
 					BookingDetails bookingDetails = new BookingDetails();
 					
+					
 					Random random = new Random();
 					long pnr=random.nextInt(1_000_000_000) + (random.nextInt(90) + 10) * 1_000_000_000L;
 					bookingDetails.setPnr(pnr);
@@ -380,41 +380,53 @@ public class PageController {
 					
 					bookingDetails.setUser(user);
 					
-					if (session.getAttribute("bus")!=null) {
+					if (session.getAttribute("bussession")!=null) {
 						
-						Bus bus=(Bus)session.getAttribute("bus");
-						
+						Bus bus=(Bus)session.getAttribute("bussession");
+						mv.addObject("bus", bus);
+						List ll= (List) session.getAttribute("busSeatList");
+						bookingDetails.setNoOfPassenger(ll.size());
+		                   mv.addObject("noOfPassenger", ll.size());
+		                   System.out.println("Session:"+session.getAttribute("bussession"));
+						 System.out.println(bus);
 						bookingDetails.setBus(bus);
 		                   bookingDetails.setSeatNos(session.getAttribute("busSeatList").toString());
 		                   bookingDetails.setFare((double)session.getAttribute("busFare"));
-
+		                   bookingDetails.setPickUp(bus.getBoardTime());
 
 						
 					}
 					
                    
-                   if (session.getAttribute("flight")!=null) {
+                   if (session.getAttribute("flightsession")!=null) {
 	
-	               Flight flight=(Flight)session.getAttribute("flight");
+	               Flight flight=(Flight)session.getAttribute("flightsession");
 	
+	               List ll= (List) session.getAttribute("flightSeatList");
+					bookingDetails.setNoOfPassenger(ll.size());
+	                   mv.addObject("noOfPassenger", ll.size());
+	                   
+	                   mv.addObject("flight", flight);
 	                bookingDetails.setFlight(flight);
 	                   bookingDetails.setSeatNos(session.getAttribute("flightSeatList").toString());
 	                   bookingDetails.setFare((double)session.getAttribute("flightFare"));
-
+	                   bookingDetails.setPickUp(flight.getBoardTime());
 
 }
 					
-                   if (session.getAttribute("cab")!=null) {
+                   
+                   if (session.getAttribute("cabsession")!=null) {
                 		
-    	               Cab cab=(Cab)session.getAttribute("cab");
+    	               Cab cab=(Cab)session.getAttribute("cabsession");
+    	               mv.addObject("cab", cab);
 	                   bookingDetails.setSeatNos(null);
     	                bookingDetails.setCab(cab);
     	                   bookingDetails.setFare((double)session.getAttribute("cabFare"));
-
+    	                   bookingDetails.setPickUp((String) session.getAttribute("cabPickup"));
     	
     }
+                   
                    LocalDate date = LocalDate.now();
-                  
                    bookingDetails.setDate(date.toString());
                    mv.addObject("bookDate", date);
                    bookingDetails.setStatus(true);
@@ -430,7 +442,7 @@ public class PageController {
 				@RequestMapping("/payu/booking/payment/fail")
 				public ModelAndView paymentFail(){
 					 
-					ModelAndView mv = new ModelAndView("index");
+					ModelAndView mv = new ModelAndView("index2");
 					mv.addObject("clickedPaymentFail", true);
 
 					return mv;
@@ -440,17 +452,24 @@ public class PageController {
 				@RequestMapping("/payu/booking/payment/cancel")
 				public ModelAndView paymentCancel(){
 					 
-					ModelAndView mv = new ModelAndView("index");
+					ModelAndView mv = new ModelAndView("index2");
 					mv.addObject("clickedPaymentCancel", true);
 
 					return mv;
 				}
 
 				@RequestMapping("/getTicket")
-				public ModelAndView printTicket(){
-					 
+				public ModelAndView getTicket(@RequestParam("to") String to){					 
 					ModelAndView mv = new ModelAndView("index2");
 					mv.addObject("clickedGetTicket", true);
+					if (to.equals("print")) {
+						mv.addObject("url","/printTicket");
+					}
+					else if (to.equals("cancel")) {
+						mv.addObject("url","/cancelTicket");
+		
+					}
+					
 
 					return mv;
 				}
@@ -460,6 +479,43 @@ public class PageController {
 					 
 					ModelAndView mv = new ModelAndView("index2");
 					mv.addObject("clickedEPrintTicket", true);
+					BookingDetails details=bookingDao.getBookingDetailByPnr(pnr);
+					
+					mv.addObject("pnr", details.getPnr());
+					mv.addObject("txnid", details.getTransactionId());
+					mv.addObject("fname", details.getPassengerName());
+					mv.addObject("phone", details.getPassengerPhone());
+					mv.addObject("bus", details.getBus());
+					mv.addObject("flight", details.getFlight());
+					mv.addObject("cab", details.getCab());
+					mv.addObject("seatNo", details.getSeatNos());
+					mv.addObject("bkdate", details.getDate());
+					mv.addObject("noOfPassenger",details.getNoOfPassenger());
+					mv.addObject("fare", details.getFare());
+					mv.addObject("cabPickup", session.getAttribute("cabPickup"));
+					System.out.println(session.getAttribute("cabPickup"));
+					if (details.isStatus()==true && details.isPaymentStatus()==true ) {
+						mv.addObject("status","Booked" );	
+						mv.addObject("paystatus", "Payment Successful ");
+
+					}
+					else if (details.isStatus()==false || details.isPaymentStatus()==false ) {
+						mv.addObject("status","Canceled" );	
+						mv.addObject("paystatus", "Payment UnSuccessful ");
+
+					}
+					
+					System.out.println(details);
+
+					return mv;
+				}
+				
+
+				@RequestMapping("/cancelTicket")
+				public ModelAndView cancelETicket(@RequestParam("pnrno") long pnr){
+					 
+					ModelAndView mv = new ModelAndView("index2");
+					mv.addObject("clickedCancelTicket", true);
 					BookingDetails details=bookingDao.getBookingDetailByPnr(pnr);
 					
 					mv.addObject("pnr", details.getPnr());
@@ -488,6 +544,34 @@ public class PageController {
 					return mv;
 				}
 				
+				@RequestMapping("/{pnr}/cancelTicket")
+				public ModelAndView processcancelETicket(@PathVariable("pnr") long pnr){
+					 
+					ModelAndView mv = new ModelAndView("index2");
+					mv.addObject("clickedProcessCancelTicket", true);
+					BookingDetails details=bookingDao.getBookingDetailByPnr(pnr);
+					
+					if (details.isStatus()==true && details.isPaymentStatus()==true ) {
+						
+						System.out.println("in if");
+						details.setStatus(false);
+						details.setPaymentStatus(false);
+						bookingDao.update(details);
+						mv.addObject("message","Your Ticket has been Canceled Successfully" );	
+
+						
+					}
+					
+					else if (details.isStatus()==false || details.isPaymentStatus()==false ) {
+						mv.addObject("message","Your Ticket is Already Canceled" );	
+						System.out.println("in else if");
+
+					}
+					
+					System.out.println(details);
+
+					return mv;
+				}
 
 				
 }

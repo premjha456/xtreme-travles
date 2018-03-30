@@ -15,7 +15,7 @@ public class BookingDetails {
 
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id; 
 	
 	private long pnr;
@@ -26,7 +26,7 @@ public class BookingDetails {
 	
 	private String passengerName;
 	private String passengerPhone;
-	
+	private String pickUp;
 	@ManyToOne(cascade={CascadeType.ALL})
 	private Bus bus;
 	
@@ -37,6 +37,7 @@ public class BookingDetails {
 	@Column(name="seat_nos")
 	private String seatNos;
 	private double fare;
+	private int noOfPassenger;
 	@Column(name="booking_date")
 	private String date;
 	private boolean status;
@@ -129,12 +130,33 @@ public class BookingDetails {
 	public void setPassengerPhone(String passengerPhone) {
 		this.passengerPhone = passengerPhone;
 	}
+	
+	
+	public int getNoOfPassenger() {
+		return noOfPassenger;
+	}
+	public void setNoOfPassenger(int noOfPassenger) {
+		this.noOfPassenger = noOfPassenger;
+	}
+	
+	
+	public String getPickUp() {
+		return pickUp;
+	}
+	public void setPickUp(String pickUp) {
+		this.pickUp = pickUp;
+	}
 	@Override
 	public String toString() {
 		return "BookingDetails [id=" + id + ", pnr=" + pnr + ", transactionId=" + transactionId + ", user=" + user
+				+ ", passengerName=" + passengerName + ", passengerPhone=" + passengerPhone + ", pickUp=" + pickUp
 				+ ", bus=" + bus + ", flight=" + flight + ", cab=" + cab + ", seatNos=" + seatNos + ", fare=" + fare
-				+ ", date=" + date + ", status=" + status + ", paymentStatus=" + paymentStatus + "]";
+				+ ", noOfPassenger=" + noOfPassenger + ", date=" + date + ", status=" + status + ", paymentStatus="
+				+ paymentStatus + "]";
 	}
+	
+	
+	
 	
 	
 	

@@ -1,13 +1,21 @@
 	<br><br><br>
 	<div class="container">
+	<c:if test="${not empty message}">	
+		<div class="row">			
+			<div class="col-xs-12 col-md-offset-2 col-md-8">			
+				<div class="alert alert-info fade in">${message}</div>				
+			</div>
+		</div>
+	</c:if>
 	
 		<div class="col-md-offset-2 col-md-8">
 	
 	 <div class="panel panel-primary">
     <div class="panel-heading"><h4>Enter Your PnrNo</h4></div>
     <div class="panel-body">
-    <form class="form-horizontal" method="POST" action="${contextRoot}/printTicket">
-    <div class="form-group">
+    
+    <form class="form-horizontal" method="POST" action="${contextRoot}${url}">
+	<div class="form-group">
       <label class="control-label col-sm-2" for="email">Pnr No:</label>
       <div class="col-sm-6">
         <div class="form-group">

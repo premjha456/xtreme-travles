@@ -1,53 +1,3 @@
-<script type="text/javascript">
-
-var gAutoPrint = true;
-
-function processPrint(){
-
-if (document.getElementById != null){
-
-var html = '<html>\n<head>\n';
-
-if (document.getElementsByTagName != null){
-
-var headTags = document.getElementsByTagName("head");
-
-if (headTags.length > 0) html += headTags[0].innerHTML;
-
-}
-
-html += '\n</head>\n<body>\n';
-
-var printReadyElem = document.getElementById("printarea");
-
-if (printReadyElem != null) html += printReadyElem.innerHTML;
-
-else{
-
-alert("Error, no contents.");
-
-return;
-
-}
-
-html += '\n</body>\n</html>';
-
-var printWin = window.open("","processPrint");
-
-printWin.document.open();
-
-printWin.document.write(html);
-
-printWin.document.close();
-
-if (gAutoPrint) printWin.print();
-
-} else alert("Browser not supported.");
-
-}
-
-
-</script> 
 <style type="text/css" media="print" >
 body
 {
@@ -101,15 +51,15 @@ th, td {
     
 
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Transaction Id:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><%=request.getParameter("txnid") %></td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;">${txnid }</td>
 
   </tr>
   <tr>
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Name:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p><%=request.getParameter("firstname") %></p></td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>${fname }</p></td>
     
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Phone:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p><%=request.getParameter("phone") %></p></td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>${phone }</p></td>
     
   </tr>
   
@@ -163,67 +113,18 @@ th, td {
                                               ${flight.boardTime }
                                               </c:if> 
                                               <c:if test="${cab != null}">
-                                             ${cabPickup }
+                                             
                                               </c:if>
 </p></td>
     
   </tr>
  
  <tr>
- <td style="padding: 5px; text-align: left; border: 1px solid black;">
- 
-    <c:if test="${bus != null} "> 
-    Seat Nos:
-    </c:if> 
-                                              
-    <c:if test="${flight != null} "> 
-    Seat Nos:
-    </c:if> 
-                                              
-    <c:if test="${cab != null}">
-    Service Provider:
-    </c:if> 
- </td>
- 
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>
-<c:if test="${bus != null}"> 
-                                              ${busSeatList }</c:if> 
-                                              <c:if test="${flight != null}">
-                                              ${flightSeatList}
-                                              </c:if> 
-  <c:if test="${cab != null}">
-                                              ${cab.cabServiceProvider}
-                                              </c:if> 
-  
-</p></td>
-						<td style="padding: 5px; text-align: left; border: 1px solid black;">
-							<c:if test="${bus != null} "> 
-    No of Passengers:
-						</c:if>
-						<c:if test="${flight != null} "> 
-    No of Passengers:
-                                              </c:if>
-
-						<c:if test="${cab != null}">
-    Aminities:
-                                              </c:if>
-						</td>
-						
-						
-						
-		<td style="padding: 5px; text-align: left; border: 1px solid black;">				
-						<c:if test="${bus != null} "> 
-                            ${noOfPassenger}
-                         </c:if>
-                                              
-                         <c:if test="${flight != null} "> 
-                            ${noOfPassenger}
-                            </c:if>  
-                                              
-                       <c:if test="${cab != null} ">
-                          ${cab.aminities }
-                                              </c:if> 
-</td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;">Seat Nos:</td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>${seatNo}</p></td>
+    
+    <td style="padding: 5px; text-align: left; border: 1px solid black;">No of Passengers:</td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>4</p></td>
     
   </tr>
   
@@ -236,21 +137,12 @@ th, td {
                                               <c:if test="${flight != null}">
                                               ${flight.boardPoint }
                                               </c:if> 
-                                              <c:if test="${cab != null}">
+                                              <c:if test="${cab != null}}">
                                               ${cab.boardPoint }
                                               </c:if>
 </p></td>
     
-    <c:if test="${bus != null}"> 
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Bus Number:</td>
-    </c:if>
-                                              <c:if test="${flight != null}">
-    <td style="padding: 5px; text-align: left; border: 1px solid black;">Flight Number:</td>
-                                              </c:if> 
-    <c:if test="${cab != null}">                                          
-    <td style="padding: 5px; text-align: left; border: 1px solid black;">Cab Number:</td>
-                                              </c:if>
-    
     <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>
 
 <c:if test="${bus != null}"> 
@@ -258,7 +150,7 @@ th, td {
                                               <c:if test="${flight != null}">
                                               ${flight.flightNo }
                                               </c:if> 
-                                              <c:if test="${cab != null}">
+                                              <c:if test="${cab != null}}">
                                               ${cab.cabNo }
                                               </c:if>
 </p></td>
@@ -268,35 +160,20 @@ th, td {
                
                  <tr>
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Booking Date:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>
-   ${bookDate}
+    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>${bkdate}
 </p></td>
     
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Ticket Fare:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>
-
-<c:if test="${bus != null}"> 
-                                              ${busFare }</c:if> 
-                                              <c:if test="${flight != null}">
-                                              ${flightFare }
-                                              </c:if> 
-                                              <c:if test="${cab != null}">
-                                              ${cabFare }
-                                              </c:if>
-</p></td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>${fare}</p></td>
     
    </tr>
    
    <tr>
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Payment Status:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>
-    Payment Successful
-    </p></td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>${paystatus }</p></td>
     
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Ticket Status:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>
-   Booked 
-</p></td>
+    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>${status}</p></td>
     
   </tr>
   
@@ -306,15 +183,9 @@ th, td {
 </div>
 <div class="col-sm-4">
 <br><br><br>
-<button type="button" class="btn btn-info btn-lg" onclick="javascript:void(processPrint());" id="btnPrint">
-          <span class="glyphicon glyphicon-print"></span> Print
-        </button>
-
-
+<a href="${contextRoot}/${pnr}/cancelTicket" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-remove"></span> Cancel Ticket</a>
 </div>
 
 </div>
 
-      </div>
-              
-      
+      </div>     

@@ -28,6 +28,9 @@ public class Cab {
 	@Column(name="cab_service_provider")
 	@NotBlank(message="Plese Enter Service Provider")
 	private String cabServiceProvider;
+	@Column(name="cab_reg_no")
+	@NotBlank(message="Plese Enter Cab Reg No")
+	private String cabNo;
 	@Column(name="board_point")
 	@NotBlank(message="Plese Enter BoardPoint")
 	private String boardPoint;
@@ -113,12 +116,23 @@ public class Cab {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	
+	
+	public String getCabNo() {
+		return cabNo;
+	}
+	public void setCabNo(String cabNo) {
+		this.cabNo = cabNo;
+	}
 	@Override
 	public String toString() {
 		return "Cab [id=" + id + ", cabName=" + cabName + ", cabType=" + cabType + ", aminities=" + aminities
-				+ ", cabServiceProvider=" + cabServiceProvider + ", boardPoint=" + boardPoint + ", dropPoint="
-				+ dropPoint + ", date=" + date + ", user=" + user + ", fare=" + fare + ", active=" + active + "]";
+				+ ", cabServiceProvider=" + cabServiceProvider + ", cabNo=" + cabNo + ", boardPoint=" + boardPoint
+				+ ", dropPoint=" + dropPoint + ", date=" + date + ", user=" + user + ", fare=" + fare + ", active="
+				+ active + "]";
 	}
+	
+	
 	
 	
 	

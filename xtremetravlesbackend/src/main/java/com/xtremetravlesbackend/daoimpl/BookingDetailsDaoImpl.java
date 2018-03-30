@@ -94,6 +94,5 @@ public class BookingDetailsDaoImpl implements BookingDetailsDao {
 				     .createQuery("From BookingDetails Where pnr=:pnr", BookingDetails.class)
 				         .setParameter("pnr", pnr)
 				              .getSingleResult();
-	}
-
+}
 }

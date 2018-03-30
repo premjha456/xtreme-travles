@@ -121,7 +121,7 @@ th, td {
 								<c:if test="${flight != null}">
                                               ${flight.boardPoint }
                                               </c:if>
-								<c:if test="${cab != null}}">
+								<c:if test="${cab != null}">
                                               ${cab.boardPoint }
                                               </c:if>
 							</p></td>
@@ -134,7 +134,7 @@ th, td {
 								<c:if test="${flight != null}">
                                               ${flight.dropPoint }
                                               </c:if>
-								<c:if test="${cab != null}}">
+								<c:if test="${cab != null}">
                                               ${cab.dropPoint }
                                               </c:if>
 							</p></td>
@@ -149,7 +149,7 @@ th, td {
 								<c:if test="${flight != null}">
                                               ${flight.date }
                                               </c:if>
-								<c:if test="${cab != null}}">
+								<c:if test="${cab != null}">
                                               ${cab.date }
                                               </c:if>
     
@@ -162,19 +162,67 @@ th, td {
                                               <c:if test="${flight != null}">
                                               ${flight.boardTime }
                                               </c:if> 
-                                              <c:if test="${cab != null}}">
-                                             
+                                              <c:if test="${cab != null}">
+                                              ${cabPickup}
                                               </c:if>
 </p></td>
     
   </tr>
  
  <tr>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;">Seat Nos:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>${seatNo}</p></td>
+ <td style="padding: 5px; text-align: left; border: 1px solid black;">
+ Seat Nos:
+ <c:if test="${bus != null}"> 
+    Seat Nos:
+    </c:if> 
     
+    <c:if test="${flight != null}"> 
+    Seat Nos:
+    </c:if> 
+ 
+ <c:if test="${cab != null}">
+    Service Provider:
+    </c:if>
+    </td>
+     <td style="padding: 5px; text-align: left; border: 1px solid black;">                                         
+ <c:if test="${bus != null}"> 
+                                              ${seatNo}</c:if> 
+                                              <c:if test="${flight != null}">
+                                              ${seatNo}
+                                              </c:if> 
+  <c:if test="${cab != null}">
+                                              ${cab.cabServiceProvider}
+                                              </c:if> 
+ 
+  </td>
+    
+    
+    
+    
+<c:if test="${bus != null} "> 
     <td style="padding: 5px; text-align: left; border: 1px solid black;">No of Passengers:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>4</p></td>
+                                              </c:if> 
+                                              
+  <c:if test="${flight != null} "> 
+    <td style="padding: 5px; text-align: left; border: 1px solid black;">No of Passengers:</td>
+                                              </c:if> 
+                                              
+                                              <c:if test="${cab != null}">
+    <td style="padding: 5px; text-align: left; border: 1px solid black;">Aminities:</td>
+                                              </c:if> 
+                                              
+                                              
+                                              <c:if test="${bus != null } "> 
+    <td style="padding: 5px; text-align: left; border: 1px solid black;">${noOfPassenger}</td>
+                                              </c:if> 
+                                              
+    <c:if test="${flight != null } "> 
+    <td style="padding: 5px; text-align: left; border: 1px solid black;">${noOfPassenger}</td>
+                                              </c:if>                                          
+                                              <c:if test="${cab != null}">
+    <td style="padding: 5px; text-align: left; border: 1px solid black;">${cab.aminities }</td>
+                                              </c:if> 
+                                              
     
   </tr>
   
@@ -187,20 +235,27 @@ th, td {
                                               <c:if test="${flight != null}">
                                               ${flight.boardPoint }
                                               </c:if> 
-                                              <c:if test="${cab != null}}">
+                                              <c:if test="${cab != null}">
                                               ${cab.boardPoint }
                                               </c:if>
 </p></td>
-    
+  <c:if test="${bus != null}"> 
     <td style="padding: 5px; text-align: left; border: 1px solid black;">Bus Number:</td>
-    <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>
+    </c:if>
+                                              <c:if test="${flight != null}">
+    <td style="padding: 5px; text-align: left; border: 1px solid black;">Flight Number:</td>
+                                              </c:if> 
+    <c:if test="${cab != null}">                                          
+    <td style="padding: 5px; text-align: left; border: 1px solid black;">Cab Number:</td>
+                                              </c:if>   
+          <td style="padding: 5px; text-align: left; border: 1px solid black;"><p>
 
 <c:if test="${bus != null}"> 
                                               ${bus.busRegNo }</c:if> 
                                               <c:if test="${flight != null}">
                                               ${flight.flightNo }
                                               </c:if> 
-                                              <c:if test="${cab != null}}">
+                                              <c:if test="${cab != null}">
                                               ${cab.cabNo }
                                               </c:if>
 </p></td>

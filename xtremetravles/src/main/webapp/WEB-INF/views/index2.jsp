@@ -61,6 +61,15 @@
 				<%@include file="printTicket.jsp"%>
 			</c:if>
 
+<c:if test="${clickedCancelTicket == true }">
+				<%@include file="cancelTicket.jsp"%>
+			</c:if>
+			
+			<c:if test="${clickedProcessCancelTicket == true }">
+				<%@include file="getTicket.jsp"%>
+			</c:if>
+			
+
 
 <div class="container">
 
