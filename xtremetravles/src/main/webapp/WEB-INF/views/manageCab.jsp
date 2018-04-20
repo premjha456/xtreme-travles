@@ -80,6 +80,15 @@
 							</div>
 						</div>
 
+                        <div class="form-group">
+							<label class="control-label col-md-4">Cab No</label>
+							<div class="col-md-8">
+								<sf:input type="text" path="cabNo" class="form-control"
+									placeholder="Cab No" /> 
+								<sf:errors path="cabNo" cssClass="help-block" element="em"/>	
+							</div>
+						</div>
+
 						<div class="form-group">
 							<label class="control-label col-md-4">Board Point</label>
 							<div class="col-md-8">
@@ -150,7 +159,7 @@
 
 	
 	<hr/>	
-	<h1>Available Bus</h1>
+	<h1>Available Cab</h1>
 	<hr/>
 	
 	<div class="row">

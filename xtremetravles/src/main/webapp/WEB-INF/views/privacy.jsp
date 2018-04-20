@@ -1,112 +1,29 @@
-	<!-- banner-bottom -->
-	<div class="banner-bottom">
-		<!-- container -->
-		<div class="container">
-			<div class="about-info">
-				<h2>Privacy Policy</h2>
-			</div>
-			<div class="faqs-top-grids terms-grids">	
-				<h5>Phasellus dignissim massa nisl, et elementum lacus gravida at. Suspendisse vel turpis mi. Praesent luctus, est hendrerit ornare faucibus, ex neque tristique lorem, quis lacinia lorem metus ac sem.</h5>																
-				<p>Morbi vestibulum dictum nulla non pharetra. Etiam mattis, neque sit amet bibendum porttitor, massa ligula aliquam purus, efficitur sodales mauris libero vel metus. Nulla efficitur tempor pellentesque. Vivamus finibus ultricies facilisis. Pellentesque eu fringilla augue, vitae ullamcorper mauris. Nullam eget pretium arcu.
-					Aliquam suscipit diam eget dolor dapibus consequat ut sit amet lorem. Duis iaculis tristique mauris a aliquam. Aliquam scelerisque eros lacus, sit amet tincidunt eros bibendum in. Aliquam erat volutpat. Cras tincidunt quis erat ac ornare. Aliquam porttitor mattis sem, commodo semper risus tempus vestibulum. Proin ipsum est, 
-					consectetur vel rutrum non, laoreet non libero.
-				</p>
-				<div class="terms-bottom-grids">
-					<h6>1.Aliquam suscipit diam eget</h6>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at tincidunt quam. Fusce mollis sit amet sapien id tincidunt. Nam bibendum felis eu massa feugiat ullamcorper. Nam in purus pharetra, semper sapien vel, gravida massa. Aliquam ac vulputate ex. Ut congue vitae sapien et tincidunt. Integer semper accumsan tortor vitae faucibus</p>
-					<ol>
-						<li>
-							<p class="terms-info-text">Pellentesque consequat ligula dui, in aliquam libero pellentesque sit amet. Ut viverra, urna vitae 
-								volutpat rhoncus, lectus sem tincidunt mauris, eu pretium neque urna nec lorem. Mauris cursus rhoncus 
-								feugiat. Proin quis nisl augue. Nulla eleifend velit neque, id cursus erat interdum sit amet.
-							</p>
-						</li>
-						<li>
-							<p class="terms-info-text">Pellentesque consequat ligula dui, in aliquam libero pellentesque sit amet. Ut viverra, urna vitae 
-								volutpat rhoncus, lectus sem tincidunt mauris, eu pretium neque urna nec lorem. Mauris cursus rhoncus 
-								feugiat. Proin quis nisl augue. Nulla eleifend velit neque, id cursus erat interdum sit amet.
-							</p>
-						</li>
-						<li>
-							<p class="terms-info-text">Pellentesque consequat ligula dui, in aliquam libero pellentesque sit amet. Ut viverra, urna vitae 
-								volutpat rhoncus, lectus sem tincidunt mauris, eu pretium neque urna nec lorem. Mauris cursus rhoncus 
-								feugiat. Proin quis nisl augue. Nulla eleifend velit neque, id cursus erat interdum sit amet.
-							</p>
-						</li>
-					</ol>
-				</div>
-				<div class="terms-bottom-grids">
-					<h6>2.Dolor dapibus consequat ut sit amet lorem</h6>
-					<p>Ut facilisis non lacus eget condimentum. Vestibulum porta lobortis risus quis egestas. In hac habitasse platea dictumst. Nunc lacinia vitae nunc nec tristique. Morbi nec purus id augue malesuada rutrum. Maecenas eget diam dignissim, scelerisque est ac, fringilla ante. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum pulvinar eleifend urna, a euismod nibh porta a.</p>
-					<ol>
-						<li>
-							<p class="terms-info-text">Pellentesque consequat ligula dui, in aliquam libero pellentesque sit amet. Ut viverra, urna vitae 
-								volutpat rhoncus, lectus sem tincidunt mauris, eu pretium neque urna nec lorem. Mauris cursus rhoncus 
-								feugiat. Proin quis nisl augue. Nulla eleifend velit neque, id cursus erat interdum sit amet.
-							</p>
-						</li>
-						<li>
-							<p class="terms-info-text">Pellentesque consequat ligula dui, in aliquam libero pellentesque sit amet. Ut viverra, urna vitae 
-								volutpat rhoncus, lectus sem tincidunt mauris, eu pretium neque urna nec lorem. Mauris cursus rhoncus 
-								feugiat. Proin quis nisl augue. Nulla eleifend velit neque, id cursus erat interdum sit amet.
-							</p>
-						</li>
-						<li>
-							<p class="terms-info-text">Pellentesque consequat ligula dui, in aliquam libero pellentesque sit amet. Ut viverra, urna vitae 
-								volutpat rhoncus, lectus sem tincidunt mauris, eu pretium neque urna nec lorem. Mauris cursus rhoncus 
-								feugiat. Proin quis nisl augue. Nulla eleifend velit neque, id cursus erat interdum sit amet.
-							</p>
-						</li>
-						<li>
-							<p class="terms-info-text">Pellentesque consequat ligula dui, in aliquam libero pellentesque sit amet. Ut viverra, urna vitae 
-								volutpat rhoncus, lectus sem tincidunt mauris, eu pretium neque urna nec lorem. Mauris cursus rhoncus 
-								feugiat. Proin quis nisl augue. Nulla eleifend velit neque, id cursus erat interdum sit amet.
-							</p>
-						</li>
-						<li>
-							<p class="terms-info-text">Pellentesque consequat ligula dui, in aliquam libero pellentesque sit amet. Ut viverra, urna vitae 
-								volutpat rhoncus, lectus sem tincidunt mauris, eu pretium neque urna nec lorem. Mauris cursus rhoncus 
-								feugiat. Proin quis nisl augue. Nulla eleifend velit neque, id cursus erat interdum sit amet.
-							</p>
-						</li>
-					</ol>
-				</div>
-				<div class="terms-bottom-grids">
-					<h6>3.Aliquam suscipit diam eget</h6>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at tincidunt quam. Fusce mollis sit amet sapien id tincidunt. Nam bibendum felis eu massa feugiat ullamcorper. Nam in purus pharetra, semper sapien vel, gravida massa. Aliquam ac vulputate ex. Ut congue vitae sapien et tincidunt. Integer semper accumsan tortor vitae faucibus Ut facilisis non lacus eget condimentum. Vestibulum porta lobortis risus quis egestas. In hac habitasse platea dictumst.</p>
-					<ol>
-						<li>
-							<p class="terms-info-text">Pellentesque consequat ligula dui, in aliquam libero pellentesque sit amet. Ut viverra, urna vitae 
-								volutpat rhoncus, lectus sem tincidunt mauris, eu pretium neque urna nec lorem. Mauris cursus rhoncus 
-								feugiat. Proin quis nisl augue. Nulla eleifend velit neque, id cursus erat interdum sit amet.
-							</p>
-						</li>
-						<li>
-							<p class="terms-info-text">Pellentesque consequat ligula dui, in aliquam libero pellentesque sit amet. Ut viverra, urna vitae 
-								volutpat rhoncus, lectus sem tincidunt mauris, eu pretium neque urna nec lorem. Mauris cursus rhoncus 
-								feugiat. Proin quis nisl augue. Nulla eleifend velit neque, id cursus erat interdum sit amet.
-							</p>
-						</li>
-					</ol>
-				</div>
-				<div class="terms-bottom-grids">
-					<h6>4.Vestibulum porta lobortis risus quis egestas</h6>
-					<p>Ut facilisis non lacus eget condimentum. Vestibulum porta lobortis risus quis egestas. In hac habitasse platea dictumst. Nunc lacinia vitae nunc nec tristique. Morbi nec purus id augue malesuada rutrum. Maecenas eget diam dignissim, scelerisque est ac, fringilla ante. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum pulvinar eleifend urna, a euismod nibh porta a.</p>
-					<ol>
-						<li>
-							<p class="terms-info-text">Pellentesque consequat ligula dui, in aliquam libero pellentesque sit amet. Ut viverra, urna vitae 
-								volutpat rhoncus, lectus sem tincidunt mauris, eu pretium neque urna nec lorem. Mauris cursus rhoncus 
-								feugiat. Proin quis nisl augue. Nulla eleifend velit neque, id cursus erat interdum sit amet.
-							</p>
-						</li>		
-					</ol>
-				</div>
-				<div class="terms-bottom-grids">
-					<h6>5.Consectetur adipiscing elit duis at tincidunt quam</h6>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at tincidunt quam. Fusce mollis sit amet sapien id tincidunt. Ut facilisis non lacus eget condimentum. Vestibulum porta lobortis risus quis egestas. In hac habitasse platea dictumst. Nunc lacinia vitae nunc nec tristique. Morbi nec purus id augue malesuada rutrum. Maecenas eget diam dignissim, scelerisque est ac, fringilla ante. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum pulvinar eleifend urna, a euismod nibh porta a. </p>
-				</div>
-			</div>
-		</div>
-		<!-- //container -->
-	</div>
-	<!-- //banner-bottom -->
+<div class="container">
+  <h2>Privacy Policy</h2>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+    <h4>Privacy Policy - Xtreme Travels</h4>
+    </div>
+    <div class="panel-body">
+
+Introduction:
+
+Xtreme Travels (India) Private Limited  recognizes the importance of privacy of its users and also of maintaining confidentiality of information provided by its users.
+
+This Privacy Policy provides for the practices for handling and securing user's Personal Information  by Xtreme Travels and its subsidiaries and affiliates.
+
+This Privacy Policy is applicable to persons who purchase / intend to purchase / inquire about any product(s) and / or service(s) made available by Xtreme Travels ('User') through any of Xtreme Travels customer interface channels including website, mobile site, mobile app & offline channels including call centers and offices (collectively referred herein as "Sales Channels").
+
+For the purpose of this Privacy Policy, wherever the context so requires "you" or "your" shall mean User and the term "we", "us", "our" shall mean Xtreme Travels. For the purpose of this Privacy Policy, Website means the website(s), mobile site(s) and mobile app(s).
+
+By using or accessing the Website or other Sales Channels, the User hereby agrees with the terms of this Privacy Policy and the contents herein. If you disagree with this Privacy Policy please do not use or access our Website or other Sales Channels.
+
+This Privacy Policy does not apply to any website(s), mobile sites and mobile apps of third parties, even if their websites/products are linked to our Website. User should take note that information and privacy practices of Xtreme Travels business partners, advertisers, sponsors or other sites to which Xtreme Travels provides hyperlink(s), may be materially different from this Privacy Policy. Accordingly, it is recommended that you review the privacy statements and policies of any such third parties with whom they interact.
+
+This Privacy Policy is an integral part of your User Agreement with MMT and all capitalized terms used, but not otherwise defined herein, shall have the respective meanings as ascribed to them in the User Agreement.
+
+
+</div>
+  </div>
+</div>
+

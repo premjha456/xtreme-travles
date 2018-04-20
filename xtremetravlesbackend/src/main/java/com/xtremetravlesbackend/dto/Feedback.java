@@ -20,12 +20,6 @@ public class Feedback {
 	@Column(name="email")
 	private String email;
 	
-	@Column(name="phone")
-	private String phone;
-	
-	@Column(name="subject")
-	private String subject;
-	
 	@Column(name="comment")
 	private String comment;
 	
@@ -56,22 +50,6 @@ public class Feedback {
 		this.email = email;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
 	public String getComment() {
 		return comment;
 	}
@@ -90,9 +68,10 @@ public class Feedback {
 
 	@Override
 	public String toString() {
-		return "Feedback [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", subject="
-				+ subject + ", comment=" + comment + ", user=" + user + "]";
+		return "Feedback [id=" + id + ", name=" + name + ", email=" + email + ", comment=" + comment + ", user=" + user
+				+ "]";
 	}
+
 	
 	
 	

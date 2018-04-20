@@ -1,21 +1,17 @@
-	<!-- banner-bottom -->
-	<div class="banner-bottom">
-		<!-- container -->
-		<div class="container">
-			<div class="about-info">
-				<h2>A brief history of Govihar</h2>
-			</div>
-			<div class="about-grids">
-				<div class="col-md-8 about-left">
-					<h3>Phasellus dignissim massa nisl, et elementum lacus gravida at. Suspendisse vel turpis mi.Praesent luctus, est hendrerit ornare faucibus, ex neque tristique lorem</h3>
-					<p>Aliquam suscipit diam eget dolor dapibus consequat ut sit amet lorem. Duis iaculis tristique mauris a aliquam. Aliquam scelerisque eros lacus, sit amet tincidunt eros bibendum in. Aliquam erat volutpat. Cras tincidunt quis erat ac ornare. Aliquam porttitor mattis sem, commodo semper risus tempus vestibulum. Proin ipsum est Aliquam suscipit diam eget dolor dapibus consequat ut sit amet lorem. Duis iaculis tristique mauris a aliquam. Aliquam scelerisque eros lacus, sit amet tincidunt eros bibendum in. Aliquam erat volutpat. Cras tincidunt quis erat ac ornare. Aliquam porttitor mattis sem, commodo semper risus tempus vestibulum. Proin ipsum est</p>
-				</div>
-				<div class="col-md-4 about-right">
-					<img src="images/w1.jpg" alt="" />
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-		<!-- //container -->
-	</div>
-	<!-- //banner-bottom -->
+ 
+ <div class="container">
+  <h2>About US</h2>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+    <h4>About US - Xtreme Travels</h4>
+    </div>
+    <div class="panel-body">
+
+<h4>Xtreme Travels is the  online flight,bus,cab booking engine in India. Xtreme Travels is also the number one ranked mobile app under the travel category. Xtreme Travels core value differentiator is delivery of the fastest and the most trusted user experiences, be it in terms of quickest search and booking, fastest payments, settlement and refund processes. Xtreme Travels has grown its hbusotels booking volumes by 5x in 2018 . 70% of bus,cab bookings take place on Xtreme Travels website.</h4>
+
+
+</div>
+  </div>
+</div>
+
+  

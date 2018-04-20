@@ -1,5 +1,10 @@
 package com.xtremetravles.controller;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -47,10 +52,11 @@ public class ManagementController {
 	
 	//bus management first time after load and show  code
 	@RequestMapping(value="/bus",method=RequestMethod.GET)
-	public ModelAndView manageProducts(@RequestParam(name="case", required=false) String case1){
+	public ModelAndView manageBus(@RequestParam(name="case", required=false) String case1){
 		
 		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("clickedManageBus", true);
+		mv.addObject("title", "Manage Bus");
 
 		Bus bus = new Bus();
 	
@@ -135,6 +141,7 @@ public class ManagementController {
 			
 			ModelAndView mv = new ModelAndView("index");
 			mv.addObject("clickedManageFlight", true);
+			mv.addObject("title", "Manage Flight");
 
 			Flight flight = new Flight();
 		
@@ -217,6 +224,7 @@ public class ManagementController {
 					
 					ModelAndView mv = new ModelAndView("index");
 					mv.addObject("clickedManageCab", true);
+					mv.addObject("title", "Manage Cab");
 
 					Cab cab = new Cab();
 				
@@ -289,6 +297,27 @@ public class ManagementController {
 					
 					return (state)?"You have Successfully Deactivated the Flight"
 							:"You have Successfully Activated the Flight";
+				}
+
+				
+				@RequestMapping(value="/seats/{bid}/{id}", method=RequestMethod.POST)
+				public String seats(@PathVariable int id,@PathVariable int bid){
+					System.out.println("Entered Method");
+					Connection con=null;  
+				    StringBuffer seatNo=new StringBuffer();
+
+					try{  
+					    Class.forName("org.h2.Driver");  
+					    con=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/xtremetravels","prem","prem");  
+					    PreparedStatement ps=con.prepareStatement("UPDATE seatlayout SET s"+id+" = ? WHERE bid=?; "); 
+					    ps.setString(1, "b");
+					    ps.setInt(2,bid );
+					    int i=ps.executeUpdate();  
+					    System.out.println(i+" records inserted"); 	
+					    System.out.println("seat updates");
+					}catch(Exception e){System.out.println(e);} 
+					return null;
+
 				}
 
 }

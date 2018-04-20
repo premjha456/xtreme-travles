@@ -29,16 +29,7 @@ public class FeedbackDaoImpl implements FeedbackDao {
 				           .getResultList();
 	}
 
-	@Override
-	public List<Feedback> getFeedbackListBySubject(String subject) {
-		
-		return sessionFactory
-				.getCurrentSession()
-				       .createQuery("Select * From Feedback Where subject=:subject",Feedback.class)
-				              .setParameter("subject", subject)
-				                    .getResultList();
-	}
-
+	
 	@Override
 	public List<Feedback> getFeedbackListByUserId(User user) {
 
@@ -53,6 +44,22 @@ public class FeedbackDaoImpl implements FeedbackDao {
 	public Feedback get(int id) {
 		// TODO Auto-generated method stub
 		return sessionFactory.getCurrentSession().get(Feedback.class, Integer.valueOf(id));
+	}
+
+
+	@Override
+	public boolean add(Feedback feedback) {
+
+		try {
+			  sessionFactory.getCurrentSession().persist(feedback);
+			  return true;
+
+		} catch (Exception e) {
+          e.printStackTrace();
+		}
+	  
+	  return false;
+
 	}
 
 }

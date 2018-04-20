@@ -95,4 +95,55 @@ public class BookingDetailsDaoImpl implements BookingDetailsDao {
 				         .setParameter("pnr", pnr)
 				              .getSingleResult();
 }
+
+	@Override
+	public List<BookingDetails> getNoOfBusBooked() {
+		return sessionFactory
+				.getCurrentSession()
+				     .createQuery("From BookingDetails Where bus_id IS NOT NULL", BookingDetails.class)
+				              .getResultList();
+	}
+
+	@Override
+	public List<BookingDetails> getNoOfCabBooked() {
+		return sessionFactory
+				.getCurrentSession()
+				     .createQuery("From BookingDetails Where cab_id IS NOT NULL", BookingDetails.class)
+				              .getResultList();
+	}
+
+	@Override
+	public List<BookingDetails> getNoOfFlightBooked() {
+		return sessionFactory
+				.getCurrentSession()
+				     .createQuery("From BookingDetails Where flight_id IS NOT NULL", BookingDetails.class)
+				              .getResultList();
+	}
+
+	@Override
+	public List<BookingDetails> getBookedBus(User user) {
+		return sessionFactory
+				.getCurrentSession()
+				     .createQuery("From BookingDetails Where bus_id IS NOT NULL AND user =:user", BookingDetails.class)
+				     .setParameter("user", user)         
+				     .getResultList();	}
+
+	@Override
+	public List<BookingDetails> getBookedCab(User user) {
+		return sessionFactory
+				.getCurrentSession()
+				     .createQuery("From BookingDetails Where cab_id IS NOT NULL AND user =:user", BookingDetails.class)
+				     .setParameter("user", user)         
+				     .getResultList();
+	}
+
+	@Override
+	public List<BookingDetails> getBookedFlight(User user) {
+		return sessionFactory
+				.getCurrentSession()
+				     .createQuery("From BookingDetails Where flight_id IS NOT NULL AND user =:user", BookingDetails.class)
+				     .setParameter("user", user)         
+				     .getResultList();
+	}
+
 }

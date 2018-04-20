@@ -20,11 +20,12 @@ http://www.springframework.org/schema/security/spring-security.xsd">
 <security:http pattern="/resources/**" security="none"/>
 
 	<security:http>
-		<intercept-url pattern="/admin/**" access="hasAuthority('admin')" />
-		<intercept-url pattern="/supplier/**" access="hasAuthority('supplier')" />
-		<intercept-url pattern="/user/**" access="hasAuthority('user')" />
+		<intercept-url pattern="/admin/**" access="hasAuthority('ADMIN')" />
+		<intercept-url pattern="/manage/**" access="hasAuthority('AGENT')" />
+		<intercept-url pattern="/book/**" access="hasAuthority('USER')" />
 		<intercept-url pattern="/**" access="permitAll" />
 		<form-login login-page="/login" />
+		<access-denied-handler error-page="/access-denied"/>
 		<logout />
 		<security:csrf disabled="true"/>
 	</security:http>

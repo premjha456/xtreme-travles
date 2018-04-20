@@ -11,19 +11,16 @@
 					<div class="col-sm-4">
 						<h3>Our Products</h3>
 						<h5>
-							<a href="#">Domestic Airlines</a><br>
+							<a href="${contextRoot}/home">Domestic Airlines</a><br>
 						</h5>
 						<h5>
-							<a href="#">Bus Booking</a><br>
+							<a href="${contextRoot}/bus">Bus Booking</a><br>
 						</h5>
 						<h5>
-							<a href="#">Cabs Booking</a><br>
+							<a href="${contextRoot}/cabs">Cabs Booking</a><br>
 						</h5>
 						<h5>
-							<a href="#">Hotel Booking</a><br>
-						</h5>
-						<h5>
-							<a href="#">Weekend Holidays</a><br>
+							<a href="${contextRoot}/home">Flight Tickets</a><br>
 						</h5>
 						
 					</div>
@@ -31,19 +28,16 @@
 					<div class="col-sm-4">
 						<h3>Company</h3>
 						<h5>
-							<a href="#">About Us</a><br>
+							<a href="${contextRoot}/about">About Us</a><br>
 						</h5>
 						<h5>
-							<a href="#">Privacy Policy</a><br>
+							<a href="${contextRoot}/privacy">Privacy Policy</a><br>
 						</h5>
 						<h5>
-							<a href="#">FAQs</a><br>
-						</h5>
-						<h5>
-							<a href="#">Feedback</a><br>
+							<a href="${contextRoot}/feedback">Feedback</a><br>
 						</h5>
                         <h5>
-							<a href="#">Terms & Condition</a><br>
+							<a href="${contextRoot}/terms">Terms & Condition</a><br>
 						</h5>
 					</div>
 
@@ -57,14 +51,7 @@
 						</h5>
 						<h5>
 							<a href="${contextRoot}/getTicket?to=cancel">Cancel Tickets</a><br>
-						</h5>
-						<h5>
-							<a href="#">Customer Fourm</a><br>
-						</h5>
-						<h5>
-							<a href="#">Site Map</a><br>
-						</h5>
-												
+						</h5>						
 
 					</div>
 				</div>

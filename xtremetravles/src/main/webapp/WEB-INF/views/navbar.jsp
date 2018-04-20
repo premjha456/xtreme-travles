@@ -11,20 +11,18 @@
         <span class="icon-bar"></span>
       </button>
 			
-				<a class="navbar-brand" href="${contextRoot}/home">Xtreme Travles</a>
+				<a class="navbar-brand" href="${contextRoot}/home">Xtreme Travels</a>
 			</div>
     <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height: 1px;">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="${contextRoot}/flight">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flights&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-				<li><a href="${contextRoot}/hotels">&nbsp;&nbsp;&nbsp;Hotels&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-				<li><a href="${contextRoot}/bus">&nbsp;&nbsp;&nbsp;Bus&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-				<li><a href="${contextRoot}/cabs">&nbsp;&nbsp;&nbsp;Cabs&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li id="flight"><a href="${contextRoot}/flight">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flights&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li id="bus"><a href="${contextRoot}/bus">&nbsp;&nbsp;&nbsp;Bus&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li id="cab"><a href="${contextRoot}/cabs">&nbsp;&nbsp;&nbsp;Cabs&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 				
 				<security:authorize access="hasAuthority('AGENT')">
-				<li><a href="${contextRoot}/manage/bus">&nbsp;&nbsp;&nbsp;Manage Buses&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-				<li><a href="${contextRoot}/manage/flight">&nbsp;&nbsp;&nbsp;Manage Flights&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-				<li><a href="${contextRoot}/manage/cab">&nbsp;&nbsp;&nbsp;Manage Cabs&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-				<li><a href="${contextRoot}/manage/hotel">&nbsp;&nbsp;&nbsp;Manage Hotels&nbsp;&nbsp;&nbsp;&nbsp;</a></li>			
+				<li id="manbus"><a href="${contextRoot}/manage/bus">&nbsp;&nbsp;&nbsp;Manage Buses&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li id="manflight"><a href="${contextRoot}/manage/flight">&nbsp;&nbsp;&nbsp;Manage Flights&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+				<li id="mancab"><a href="${contextRoot}/manage/cab">&nbsp;&nbsp;&nbsp;Manage Cabs&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 				</security:authorize>
 			</ul>
 			
@@ -43,14 +41,12 @@
   <a class="dropdown-toggle" type="button" data-toggle="dropdown"><b>${userModel.fullName}</b>
   <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
   <ul class="dropdown-menu">
-    <li><a href="#">View Profile</a></li>
+    <li><a href="${contextRoot}/user/viewprofile">View Profile</a></li>
     	<security:authorize access="hasAuthority('USER')">
-    	    <li role="separator" class="divider"></li>
-    <li><a href="#">My Bookings</a></li>
-        <li role="separator" class="divider"></li>
+    	            <li role="separator" class="divider"></li>
     
     </security:authorize>
-    <li><a href="${contextRoot}/logout">Logout</a></li>
+    <li><a href="${contextRoot}/logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
   </ul>
 </li> 
 </ul>

@@ -1,6 +1,5 @@
 <div class="container">
 
-	<div class="well well-lg">${cab}</div>
 	<div class="col-sm-11">
 		<div class="well well-sm">
 			<h4>
@@ -33,7 +32,7 @@
 					</div>
 
 					<div class="col-sm-2">
-						<img src="${images}/buslogo.JPG" class="img-rounded"
+						<img src="${images}/cab.png" class="img-rounded"
 							alt="" width="170" height="20">
 					</div>
 

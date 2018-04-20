@@ -12,7 +12,7 @@
 
 	<div class="row">
 
-		<div class="col-md-12">
+		<div class="col-md-11">
 
 			<div class="panel panel-primary">
 
@@ -24,7 +24,7 @@
 
 				<div class="panel-body">
 					<sf:form class="form-inline" modelAttribute="user"
-						action="${contextRoot}/register/user/agent" method="POST"
+						action="${contextRoot}/admin/register/user/agent" method="POST"
 						enctype="multipart/form-data">
 						<fieldset>
 							<legend>Personal Information:</legend>
@@ -42,7 +42,7 @@
 
 
 							<div class="form-group">
-								<label class="control-label">Contact First Name:</label>
+								<label class="control-label">Contact <br> First Name:</label>
 								<div class="input-group">
 									<sf:input type="text" path="firstName" class="form-control"
 										placeholder="Contact First Name" />
@@ -50,10 +50,10 @@
 								</div>
 							</div>
 
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 							<div class="form-group">
-								<label class="control-label">Contact Last Name:</label>
+								<label class="control-label">Contact <br>Last Name:</label>
 								<div class="input-group">
 									<sf:input type="text" path="lastName" class="form-control"
 										placeholder="Contact Last Name" />
@@ -74,7 +74,7 @@
 
 
 							<div class="form-group">
-								<label class="control-label">Mobile Number:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<label class="control-label">Mobile <br>Number:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<div class="input-group">
 									<sf:input type="text" path="contactNumber" class="form-control"
 										placeholder="Mobile No." />
@@ -85,7 +85,7 @@
 
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<div class="form-group">
-								<label class="control-label">Address Line1: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<label class="control-label">Address<br> Line1: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<div class="input-group">
 									<sf:input type="text" path="addressLineOne"
 										class="form-control" placeholder="Address 1" />
@@ -97,7 +97,7 @@
 							<br>
 
 							<div class="form-group">
-								<label class="control-label">Address Line2:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<label class="control-label">Address <br>Line2:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<div class="input-group">
 									<sf:input type="text" path="addressLineTwo"
 										class="form-control" placeholder="Address 2" />
@@ -109,7 +109,7 @@
 
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<div class="form-group">
-								<label class="control-label">Country:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<label class="control-label">Country:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<div class="input-group">
 									<sf:select path="country" class="form-control">
 										<option value=>Select Country</option>
@@ -119,10 +119,10 @@
 								</div>
 
 							</div>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 							<div class="form-group">
-								<label class="control-label">State:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<label class="control-label">State:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<div class="input-group">
 									<sf:select path="state" class="form-control">
 										<option>Select Country</option>
@@ -147,9 +147,9 @@
 								</div>
 
 							</div>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<div class="form-group">
-								<label class="control-label">Pin Code:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<label class="control-label">Pin Code:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<div class="input-group">
 									<sf:input type="text" path="postalCode" class="form-control"
 										placeholder="Pin Code" />
@@ -159,7 +159,7 @@
 
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<div class="form-group">
-								<label class="control-label">Address Proof Type:</label>
+								<label class="control-label">Address <br>Proof Type:</label>
 								<div class="input-group">
 									<sf:select path="addressProofType" class="form-control">
 										<option>Select</option>
@@ -196,7 +196,7 @@
 							</div>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<div class="form-group">
-								<label class="control-label">Monthly Sales Volume:</label>
+								<label class="control-label">Monthly <br>Sales Volume:</label>
 								<div class="input-group">
 									<sf:input type="text" path="monthlySalesVolume"
 										class="form-control" placeholder="Monthly Sales Volume" />
@@ -206,7 +206,7 @@
 							</div>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<div class="form-group">
-								<label class="control-label">Pan Card Holder Name</label>
+								<label class="control-label">Pan Card <br>Holder Name</label>
 								<div class="input-group">
 									<sf:input type="text" path="panHolderName" class="form-control"
 										placeholder="Pan Card Holder Name" />
@@ -258,7 +258,7 @@
 							<div class="form-group">
 								<label class="control-label">Password:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<div class="input-group">
-									<sf:input type="text" path="password" class="form-control"
+									<sf:input type="password" path="password" class="form-control"
 										placeholder="Password" />
 									<sf:errors path="password" cssClass="help-block"
 										element="em" />

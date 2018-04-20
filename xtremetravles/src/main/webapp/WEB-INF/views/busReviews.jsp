@@ -1,14 +1,8 @@
-
-<script type="text/javascript">
-window.id='${id}'
-window.seatNo='${seatNo}'
-</script>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 <div class="container">
 <c:set var="id" value="${bus.id}" />
 
 
-<div class="well well-lg">${bus}</div>
 	<div class="col-sm-11">
 		<div class="well well-sm">
 			<h4>
@@ -79,7 +73,7 @@ window.seatNo='${seatNo}'
 					<div class="col-sm-2">
 						<p>Boarding Point & Time</p>
 
-						<b><p>${bus.busType}</p></b>
+						<b><p>${bus.boardPoint}</p></b>
 						<p>
 							<b>${bus.boardTime}</b>
 						</p>
@@ -105,50 +99,36 @@ window.seatNo='${seatNo}'
 
 	</div>
 
-<div class="col-sm-5">
+
+
+
+	<div class="col-sm-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3>Select Seats</h3>
+				<h3>Fare Details</h3>
 			</div>
 			<div class="panel-body">
+				<div class="col-sm-3">
+					<h4>
+						<p>PerPassenger:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${bus.price}</p>
+						<p>GrandTotal:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${busFare}</p>
+					</h4>
+				</div>
 
-				<h4>Choose seats by clicking the corresponding seat in the
-					layout below:</h4>
-					
-				<div id="holder">
-					<ul id="place">
-							
-					</ul>
-				</div>
-				</div>
-				
-				
-   	<div class="panel-footer">
+			</div>
+			<div class="panel-footer">
 
-			<h5>
-		<div style="width: 600px; text-align: center; overflow: auto">
-					<ul id="seatDescription">
-						<li
-							style="background:url('${images}/available_seat_img.png') no-repeat">Available
-							Seat</li>
-						<li
-							style="background:url('${images}/booked_seat_img.png') no-repeat">Booked
-							Seat</li>
-						<li
-							style="background:url('${images}/selected_seat_img.png') no-repeat">Selected
-							Seat</li>
-					</ul>
-				</div>
-		</h5>
+				<h4>
+					<p align="right">You Pay:&nbsp;&nbsp;&nbsp;&#8377;&nbsp;${busFare}</p>
+				</h4>
+
+			</div>
+
 		</div>
-
 	</div>
-</div>
 
-	<script type="text/javascript">
-	console.log('Hello')
 
-	</script>
+
 	
 	<div class="col-sm-11">
 	<div class="well well-sm">

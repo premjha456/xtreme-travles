@@ -38,11 +38,13 @@ import com.xtremetravles.util.FileUploadUtility;
 import com.xtremetravlesbackend.dao.BookingDetailsDao;
 import com.xtremetravlesbackend.dao.BusDao;
 import com.xtremetravlesbackend.dao.CabDao;
+import com.xtremetravlesbackend.dao.FeedbackDao;
 import com.xtremetravlesbackend.dao.FlightDao;
 import com.xtremetravlesbackend.dao.UserDao;
 import com.xtremetravlesbackend.dto.BookingDetails;
 import com.xtremetravlesbackend.dto.Bus;
 import com.xtremetravlesbackend.dto.Cab;
+import com.xtremetravlesbackend.dto.Feedback;
 import com.xtremetravlesbackend.dto.Flight;
 import com.xtremetravlesbackend.dto.User;
 
@@ -67,6 +69,9 @@ public class PageController {
 	@Autowired
 	private BookingDetailsDao bookingDao;
 	
+	@Autowired
+	private FeedbackDao feedbackDao;
+	
 //	@Autowired
 //	MailSender mailSender;
 //	
@@ -75,7 +80,7 @@ public class PageController {
 		ModelAndView mv = new ModelAndView("index");		
 			
 		mv.addObject("clickedFlight", true);
-		mv.addObject("title", "Book Domestic Flight Tickets");
+		mv.addObject("title", "Flight");
 
 		return mv;				
 }
@@ -165,7 +170,7 @@ public class PageController {
 		ModelAndView mv = new ModelAndView("index");		
 			
 		mv.addObject("clickedBus", true);
-
+        mv.addObject("title","Bus");
 		return mv;				
 }
 	
@@ -189,6 +194,7 @@ public class PageController {
 				Bus bus= busDao.get(id);
 				
 				mv.addObject("bus", bus);
+				mv.addObject("bid", bus.getId());
 				mv.addObject("clickedReviewBus", true);
 		  
 //				Connection con=null;  
@@ -206,16 +212,18 @@ public class PageController {
 //				    while(rs.next()){  
 //				    	System.out.println(s);
 //				    	seatNo.append("[");
-//				    	for (int i = 1; i <= 5; i++) {
+//				    	for (int i = 1; i <= 40; i++) {
 //					    	s= "s"+i;
 //						   set  = rs.getString(s);
+//						   if(set !=null){
 //						   System.out.println(s+"-"+set);
 //					    	if(set.equals("b")){
 //					    		seatNo.append(i);
-//					    		if (i<5) {
+//					    		if (i<40) {
 //					    			seatNo.append(",");
 //								}
 //						       }
+//				    }
 //						}
 //				    	seatNo.append("]");
 //				    	}  
@@ -223,7 +231,7 @@ public class PageController {
 //				}catch(Exception e){System.out.println(e);} 
 //
 //				mv.addObject("seatNo", seatNo.toString());
-
+//
 				
 				double f=requiredSeats*bus.getPrice();
 				
@@ -280,7 +288,7 @@ public class PageController {
 		ModelAndView mv = new ModelAndView("index");		
 			
 		mv.addObject("clickedCab", true);
-
+		mv.addObject("title","Cab");
 		return mv;				
 }
 	
@@ -572,6 +580,120 @@ public class PageController {
 
 					return mv;
 				}
-
 				
+				
+				@RequestMapping("/admin/dashboard")
+				public ModelAndView adminDashboard(){
+					ModelAndView mv = new ModelAndView("admindashboard");		
+					
+					mv.addObject("clickedAdminDash", true);
+					mv.addObject("title","Admin Dashboard");
+					return mv;		 
+				}
+
+				@RequestMapping("/feedback")
+				public ModelAndView feedback(){
+					ModelAndView mv = new ModelAndView("index");		
+					
+					mv.addObject("clickedFeedback", true);
+					mv.addObject("title","Feedback");
+					return mv;		 
+				}
+
+
+				@RequestMapping("/submit/feedback")
+				public ModelAndView submitFeedback(@RequestParam("name") String name,@RequestParam("email") String email,@RequestParam("message") String message){
+					ModelAndView mv = new ModelAndView("index");
+					Feedback feedback = new Feedback();
+					feedback.setName(name);
+					feedback.setEmail(email);
+					feedback.setComment(message);
+					UserModel usermod= (UserModel) session.getAttribute("userModel");
+					feedback.setUser(userDao.getUserById(usermod.getId()));
+					feedbackDao.add(feedback);
+					mv.addObject("clickedFeedback", true);
+					mv.addObject("title","Feedback");
+					return mv;		 
+				}
+
+				@RequestMapping("/admin/feedback")
+				public ModelAndView adminFeedback(){
+					ModelAndView mv = new ModelAndView("admindashboard");		
+					
+					mv.addObject("clickedAdminFeedback", true);
+					mv.addObject("title","View Feedback");
+					
+					List<Feedback> feedbacks= feedbackDao.getFeedbackList();
+					mv.addObject("feedback",feedbacks);
+
+					return mv;		 
+				}				
+				
+				
+				@RequestMapping("/user/viewprofile")
+				public ModelAndView viewUserProfile(){
+					ModelAndView mv = new ModelAndView("index");		
+					
+					UserModel model= (UserModel) session.getAttribute("userModel");
+				    User  user=	userDao.getUserById(model.getId());
+				    mv.addObject("user",user);
+				  
+				  if (user.getRole().equals("USER")) {
+						mv.addObject("clickedViewUserProfile", true);
+					  List<BookingDetails> bookbus=  bookingDao.getBookedBus(user);
+					  List<BookingDetails> bookcab=  bookingDao.getBookedCab(user);
+					  List<BookingDetails> bookflight=  bookingDao.getBookedFlight(user);
+
+
+					  mv.addObject("bookbus", bookbus);
+					  mv.addObject("bookcab", bookcab);
+					  mv.addObject("bookflight", bookflight);
+
+				}
+				  else if (user.getRole().equals("AGENT")) {
+					
+						mv.addObject("clickedViewAgentProfile", true);
+					List<Bus> lsbus= busDao.listBusByAgentId(user);
+					List<Flight> lsflight = flightDao.listFlightByAgentId(user);
+					List<Cab>  lscab= cabDao.listCabsByAgentId(user);
+					
+					mv.addObject("lsbus", lsbus);
+					mv.addObject("lsflight", lsflight);
+					mv.addObject("lscab", lscab);
+					
+				}
+
+					mv.addObject("title","Profile");
+					
+				
+					return mv;		 
+				}				
+				
+				@RequestMapping(value ="/privacy")
+				public ModelAndView privacy() {		
+					ModelAndView mv = new ModelAndView("index");		
+						
+					mv.addObject("clickedPrivacy", true);
+			        mv.addObject("title","Privacy");
+					return mv;				
+				}
+				
+				@RequestMapping(value ="/about")
+				public ModelAndView about() {		
+					ModelAndView mv = new ModelAndView("index");		
+						
+					mv.addObject("clickedAbout", true);
+			        mv.addObject("title","About");
+					return mv;				
+			}
+				
+				@RequestMapping(value ="/terms")
+				public ModelAndView terms() {		
+					ModelAndView mv = new ModelAndView("index");		
+						
+					mv.addObject("clickedTerms", true);
+			        mv.addObject("title","Terms & Condition");
+					return mv;				
+			}
+
 }

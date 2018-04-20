@@ -130,11 +130,6 @@ function submitPayuForm() {
  
   </div>
   </div>
-  <a href="https://www.google.co.in/">Google</a>
-    <a href="https://www.payumoney.com/">Payumoney</a>
-    <a href="https://sboxcheckout.citruspay.com/">Citrus pay</a>
-    <a href=https://sandboxsecure.payu.in/>Sandbox</a>
-  
     <div class="col-sm-7">
   <div class="panel panel-default">
   
@@ -167,12 +162,10 @@ function submitPayuForm() {
     </div>
     
      <div class="col-sm-2">
-    <p>${bus.dropPoint}</p>
-    
-    <h2><b><p>${bus.dropTime}</p></b></h2>
-        <p><b>${bus.dropPoint}</b></p>
-    </div>
-    
+						<img src="${images}/buslogo.JPG" class="img-rounded" alt=""
+							width="170" height="20">
+					</div>
+
      <div class="col-sm-2">
     <p>${bus.dropPoint}</p>
     
@@ -196,7 +189,7 @@ function submitPayuForm() {
      <div class="col-sm-2">
     <p>Boarding Point & Time</p>
     
-    <b><p>${bus.busType}</p></b>
+    <b><p>${bus.boardPoint}</p></b>
         <p><b>${bus.boardTime}</b></p>
     </div>
     
@@ -233,12 +226,10 @@ function submitPayuForm() {
     </div>
     
      <div class="col-sm-2">
-    <p>${cab.dropPoint}</p>
-    
-    <h2><b><p>${cab.dropPoint}</p></b></h2>
-        <p><b>${cab.dropPoint}</b></p>
-    </div>
-    
+						<img src="${images}/cab.png" class="img-rounded"
+							alt="" width="170" height="20">
+					</div>
+
      <div class="col-sm-2">
     <p>${cab.dropPoint}</p>
     

@@ -17,6 +17,19 @@ public interface BookingDetailsDao {
 	
 	public List<BookingDetails> getBookingDetailsByStatus(boolean status);
 
+	public List<BookingDetails> getNoOfBusBooked();
+
+	public List<BookingDetails> getNoOfCabBooked();
+
+	public List<BookingDetails> getNoOfFlightBooked();
+	
+	public List<BookingDetails> getBookedBus(User user);
+	
+	public List<BookingDetails> getBookedCab(User user);
+	
+	public List<BookingDetails> getBookedFlight(User user);
+
+
 	boolean add(BookingDetails bookingDetails);
 
 	boolean update(BookingDetails bookingDetails);

@@ -30,7 +30,7 @@
 				<div class="panel-body">
 					<sf:form class="form-horizontal" modelAttribute="bus" action="${contextRoot}/manage/bus" method="POST" >
 						<div class="form-group">
-							<label class="control-label col-md-4">Flight Name</label>
+							<label class="control-label col-md-4">Bus Name</label>
 							<div class="col-md-8">
 								<sf:input type="text" path="busName" class="form-control"
 									placeholder="Bus Name" />

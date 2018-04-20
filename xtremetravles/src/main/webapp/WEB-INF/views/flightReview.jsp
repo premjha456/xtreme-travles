@@ -1,6 +1,5 @@
 <div class="container">
 
-	<div class="well well-lg">${flight}</div>
 	<div class="col-sm-11">
 		<div class="well well-sm">
 			<h4>
@@ -13,7 +12,7 @@
 	<div class="col-sm-7">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3>Ticket Details</h3>
+				<h3>Flight Details</h3>
 			</div>
 			<div class="panel-body">
 				<h5>

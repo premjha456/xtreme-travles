@@ -6,7 +6,7 @@
 
 						</script>
 					
-                    
+ <div>                   
 	
     			
 <table id="listbus" class="table table-striped table-borderd">
@@ -15,10 +15,9 @@
 						<thead>
 						
 							<tr>
+							    <th>Travles</th>
 								<th>Depature</th>
-								<th>Duration</th>
 							    <th>Arrival</th>
-								<th>Travles</th>
 							    <th>Seats</th>
 								<th>Price</th>	
 								<th></th>	
@@ -30,12 +29,11 @@
 
 						<tfoot>
 						
-							    <th>Depature</th>
-								<th>Duration</th>
+							    <th>Travles</th>
+								<th>Depature</th>
 							    <th>Arrival</th>
-								<th>Travles</th>
 							    <th>Seats</th>
-								<th>Price</th>
+								<th>Price</th>	
 								<th></th>	
 
 							</tr>
@@ -44,4 +42,4 @@
 							
 				
 					
-				
+				</div>

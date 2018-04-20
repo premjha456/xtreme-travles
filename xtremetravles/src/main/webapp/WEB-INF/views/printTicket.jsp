@@ -84,7 +84,7 @@ th, td {
 
 <table style="width:50%; border:2px solid gray; padding:5px;" border="0">
   <tr>
-    <th colspan="2" align="Center" style="border-bottom: 2px solid gray; padding-bottom:5px"><img id="img1" alt="logo.jpg" src="${images}/logo.jpg" height="58px" width="105px"></th>
+    <th colspan="2" align="Center" style="border-bottom: 2px solid gray; padding-bottom:5px"><img id="img1" alt="logo.jpg" src="${images}/aaaaaa.JPG" height="58px" width="180px"></th>
     
     <td align="left" colspan="2" style="color: Blue;border-bottom: 2px solid gray; padding-bottom: 5px">
                                     H.O :- Xtreme Travels,Chembur,Mumbai ||

@@ -19,56 +19,67 @@
 <link rel="stylesheet" href="${css}/bootstrap-theme.css">
 <link rel="stylesheet" href="${css}/style.css">
 
+<link href="${css}/font-awesome.css" rel="stylesheet" />
+
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
 <link rel="stylesheet" href="${css}/dataTables.bootstrap4.css">
 <style type="text/css">
-#place {
-	position: relative;
-	margin: 7px;
+.social {
+	margin: 1em 0 0 0;
 }
 
-#place a {
-	font-size: 0.6em;
+.social ul {
+	padding: 0;
+	margin: 0;
 }
 
-#place li {
-	list-style: none outside none;
-	position: absolute;
+.social ul li {
+	display: inline-block;
+	margin: 0;
 }
 
-#place .seat {
-	background: url(${images}/available_seat_img.png) no-repeat scroll 0 0
-		transparent;
-	height: 100px;
-	width: 100px;
+.social ul li a.facebook {
+	background: url(${images}/social.png) no-repeat 0px 0px;
+	width: 30px;
+	height: 30px;
 	display: block;
+	transition: none;
 }
 
-#place .selectedSeat {
-	background-image: url(${images}/booked_seat_img.png);
+.social ul li a.twitter {
+	background: url(${images}/social.png) no-repeat -30px 0px;
 }
 
-#place .selectingSeat {
-	background-image: url(${images}/selected_seat_img.png);
+.social ul li a.chrome {
+	background: url(${images}/social.png) no-repeat -60px 0px;
 }
 
-#place .row-2, #place .row-3 {
-	margin-top: 10px;
+.social ul li a.dribbble {
+	background: url(${images}/social.png) no-repeat -90px 0px;
 }
 
-#seatDescription {
-	padding: 0px;
+.social ul li a.facebook:hover {
+	background: url(${images}/social.png) no-repeat 0px -32px;
 }
 
-#seatDescription li {
-	verticle-align: middle;
-	list-style: none outside none;
-	padding-left: 35px;
-	height: 35px;
-	float: left;
+.social ul li a.twitter:hover {
+	background: url(${images}/social.png) no-repeat -30px -32px;
 }
+
+.social ul li a.chrome:hover {
+	background: url(${images}/social.png) no-repeat -60px -32px;
+}
+
+.social ul li a.dribbble:hover {
+	background: url(${images}/social.png) no-repeat -90px -32px;
+}
+
 </style>
 <script type="text/javascript">
 window.contextRoot='${contextRoot}'
+window.menu='${title}'
+console.log(menu)
 </script>
 </head>
 <body>
@@ -120,17 +131,13 @@ window.contextRoot='${contextRoot}'
 			</c:if>
 
 
-
 			<c:if
 				test="${clickedConfirmBusBooking == true ||clickedConfirmFlightBooking==true || clickedConfirmCabBooking==true}">
 				<%@include file="confirmBooking.jsp"%>
 			</c:if>
 
 
-			<c:if test="${clickedDeals == true }">
-				<%@include file="holidays.jsp"%>
-			</c:if>
-
+			
 			<c:if test="${clickedManageBus == true }">
 				<%@include file="manageBus.jsp"%>
 			</c:if>
@@ -144,14 +151,8 @@ window.contextRoot='${contextRoot}'
 				<%@include file="manageCab.jsp"%>
 			</c:if>
 
-			<c:if test="${clickedHotels == true }">
-				<%@include file="hotels.jsp"%>
-			</c:if>
-
-			<c:if test="${clickedRegister == true }">
-				<%@include file="register.jsp"%>
-			</c:if>
-
+			
+             
 			<c:if test="${clickedRegisterUser == true }">
 				<%@include file="registerUser.jsp"%>
 			</c:if>
@@ -163,6 +164,29 @@ window.contextRoot='${contextRoot}'
 			
 			<c:if test="${clickFeedLogin == true }">
 				<%@include file="login.jsp"%>
+			</c:if>
+			
+			<c:if test="${clickedFeedback == true }">
+				<%@include file="feedback.jsp"%>
+			</c:if>
+			
+			<c:if test="${clickedPrivacy == true }">
+				<%@include file="privacy.jsp"%>
+			</c:if>
+			
+			<c:if test="${clickedAbout == true }">
+				<%@include file="about.jsp"%>
+			</c:if>
+			<c:if test="${clickedTerms == true }">
+				<%@include file="terms.jsp"%>
+			</c:if>
+			
+			<c:if test="${clickedViewUserProfile == true }">
+				<%@include file="userprofile.jsp"%>
+			</c:if>
+			
+			<c:if test="${clickedViewAgentProfile == true }">
+				<%@include file="agentprofile.jsp"%>
 			</c:if>
 			
 			<!-- Footer bottom -->

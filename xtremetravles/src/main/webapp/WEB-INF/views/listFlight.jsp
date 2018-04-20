@@ -19,7 +19,7 @@
 								<th></th>
 								<th>Depature</th>
 							    <th>Arrival</th>
-								<th>Duration</th>
+								<th>Flight Name</th>
 							    <th>Seats</th>
 								<th>Price</th>	
 								<th></th>	
@@ -34,7 +34,7 @@
 							    <th></th>
 								<th>Depature</th>
 							    <th>Arrival</th>
-								<th>Duration</th>
+								<th>Flight Name</th>
 							    <th>Seats</th>
 								<th>Price</th>	
 								<th></th>	

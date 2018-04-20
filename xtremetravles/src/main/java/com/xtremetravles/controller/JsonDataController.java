@@ -1,5 +1,6 @@
 package com.xtremetravles.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +9,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xtremetravlesbackend.dao.BookingDetailsDao;
 import com.xtremetravlesbackend.dao.BusDao;
 import com.xtremetravlesbackend.dao.CabDao;
+import com.xtremetravlesbackend.dao.FeedbackDao;
 import com.xtremetravlesbackend.dao.FlightDao;
 import com.xtremetravlesbackend.dao.UserDao;
+import com.xtremetravlesbackend.dto.BookingDetails;
 import com.xtremetravlesbackend.dto.Bus;
 import com.xtremetravlesbackend.dto.Cab;
+import com.xtremetravlesbackend.dto.Feedback;
 import com.xtremetravlesbackend.dto.Flight;
+import com.xtremetravlesbackend.dto.Product;
 import com.xtremetravlesbackend.dto.User;
 
 @Controller
@@ -33,6 +39,11 @@ public class JsonDataController {
 	@Autowired
 	private CabDao cabDao;
 	
+	@Autowired
+	private FeedbackDao feedbackDao;
+	
+	@Autowired
+	private BookingDetailsDao bookingDao;
 	
 	
 	@RequestMapping("/all/bus")
@@ -113,4 +124,29 @@ public class JsonDataController {
 	}
 	
 	
+	@RequestMapping("/viewfeedback")
+	@ResponseBody
+	public List<Feedback> getAllFeedback(){
+		
+		return feedbackDao.getFeedbackList();
+	}
+	
+	
+	@RequestMapping("/bookdetails")
+	@ResponseBody
+	public List<Product> getAllbook(){
+		
+		
+		List list1= bookingDao.getNoOfFlightBooked();
+		List list2= bookingDao.getNoOfCabBooked();
+		List list3= bookingDao.getNoOfBusBooked();
+
+		
+		
+List<Product> lll= new ArrayList<Product>();
+	lll.add(new Product(1, "Bus", list3.size()));
+	lll.add(new Product(2, "Cab", list2.size()));
+	lll.add(new Product(3, "Flight", list1.size()));
+		return lll;
+	}
 }

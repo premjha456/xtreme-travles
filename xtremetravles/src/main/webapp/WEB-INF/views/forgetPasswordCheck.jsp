@@ -17,7 +17,7 @@
 	<div class="col-md-offset-2 col-md-8">
 	
 	 <div class="panel panel-primary">
-    <div class="panel-heading"><h4>Enter Your Email to Verify</h4></div>
+    <div class="panel-heading"><h4>Enter OTP Sent to Below Email Id</h4></div>
 					<div class="panel-body">
 						<form role="form" action="${contextRoot}/newpassword">
 							<fieldset>

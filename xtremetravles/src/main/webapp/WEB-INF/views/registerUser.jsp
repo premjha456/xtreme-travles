@@ -73,7 +73,6 @@
 										
 					</form>
 
-          <div style="float: right;"><h4><a href="${contextRoot}/register/user/agent">Looking of Travel Agent Account ? Register Here</a></h4></div>
 
 				</div>
 

@@ -11,9 +11,9 @@ public interface FeedbackDao {
 	
 	public List<Feedback> getFeedbackList();
 	
-	public List<Feedback> getFeedbackListBySubject(String subject);
-
 	public List<Feedback> getFeedbackListByUserId(User user);
+
+	public boolean add(Feedback feedback);
 
 }
 

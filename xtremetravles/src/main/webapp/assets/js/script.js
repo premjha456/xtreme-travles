@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	
+	    $('#feed').DataTable();
+
 	/* This code is executed after the DOM has been completely loaded */
 
 	/* Changing thedefault easing effect - will affect the slideUp/slideDown methods: */
@@ -18,7 +21,41 @@ $(document).ready(function(){
 		e.preventDefault();
 	})
 	
+	switch (menu) {
+
+	case 'Flight':
+		$('#flight').addClass('active');		console.log(menu)
+
+		break;
+	case 'Bus':
+		$('#bus').addClass('active');		console.log(menu)
+
+		break;
+	case 'Cab':
+		$('#cab').addClass('active');		console.log(menu)
+
+		break;
+	case 'Manage Bus':
+		$('#manbus').addClass('active');
+		break;
+	case 'Manage Flight':
+		$('#manflight').addClass('active');
+		break;	
+	case 'Manage Cab':
+		$('#mancab').addClass('active');
+		break;
 	
+	default:
+		if (menu == "Home")
+			break;
+		$('#listProducts').addClass('active');
+		$('#a_' + menu).addClass('active');
+		break;
+	}
+
+	
+		  
+
 	  var $url=window.contextRoot + '/json/data/'+ window.boardPoint +'/'
 							+ window.dropPoint +'/'+ window.date+'/cabs';
 
@@ -74,17 +111,15 @@ var $table =$('#listbus');
 			columns:[
 				
 				{
-					data:'boardTime'
+					data:'busName'
 				},
 				{
-					data:'busName'
+					data:'boardTime'
 				},
 				{
 					data:'dropTime'
 				},
-				{
-					data:'busName'
-				},
+				
 				{
 					data:'seatsAvailable'
 				},
@@ -118,6 +153,10 @@ var $table =$('#listbus');
 		
 		
 
+	
+	
+	
+	
 	var $table =$('#listflight');
 
 	if($table.length){
@@ -194,6 +233,38 @@ var $table =$('#listbus');
 	}	
 	
 	
+var $table =$('#feedback');
+	
+	if($table.length){
+				
+		var jsonUrl = window.contextRoot + '/json/data/viewfeedback';
+		
+		console.log(jsonUrl);
+		$table.DataTable({
+
+			lengthMenu:[[3,5,10],['3 Records','5 Records','10 Records']],
+			pageLength:5,
+			ajax:{
+				
+				url:jsonUrl,
+				dataSrc:''
+			},
+			
+			columns:[
+				
+				{
+					data:'name'
+				},
+				{
+					data:'email'
+				},
+				{
+					data:'comment'
+				}
+		]
+		});
+	}	
+		
 
 
 
@@ -621,18 +692,18 @@ var $tabel = $('#cabTable');
 		                        if ($.isArray(reservedSeat) && $.inArray(seatNo, reservedSeat) != -1) {
 		                            className += ' ' + settings.selectedSeatCss;
 		                        }
-		                        str.push('<li class="' + className + '"' +
+		                        str.push('<li onclick="Function'+seatNo+'()" id="sea'+seatNo +'" class="' + className + '"' +
 		                                  'style="top:' + (i * settings.seatHeight).toString() + 'px;left:' + (j * settings.seatWidth).toString() + 'px">' +
 		                                  '<a title="' + seatNo + '">' + seatNo + '</a>' +
 		                                  '</li>');
 		                    }
-		                }
+		                }console.log(str)
 		                $('#place').html(str.join(''));
 		            };
 		            //case I: Show from starting
 		            //init();
 		            //Case II: If already booked
-		            var bookedSeats = [5, 10, 25,35,45,55];
+		            var bookedSeats =window.seat
 		            init(bookedSeats);
 		            $('.' + settings.seatCss).click(function () {
 		      if ($(this).hasClass(settings.selectedSeatCss)){
@@ -645,5 +716,7 @@ var $tabel = $('#cabTable');
 		            
 		        });
 
-		
+		    
+		    
+		  
 });
